@@ -91,6 +91,9 @@
                     <constraint firstItem="BCu-Gn-lML" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="lVv-ms-Fue"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="profileImageView" destination="YJu-8B-WOq" id="IOe-Cg-U8f"/>
+            </connections>
             <point key="canvasLocation" x="49.5" y="157"/>
         </tableViewCell>
     </objects>

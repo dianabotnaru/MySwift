@@ -8,13 +8,33 @@
 
 import UIKit
 
-class PNRollsViewController: UIViewController {
+class PNRollsViewController: PNBaseViewController {
+
+    let cellReuseIdentifier = "PNRollsTableViewCell"
+    @IBOutlet var rollsTableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        rollsTableView.register(UINib(nibName: "PNRollsTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
+        rollsTableView.separatorStyle = UITableViewCellSeparatorStyle.none
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+}
+
+extension PNRollsViewController: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
+        return 330
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10;
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.rollsTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! PNRollsTableViewCell
+        return cell
     }
 }

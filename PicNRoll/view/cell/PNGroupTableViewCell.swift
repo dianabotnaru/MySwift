@@ -1,5 +1,5 @@
 //
-//  PNRollsTableViewCell.swift
+//  PNGroupTableViewCell.swift
 //  PicNRoll
 //
 //  Created by jordi on 18/12/2017.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class PNRollsTableViewCell: UITableViewCell {
+class PNGroupTableViewCell: UITableViewCell {
 
-    @IBOutlet var profileImageView: UIImageView!
+    @IBOutlet var groupImageView: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,9 +20,10 @@ class PNRollsTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
     func initUi(){
-        profileImageView.layer.cornerRadius = 20
-        profileImageView.clipsToBounds = true
+        groupImageView.layer.cornerRadius = 20
+        groupImageView.clipsToBounds = true
     }
+
+    
 }

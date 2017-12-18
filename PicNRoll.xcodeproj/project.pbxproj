@@ -15,12 +15,14 @@
 		8D286C2D1FE767200043105C /* FocusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D286C2C1FE767200043105C /* FocusView.xib */; };
 		8D286C311FE7C7790043105C /* test.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 8D286C301FE7C7780043105C /* test.jpeg */; };
 		8D286C331FE7E4230043105C /* PNRollsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D286C321FE7E4230043105C /* PNRollsTableViewCell.swift */; };
-		8D286C361FE7E4A20043105C /* PNFolderListTableViewCell copy.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D286C341FE7E4A10043105C /* PNFolderListTableViewCell copy.xib */; };
+		8D286C361FE7E4A20043105C /* PNFolderListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D286C341FE7E4A10043105C /* PNFolderListTableViewCell.xib */; };
 		8D286C371FE7E4A20043105C /* PNRollsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D286C351FE7E4A20043105C /* PNRollsTableViewCell.xib */; };
 		8D72F2321FE4BE440047CB66 /* PNRollsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72F2311FE4BE440047CB66 /* PNRollsViewController.swift */; };
 		8D72F2341FE4BE570047CB66 /* PNGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72F2331FE4BE570047CB66 /* PNGroupViewController.swift */; };
 		8D72F2361FE4BE6F0047CB66 /* PNProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72F2351FE4BE6F0047CB66 /* PNProfileViewController.swift */; };
 		8D72F2381FE4BF560047CB66 /* PNTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72F2371FE4BF560047CB66 /* PNTabViewController.swift */; };
+		8D84CBAF1FE7F1B4006B2F74 /* PNGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D84CBAD1FE7F1B4006B2F74 /* PNGroupTableViewCell.swift */; };
+		8D84CBB01FE7F1B4006B2F74 /* PNGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D84CBAE1FE7F1B4006B2F74 /* PNGroupTableViewCell.xib */; };
 		8D942F291FE35B8A002354F8 /* PNFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D942F281FE35B8A002354F8 /* PNFolderViewController.swift */; };
 		8D942F2F1FE365F0002354F8 /* PNFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D942F2E1FE365F0002354F8 /* PNFolder.swift */; };
 		8D942F341FE366BD002354F8 /* PNFolderListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D942F321FE366BD002354F8 /* PNFolderListTableViewCell.swift */; };
@@ -44,12 +46,14 @@
 		8D286C2C1FE767200043105C /* FocusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FocusView.xib; sourceTree = "<group>"; };
 		8D286C301FE7C7780043105C /* test.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpeg; sourceTree = "<group>"; };
 		8D286C321FE7E4230043105C /* PNRollsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNRollsTableViewCell.swift; sourceTree = "<group>"; };
-		8D286C341FE7E4A10043105C /* PNFolderListTableViewCell copy.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PNFolderListTableViewCell copy.xib"; sourceTree = "<group>"; };
+		8D286C341FE7E4A10043105C /* PNFolderListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PNFolderListTableViewCell.xib; sourceTree = "<group>"; };
 		8D286C351FE7E4A20043105C /* PNRollsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PNRollsTableViewCell.xib; sourceTree = "<group>"; };
 		8D72F2311FE4BE440047CB66 /* PNRollsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNRollsViewController.swift; sourceTree = "<group>"; };
 		8D72F2331FE4BE570047CB66 /* PNGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNGroupViewController.swift; sourceTree = "<group>"; };
 		8D72F2351FE4BE6F0047CB66 /* PNProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNProfileViewController.swift; sourceTree = "<group>"; };
 		8D72F2371FE4BF560047CB66 /* PNTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNTabViewController.swift; sourceTree = "<group>"; };
+		8D84CBAD1FE7F1B4006B2F74 /* PNGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNGroupTableViewCell.swift; sourceTree = "<group>"; };
+		8D84CBAE1FE7F1B4006B2F74 /* PNGroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PNGroupTableViewCell.xib; sourceTree = "<group>"; };
 		8D942F281FE35B8A002354F8 /* PNFolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNFolderViewController.swift; sourceTree = "<group>"; };
 		8D942F2E1FE365F0002354F8 /* PNFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNFolder.swift; sourceTree = "<group>"; };
 		8D942F321FE366BD002354F8 /* PNFolderListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNFolderListTableViewCell.swift; sourceTree = "<group>"; };
@@ -124,10 +128,12 @@
 		8D942F2A1FE363A1002354F8 /* cell */ = {
 			isa = PBXGroup;
 			children = (
-				8D286C341FE7E4A10043105C /* PNFolderListTableViewCell copy.xib */,
+				8D286C341FE7E4A10043105C /* PNFolderListTableViewCell.xib */,
 				8D286C351FE7E4A20043105C /* PNRollsTableViewCell.xib */,
 				8D942F321FE366BD002354F8 /* PNFolderListTableViewCell.swift */,
 				8D286C321FE7E4230043105C /* PNRollsTableViewCell.swift */,
+				8D84CBAD1FE7F1B4006B2F74 /* PNGroupTableViewCell.swift */,
+				8D84CBAE1FE7F1B4006B2F74 /* PNGroupTableViewCell.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -283,9 +289,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D286C361FE7E4A20043105C /* PNFolderListTableViewCell copy.xib in Resources */,
+				8D286C361FE7E4A20043105C /* PNFolderListTableViewCell.xib in Resources */,
 				8D286C311FE7C7790043105C /* test.jpeg in Resources */,
 				8DB93D371FE2FCAD00E456C2 /* LaunchScreen.storyboard in Resources */,
+				8D84CBB01FE7F1B4006B2F74 /* PNGroupTableViewCell.xib in Resources */,
 				8D286C2D1FE767200043105C /* FocusView.xib in Resources */,
 				8DB93D341FE2FCAD00E456C2 /* Assets.xcassets in Resources */,
 				8DB93D321FE2FCAD00E456C2 /* Main.storyboard in Resources */,
@@ -374,6 +381,7 @@
 				8D942F341FE366BD002354F8 /* PNFolderListTableViewCell.swift in Sources */,
 				8DB93D491FE3087300E456C2 /* PNForgotPwViewController.swift in Sources */,
 				8D942F291FE35B8A002354F8 /* PNFolderViewController.swift in Sources */,
+				8D84CBAF1FE7F1B4006B2F74 /* PNGroupTableViewCell.swift in Sources */,
 				8D72F2381FE4BF560047CB66 /* PNTabViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
