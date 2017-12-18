@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PNGroupViewController: UIViewController {
+class PNGroupViewController: PNBaseViewController {
 
     let cellReuseIdentifier = "PNGroupTableViewCell"
     let section = ["Groups", "Friends"]
@@ -52,5 +52,8 @@ extension PNGroupViewController: UITableViewDelegate, UITableViewDataSource{
         return 40
     }
 
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.initBackItemTitle(title: "Back to groups")
+        self.pushViewController(identifier: "PNGroupDetailViewController")
+    }
 }

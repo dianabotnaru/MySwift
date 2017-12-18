@@ -18,6 +18,12 @@ class PNBaseViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    func initBackItemTitle(title: String) {
+        let backItem = UIBarButtonItem()
+        backItem.title = title
+        navigationItem.backBarButtonItem = backItem
+    }
+
     func pushViewController(identifier: String){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: identifier) as UIViewController

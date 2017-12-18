@@ -28,10 +28,12 @@ class PNLoginViewController: PNBaseViewController {
             self.showAlarmViewController(message:"Please enter email!")
             return;
         }
+        
         if(!self.isValid(emailTextField.text!)){
             self.showAlarmViewController(message:"Please enter a valid email!")
             return
         }
+        
         if(pwTextField.text == ""){
             self.showAlarmViewController(message:"Please enter password!")
             return;
