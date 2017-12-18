@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PNFolderListTableViewCell" rowHeight="71" id="KGk-i7-Jjw" customClass="PNFolderListTableViewCell" customModule="PicNRoll" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="431" height="71"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="431" height="70.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My folder Test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DCx-Ya-Dsa">
+                        <rect key="frame" x="20" y="16" width="108" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                        <color key="textColor" red="0.0" green="0.68235294120000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Photos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="98j-Ub-Vjo">
+                        <rect key="frame" x="20" y="40.5" width="50.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qWb-vZ-KBd">
+                        <rect key="frame" x="20" y="69.5" width="411" height="1"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="SnN-70-q4g"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWA-5q-f9X">
+                        <rect key="frame" x="391" y="25" width="20" height="20"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="MS4-nE-m3C"/>
+                            <constraint firstAttribute="width" constant="20" id="i01-Sb-Jp5"/>
+                        </constraints>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <state key="normal" backgroundImage="ic_share">
+                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="shareButtonTapped" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Xjo-zM-fdP"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="04/12/2017  01:40 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RvX-xv-ux4">
+                        <rect key="frame" x="226" y="41" width="125" height="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="RWA-5q-f9X" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="2Ez-ff-TXJ"/>
+                    <constraint firstItem="DCx-Ya-Dsa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="2cN-er-nhA"/>
+                    <constraint firstAttribute="trailing" secondItem="qWb-vZ-KBd" secondAttribute="trailing" id="Kfy-OA-I0C"/>
+                    <constraint firstItem="98j-Ub-Vjo" firstAttribute="top" secondItem="DCx-Ya-Dsa" secondAttribute="bottom" constant="5" id="OMn-QM-MMx"/>
+                    <constraint firstAttribute="trailing" secondItem="RWA-5q-f9X" secondAttribute="trailing" constant="20" id="SbE-aN-KUY"/>
+                    <constraint firstItem="RvX-xv-ux4" firstAttribute="top" secondItem="98j-Ub-Vjo" secondAttribute="top" id="Wgt-fq-rFY"/>
+                    <constraint firstItem="qWb-vZ-KBd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="ZMK-BB-rYr"/>
+                    <constraint firstItem="DCx-Ya-Dsa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Zqr-xV-wuh"/>
+                    <constraint firstAttribute="bottom" secondItem="qWb-vZ-KBd" secondAttribute="bottom" id="kbA-dx-Y85"/>
+                    <constraint firstItem="RWA-5q-f9X" firstAttribute="leading" secondItem="RvX-xv-ux4" secondAttribute="trailing" constant="40" id="uMd-4g-4Ac"/>
+                    <constraint firstItem="98j-Ub-Vjo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="wLV-kM-HvV"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dateLabel" destination="RvX-xv-ux4" id="WXe-0X-k5i"/>
+                <outlet property="nameLabel" destination="DCx-Ya-Dsa" id="F1w-5O-3lC"/>
+                <outlet property="photoCountLabel" destination="98j-Ub-Vjo" id="oLS-DZ-9Op"/>
+                <outlet property="shareButton" destination="RWA-5q-f9X" id="Toi-hX-YgQ"/>
+            </connections>
+            <point key="canvasLocation" x="88.5" y="102.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_share" width="25" height="25"/>
+    </resources>
+</document>

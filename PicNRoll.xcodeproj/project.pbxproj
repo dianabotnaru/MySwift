@@ -1,0 +1,536 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		675FA622D25B11325083EC7D /* Pods_PicNRoll.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19D6A79A9DA7277930147EE9 /* Pods_PicNRoll.framework */; };
+		8D286BC31FE704BD0043105C /* PNPagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D286BC21FE704BD0043105C /* PNPagingViewController.swift */; };
+		8D286C251FE752090043105C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D286C241FE751820043105C /* Foundation.framework */; };
+		8D286C2A1FE75C4B0043105C /* PNPagingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D286C281FE75C4B0043105C /* PNPagingCell.swift */; };
+		8D286C2B1FE75C4B0043105C /* PNPagingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D286C291FE75C4B0043105C /* PNPagingCell.xib */; };
+		8D286C2D1FE767200043105C /* FocusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D286C2C1FE767200043105C /* FocusView.xib */; };
+		8D72F2321FE4BE440047CB66 /* PNRollsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72F2311FE4BE440047CB66 /* PNRollsViewController.swift */; };
+		8D72F2341FE4BE570047CB66 /* PNGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72F2331FE4BE570047CB66 /* PNGroupViewController.swift */; };
+		8D72F2361FE4BE6F0047CB66 /* PNProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72F2351FE4BE6F0047CB66 /* PNProfileViewController.swift */; };
+		8D72F2381FE4BF560047CB66 /* PNTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72F2371FE4BF560047CB66 /* PNTabViewController.swift */; };
+		8D942F291FE35B8A002354F8 /* PNFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D942F281FE35B8A002354F8 /* PNFolderViewController.swift */; };
+		8D942F2F1FE365F0002354F8 /* PNFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D942F2E1FE365F0002354F8 /* PNFolder.swift */; };
+		8D942F341FE366BD002354F8 /* PNFolderListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D942F321FE366BD002354F8 /* PNFolderListTableViewCell.swift */; };
+		8D942F351FE366BD002354F8 /* PNFolderListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D942F331FE366BD002354F8 /* PNFolderListTableViewCell.xib */; };
+		8DB93D2D1FE2FCAD00E456C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB93D2C1FE2FCAD00E456C2 /* AppDelegate.swift */; };
+		8DB93D2F1FE2FCAD00E456C2 /* PNLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB93D2E1FE2FCAD00E456C2 /* PNLoginViewController.swift */; };
+		8DB93D321FE2FCAD00E456C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DB93D301FE2FCAD00E456C2 /* Main.storyboard */; };
+		8DB93D341FE2FCAD00E456C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DB93D331FE2FCAD00E456C2 /* Assets.xcassets */; };
+		8DB93D371FE2FCAD00E456C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DB93D351FE2FCAD00E456C2 /* LaunchScreen.storyboard */; };
+		8DB93D451FE2FF6600E456C2 /* PNGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB93D441FE2FF6600E456C2 /* PNGlobal.swift */; };
+		8DB93D471FE3046900E456C2 /* PNSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB93D461FE3046900E456C2 /* PNSignupViewController.swift */; };
+		8DB93D491FE3087300E456C2 /* PNForgotPwViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB93D481FE3087300E456C2 /* PNForgotPwViewController.swift */; };
+		8DB93D4B1FE30A5D00E456C2 /* PNBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB93D4A1FE30A5D00E456C2 /* PNBaseViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		19D6A79A9DA7277930147EE9 /* Pods_PicNRoll.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PicNRoll.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D286BC21FE704BD0043105C /* PNPagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNPagingViewController.swift; sourceTree = "<group>"; };
+		8D286C241FE751820043105C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8D286C281FE75C4B0043105C /* PNPagingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNPagingCell.swift; sourceTree = "<group>"; };
+		8D286C291FE75C4B0043105C /* PNPagingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PNPagingCell.xib; sourceTree = "<group>"; };
+		8D286C2C1FE767200043105C /* FocusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FocusView.xib; sourceTree = "<group>"; };
+		8D72F2311FE4BE440047CB66 /* PNRollsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNRollsViewController.swift; sourceTree = "<group>"; };
+		8D72F2331FE4BE570047CB66 /* PNGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNGroupViewController.swift; sourceTree = "<group>"; };
+		8D72F2351FE4BE6F0047CB66 /* PNProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNProfileViewController.swift; sourceTree = "<group>"; };
+		8D72F2371FE4BF560047CB66 /* PNTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNTabViewController.swift; sourceTree = "<group>"; };
+		8D942F281FE35B8A002354F8 /* PNFolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNFolderViewController.swift; sourceTree = "<group>"; };
+		8D942F2E1FE365F0002354F8 /* PNFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNFolder.swift; sourceTree = "<group>"; };
+		8D942F321FE366BD002354F8 /* PNFolderListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNFolderListTableViewCell.swift; sourceTree = "<group>"; };
+		8D942F331FE366BD002354F8 /* PNFolderListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PNFolderListTableViewCell.xib; sourceTree = "<group>"; };
+		8DB93D291FE2FCAD00E456C2 /* PicNRoll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PicNRoll.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DB93D2C1FE2FCAD00E456C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8DB93D2E1FE2FCAD00E456C2 /* PNLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNLoginViewController.swift; sourceTree = "<group>"; };
+		8DB93D311FE2FCAD00E456C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8DB93D331FE2FCAD00E456C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8DB93D361FE2FCAD00E456C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8DB93D381FE2FCAD00E456C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8DB93D441FE2FF6600E456C2 /* PNGlobal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNGlobal.swift; sourceTree = "<group>"; };
+		8DB93D461FE3046900E456C2 /* PNSignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNSignupViewController.swift; sourceTree = "<group>"; };
+		8DB93D481FE3087300E456C2 /* PNForgotPwViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNForgotPwViewController.swift; sourceTree = "<group>"; };
+		8DB93D4A1FE30A5D00E456C2 /* PNBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNBaseViewController.swift; sourceTree = "<group>"; };
+		919922119B7910C4E033D838 /* Pods-PicNRoll.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicNRoll.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PicNRoll/Pods-PicNRoll.debug.xcconfig"; sourceTree = "<group>"; };
+		CD3BB80609E2B9855E91CA5B /* Pods-PicNRoll.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicNRoll.release.xcconfig"; path = "Pods/Target Support Files/Pods-PicNRoll/Pods-PicNRoll.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8DB93D261FE2FCAD00E456C2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D286C251FE752090043105C /* Foundation.framework in Frameworks */,
+				675FA622D25B11325083EC7D /* Pods_PicNRoll.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3A318F24F6BD9A47BBD3A51E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				919922119B7910C4E033D838 /* Pods-PicNRoll.debug.xcconfig */,
+				CD3BB80609E2B9855E91CA5B /* Pods-PicNRoll.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		8D942F271FE35B60002354F8 /* home */ = {
+			isa = PBXGroup;
+			children = (
+				8D942F281FE35B8A002354F8 /* PNFolderViewController.swift */,
+				8D72F2311FE4BE440047CB66 /* PNRollsViewController.swift */,
+				8D72F2331FE4BE570047CB66 /* PNGroupViewController.swift */,
+				8D72F2351FE4BE6F0047CB66 /* PNProfileViewController.swift */,
+				8D72F2371FE4BF560047CB66 /* PNTabViewController.swift */,
+				8D286BC21FE704BD0043105C /* PNPagingViewController.swift */,
+			);
+			path = home;
+			sourceTree = "<group>";
+		};
+		8D942F2A1FE363A1002354F8 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				8D942F321FE366BD002354F8 /* PNFolderListTableViewCell.swift */,
+				8D942F331FE366BD002354F8 /* PNFolderListTableViewCell.xib */,
+				8D286C281FE75C4B0043105C /* PNPagingCell.swift */,
+				8D286C291FE75C4B0043105C /* PNPagingCell.xib */,
+				8D286C2C1FE767200043105C /* FocusView.xib */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		8DB93D201FE2FCAD00E456C2 = {
+			isa = PBXGroup;
+			children = (
+				8DB93D2B1FE2FCAD00E456C2 /* PicNRoll */,
+				8DB93D2A1FE2FCAD00E456C2 /* Products */,
+				3A318F24F6BD9A47BBD3A51E /* Pods */,
+				FF8792CA24F63D994FD0EEE7 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8DB93D2A1FE2FCAD00E456C2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DB93D291FE2FCAD00E456C2 /* PicNRoll.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8DB93D2B1FE2FCAD00E456C2 /* PicNRoll */ = {
+			isa = PBXGroup;
+			children = (
+				8DB93D421FE2FF0E00E456C2 /* base */,
+				8DB93D401FE2FEF800E456C2 /* controller */,
+				8DB93D3F1FE2FEF300E456C2 /* model */,
+				8DB93D3E1FE2FEE900E456C2 /* view */,
+				8DB93D2C1FE2FCAD00E456C2 /* AppDelegate.swift */,
+				8DB93D301FE2FCAD00E456C2 /* Main.storyboard */,
+				8DB93D331FE2FCAD00E456C2 /* Assets.xcassets */,
+				8DB93D351FE2FCAD00E456C2 /* LaunchScreen.storyboard */,
+				8DB93D381FE2FCAD00E456C2 /* Info.plist */,
+			);
+			path = PicNRoll;
+			sourceTree = "<group>";
+		};
+		8DB93D3E1FE2FEE900E456C2 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				8D942F2A1FE363A1002354F8 /* cell */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		8DB93D3F1FE2FEF300E456C2 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				8D942F2E1FE365F0002354F8 /* PNFolder.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		8DB93D401FE2FEF800E456C2 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				8D942F271FE35B60002354F8 /* home */,
+				8DB93D411FE2FF0000E456C2 /* signin */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		8DB93D411FE2FF0000E456C2 /* signin */ = {
+			isa = PBXGroup;
+			children = (
+				8DB93D2E1FE2FCAD00E456C2 /* PNLoginViewController.swift */,
+				8DB93D461FE3046900E456C2 /* PNSignupViewController.swift */,
+				8DB93D481FE3087300E456C2 /* PNForgotPwViewController.swift */,
+			);
+			path = signin;
+			sourceTree = "<group>";
+		};
+		8DB93D421FE2FF0E00E456C2 /* base */ = {
+			isa = PBXGroup;
+			children = (
+				8DB93D441FE2FF6600E456C2 /* PNGlobal.swift */,
+				8DB93D4A1FE30A5D00E456C2 /* PNBaseViewController.swift */,
+			);
+			path = base;
+			sourceTree = "<group>";
+		};
+		FF8792CA24F63D994FD0EEE7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8D286C241FE751820043105C /* Foundation.framework */,
+				19D6A79A9DA7277930147EE9 /* Pods_PicNRoll.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8DB93D281FE2FCAD00E456C2 /* PicNRoll */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8DB93D3B1FE2FCAD00E456C2 /* Build configuration list for PBXNativeTarget "PicNRoll" */;
+			buildPhases = (
+				EF04E481D76CD563FE2F74E7 /* [CP] Check Pods Manifest.lock */,
+				8DB93D251FE2FCAD00E456C2 /* Sources */,
+				8DB93D261FE2FCAD00E456C2 /* Frameworks */,
+				8DB93D271FE2FCAD00E456C2 /* Resources */,
+				E44572A0DDE1337F70143ABC /* [CP] Embed Pods Frameworks */,
+				0484BCB3612704F51F4B829C /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PicNRoll;
+			productName = PicNRoll;
+			productReference = 8DB93D291FE2FCAD00E456C2 /* PicNRoll.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8DB93D211FE2FCAD00E456C2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0910;
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = test;
+				TargetAttributes = {
+					8DB93D281FE2FCAD00E456C2 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 8DB93D241FE2FCAD00E456C2 /* Build configuration list for PBXProject "PicNRoll" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8DB93D201FE2FCAD00E456C2;
+			productRefGroup = 8DB93D2A1FE2FCAD00E456C2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8DB93D281FE2FCAD00E456C2 /* PicNRoll */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8DB93D271FE2FCAD00E456C2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DB93D371FE2FCAD00E456C2 /* LaunchScreen.storyboard in Resources */,
+				8D286C2D1FE767200043105C /* FocusView.xib in Resources */,
+				8DB93D341FE2FCAD00E456C2 /* Assets.xcassets in Resources */,
+				8DB93D321FE2FCAD00E456C2 /* Main.storyboard in Resources */,
+				8D286C2B1FE75C4B0043105C /* PNPagingCell.xib in Resources */,
+				8D942F351FE366BD002354F8 /* PNFolderListTableViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0484BCB3612704F51F4B829C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PicNRoll/Pods-PicNRoll-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E44572A0DDE1337F70143ABC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-PicNRoll/Pods-PicNRoll-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
+				"${BUILT_PRODUCTS_DIR}/Motion/Motion.framework",
+				"${BUILT_PRODUCTS_DIR}/PagingKit/PagingKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Material.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Motion.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PagingKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PicNRoll/Pods-PicNRoll-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF04E481D76CD563FE2F74E7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PicNRoll-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8DB93D251FE2FCAD00E456C2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D286BC31FE704BD0043105C /* PNPagingViewController.swift in Sources */,
+				8D286C2A1FE75C4B0043105C /* PNPagingCell.swift in Sources */,
+				8DB93D2F1FE2FCAD00E456C2 /* PNLoginViewController.swift in Sources */,
+				8D72F2341FE4BE570047CB66 /* PNGroupViewController.swift in Sources */,
+				8DB93D2D1FE2FCAD00E456C2 /* AppDelegate.swift in Sources */,
+				8DB93D471FE3046900E456C2 /* PNSignupViewController.swift in Sources */,
+				8D72F2321FE4BE440047CB66 /* PNRollsViewController.swift in Sources */,
+				8DB93D4B1FE30A5D00E456C2 /* PNBaseViewController.swift in Sources */,
+				8D72F2361FE4BE6F0047CB66 /* PNProfileViewController.swift in Sources */,
+				8DB93D451FE2FF6600E456C2 /* PNGlobal.swift in Sources */,
+				8D942F2F1FE365F0002354F8 /* PNFolder.swift in Sources */,
+				8D942F341FE366BD002354F8 /* PNFolderListTableViewCell.swift in Sources */,
+				8DB93D491FE3087300E456C2 /* PNForgotPwViewController.swift in Sources */,
+				8D942F291FE35B8A002354F8 /* PNFolderViewController.swift in Sources */,
+				8D72F2381FE4BF560047CB66 /* PNTabViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8DB93D301FE2FCAD00E456C2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8DB93D311FE2FCAD00E456C2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8DB93D351FE2FCAD00E456C2 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8DB93D361FE2FCAD00E456C2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8DB93D391FE2FCAD00E456C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8DB93D3A1FE2FCAD00E456C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8DB93D3C1FE2FCAD00E456C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 919922119B7910C4E033D838 /* Pods-PicNRoll.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = PicNRoll/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.comtech.PicNRoll;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8DB93D3D1FE2FCAD00E456C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CD3BB80609E2B9855E91CA5B /* Pods-PicNRoll.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = PicNRoll/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.comtech.PicNRoll;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8DB93D241FE2FCAD00E456C2 /* Build configuration list for PBXProject "PicNRoll" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8DB93D391FE2FCAD00E456C2 /* Debug */,
+				8DB93D3A1FE2FCAD00E456C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8DB93D3B1FE2FCAD00E456C2 /* Build configuration list for PBXNativeTarget "PicNRoll" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8DB93D3C1FE2FCAD00E456C2 /* Debug */,
+				8DB93D3D1FE2FCAD00E456C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8DB93D211FE2FCAD00E456C2 /* Project object */;
+}
