@@ -304,7 +304,7 @@
         <!--Folder-->
         <scene sceneID="Rf8-CZ-lqN">
             <objects>
-                <viewController storyboardIdentifier="PNFolderViewController" title="Folder" id="EMA-t0-tcD" customClass="PNFolderViewController" customModule="PicNRoll" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PNFolderViewController" title="Folder" automaticallyAdjustsScrollViewInsets="NO" id="EMA-t0-tcD" customClass="PNFolderViewController" customModule="PicNRoll" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ybY-6b-IfN"/>
                         <viewControllerLayoutGuide type="bottom" id="CKL-CJ-dMs"/>
@@ -313,21 +313,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Folders Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qkU-2u-J81">
-                                <rect key="frame" x="136.5" y="323" width="103" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wrd-Tl-3C3">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="EMA-t0-tcD" id="Usq-ep-4pk"/>
+                                    <outlet property="delegate" destination="EMA-t0-tcD" id="v3E-md-K6g"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qkU-2u-J81" firstAttribute="centerY" secondItem="xUu-BL-YMi" secondAttribute="centerY" id="akg-ha-1N6"/>
-                            <constraint firstItem="qkU-2u-J81" firstAttribute="centerX" secondItem="xUu-BL-YMi" secondAttribute="centerX" id="c8w-K2-Ydh"/>
+                            <constraint firstItem="wrd-Tl-3C3" firstAttribute="top" secondItem="ybY-6b-IfN" secondAttribute="bottom" id="RXC-kc-k6C"/>
+                            <constraint firstItem="CKL-CJ-dMs" firstAttribute="top" secondItem="wrd-Tl-3C3" secondAttribute="bottom" id="bOQ-2i-cDj"/>
+                            <constraint firstItem="wrd-Tl-3C3" firstAttribute="leading" secondItem="xUu-BL-YMi" secondAttribute="leading" id="ljn-fD-g1Z"/>
+                            <constraint firstAttribute="trailing" secondItem="wrd-Tl-3C3" secondAttribute="trailing" id="saH-p8-BM2"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Pick n Roll" id="1xq-xx-fRM"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="folderTableView" destination="wrd-Tl-3C3" id="sil-0L-m2T"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lg6-Xa-Yy7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

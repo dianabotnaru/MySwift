@@ -11,6 +11,8 @@ import UIKit
 protocol PNFolderListTableViewCellDelegate: class
 {
     func didTapShareButton(index:Int)
+    func didAddPictureButtonTapped(index:Int)
+
 }
 
 class PNFolderListTableViewCell: UITableViewCell {
@@ -21,15 +23,25 @@ class PNFolderListTableViewCell: UITableViewCell {
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var photoCountLabel: UILabel!
     @IBOutlet var shareButton: UIButton!
+    @IBOutlet var addPictureButton: UIButton!
+    @IBOutlet var profileImageView: UIImageView!
 
     var index : Int = 0
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        initUi()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    func initUi(){
+        addPictureButton.layer.cornerRadius = 15
+        addPictureButton.clipsToBounds = true
+        profileImageView.layer.cornerRadius = 20
+        profileImageView.clipsToBounds = true
     }
     
     func setLabels(folder: PNFolder){
@@ -58,4 +70,11 @@ class PNFolderListTableViewCell: UITableViewCell {
             self.delegate?.didTapShareButton(index: self.index)
         }
     }
+    
+    @IBAction func addPictureButtonTapped(){
+        if delegate != nil{
+            self.delegate?.didAddPictureButtonTapped(index: self.index)
+        }
+    }
+
 }

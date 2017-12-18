@@ -13,6 +13,10 @@
 		8D286C2A1FE75C4B0043105C /* PNPagingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D286C281FE75C4B0043105C /* PNPagingCell.swift */; };
 		8D286C2B1FE75C4B0043105C /* PNPagingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D286C291FE75C4B0043105C /* PNPagingCell.xib */; };
 		8D286C2D1FE767200043105C /* FocusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D286C2C1FE767200043105C /* FocusView.xib */; };
+		8D286C311FE7C7790043105C /* test.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 8D286C301FE7C7780043105C /* test.jpeg */; };
+		8D286C331FE7E4230043105C /* PNRollsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D286C321FE7E4230043105C /* PNRollsTableViewCell.swift */; };
+		8D286C361FE7E4A20043105C /* PNFolderListTableViewCell copy.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D286C341FE7E4A10043105C /* PNFolderListTableViewCell copy.xib */; };
+		8D286C371FE7E4A20043105C /* PNRollsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D286C351FE7E4A20043105C /* PNRollsTableViewCell.xib */; };
 		8D72F2321FE4BE440047CB66 /* PNRollsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72F2311FE4BE440047CB66 /* PNRollsViewController.swift */; };
 		8D72F2341FE4BE570047CB66 /* PNGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72F2331FE4BE570047CB66 /* PNGroupViewController.swift */; };
 		8D72F2361FE4BE6F0047CB66 /* PNProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72F2351FE4BE6F0047CB66 /* PNProfileViewController.swift */; };
@@ -20,7 +24,6 @@
 		8D942F291FE35B8A002354F8 /* PNFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D942F281FE35B8A002354F8 /* PNFolderViewController.swift */; };
 		8D942F2F1FE365F0002354F8 /* PNFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D942F2E1FE365F0002354F8 /* PNFolder.swift */; };
 		8D942F341FE366BD002354F8 /* PNFolderListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D942F321FE366BD002354F8 /* PNFolderListTableViewCell.swift */; };
-		8D942F351FE366BD002354F8 /* PNFolderListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D942F331FE366BD002354F8 /* PNFolderListTableViewCell.xib */; };
 		8DB93D2D1FE2FCAD00E456C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB93D2C1FE2FCAD00E456C2 /* AppDelegate.swift */; };
 		8DB93D2F1FE2FCAD00E456C2 /* PNLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB93D2E1FE2FCAD00E456C2 /* PNLoginViewController.swift */; };
 		8DB93D321FE2FCAD00E456C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DB93D301FE2FCAD00E456C2 /* Main.storyboard */; };
@@ -39,6 +42,10 @@
 		8D286C281FE75C4B0043105C /* PNPagingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNPagingCell.swift; sourceTree = "<group>"; };
 		8D286C291FE75C4B0043105C /* PNPagingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PNPagingCell.xib; sourceTree = "<group>"; };
 		8D286C2C1FE767200043105C /* FocusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FocusView.xib; sourceTree = "<group>"; };
+		8D286C301FE7C7780043105C /* test.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpeg; sourceTree = "<group>"; };
+		8D286C321FE7E4230043105C /* PNRollsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNRollsTableViewCell.swift; sourceTree = "<group>"; };
+		8D286C341FE7E4A10043105C /* PNFolderListTableViewCell copy.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PNFolderListTableViewCell copy.xib"; sourceTree = "<group>"; };
+		8D286C351FE7E4A20043105C /* PNRollsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PNRollsTableViewCell.xib; sourceTree = "<group>"; };
 		8D72F2311FE4BE440047CB66 /* PNRollsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNRollsViewController.swift; sourceTree = "<group>"; };
 		8D72F2331FE4BE570047CB66 /* PNGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNGroupViewController.swift; sourceTree = "<group>"; };
 		8D72F2351FE4BE6F0047CB66 /* PNProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNProfileViewController.swift; sourceTree = "<group>"; };
@@ -46,7 +53,6 @@
 		8D942F281FE35B8A002354F8 /* PNFolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNFolderViewController.swift; sourceTree = "<group>"; };
 		8D942F2E1FE365F0002354F8 /* PNFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNFolder.swift; sourceTree = "<group>"; };
 		8D942F321FE366BD002354F8 /* PNFolderListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNFolderListTableViewCell.swift; sourceTree = "<group>"; };
-		8D942F331FE366BD002354F8 /* PNFolderListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PNFolderListTableViewCell.xib; sourceTree = "<group>"; };
 		8DB93D291FE2FCAD00E456C2 /* PicNRoll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PicNRoll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DB93D2C1FE2FCAD00E456C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DB93D2E1FE2FCAD00E456C2 /* PNLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNLoginViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +90,24 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8D286C2E1FE7C2F10043105C /* pagingcell */ = {
+			isa = PBXGroup;
+			children = (
+				8D286C281FE75C4B0043105C /* PNPagingCell.swift */,
+				8D286C291FE75C4B0043105C /* PNPagingCell.xib */,
+				8D286C2C1FE767200043105C /* FocusView.xib */,
+			);
+			path = pagingcell;
+			sourceTree = "<group>";
+		};
+		8D286C2F1FE7C75E0043105C /* test */ = {
+			isa = PBXGroup;
+			children = (
+				8D286C301FE7C7780043105C /* test.jpeg */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
 		8D942F271FE35B60002354F8 /* home */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,11 +124,10 @@
 		8D942F2A1FE363A1002354F8 /* cell */ = {
 			isa = PBXGroup;
 			children = (
+				8D286C341FE7E4A10043105C /* PNFolderListTableViewCell copy.xib */,
+				8D286C351FE7E4A20043105C /* PNRollsTableViewCell.xib */,
 				8D942F321FE366BD002354F8 /* PNFolderListTableViewCell.swift */,
-				8D942F331FE366BD002354F8 /* PNFolderListTableViewCell.xib */,
-				8D286C281FE75C4B0043105C /* PNPagingCell.swift */,
-				8D286C291FE75C4B0043105C /* PNPagingCell.xib */,
-				8D286C2C1FE767200043105C /* FocusView.xib */,
+				8D286C321FE7E4230043105C /* PNRollsTableViewCell.swift */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -130,6 +153,7 @@
 		8DB93D2B1FE2FCAD00E456C2 /* PicNRoll */ = {
 			isa = PBXGroup;
 			children = (
+				8D286C2F1FE7C75E0043105C /* test */,
 				8DB93D421FE2FF0E00E456C2 /* base */,
 				8DB93D401FE2FEF800E456C2 /* controller */,
 				8DB93D3F1FE2FEF300E456C2 /* model */,
@@ -146,6 +170,7 @@
 		8DB93D3E1FE2FEE900E456C2 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				8D286C2E1FE7C2F10043105C /* pagingcell */,
 				8D942F2A1FE363A1002354F8 /* cell */,
 			);
 			path = view;
@@ -258,12 +283,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D286C361FE7E4A20043105C /* PNFolderListTableViewCell copy.xib in Resources */,
+				8D286C311FE7C7790043105C /* test.jpeg in Resources */,
 				8DB93D371FE2FCAD00E456C2 /* LaunchScreen.storyboard in Resources */,
 				8D286C2D1FE767200043105C /* FocusView.xib in Resources */,
 				8DB93D341FE2FCAD00E456C2 /* Assets.xcassets in Resources */,
 				8DB93D321FE2FCAD00E456C2 /* Main.storyboard in Resources */,
+				8D286C371FE7E4A20043105C /* PNRollsTableViewCell.xib in Resources */,
 				8D286C2B1FE75C4B0043105C /* PNPagingCell.xib in Resources */,
-				8D942F351FE366BD002354F8 /* PNFolderListTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +361,7 @@
 			files = (
 				8D286BC31FE704BD0043105C /* PNPagingViewController.swift in Sources */,
 				8D286C2A1FE75C4B0043105C /* PNPagingCell.swift in Sources */,
+				8D286C331FE7E4230043105C /* PNRollsTableViewCell.swift in Sources */,
 				8DB93D2F1FE2FCAD00E456C2 /* PNLoginViewController.swift in Sources */,
 				8D72F2341FE4BE570047CB66 /* PNGroupViewController.swift in Sources */,
 				8DB93D2D1FE2FCAD00E456C2 /* AppDelegate.swift in Sources */,
