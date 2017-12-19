@@ -16,7 +16,7 @@ final class PNFirebaseManager{
     var storageRef: StorageReference = Storage.storage().reference()
     var databaseRef: DatabaseReference = Database.database().reference()
     var auth = Auth.auth()
-    var pnUser : PNUser!
+    var pnUser = PNUser()
     
     func getCurrentUserID() -> String? {
         return auth.currentUser?.uid
@@ -39,7 +39,7 @@ final class PNFirebaseManager{
                             "lng":lng,
                             "profileImageUrl":""] as [AnyHashable : String]
                 self.databaseRef.child("Users").child((user?.uid)!).setValue(post)
-                self.pnUser = PNUser.init(id: (user?.uid)!, name: name, email: email, phoneNumber: phoneNumber, lat: lat, lng: lng, profileImageUrl: "")
+                self.pnUser.setValues(id: (user?.uid)!, name: name, email: email, phoneNumber: phoneNumber, lat: lat, lng: lng, profileImageUrl: "")
                 completion("")
             }else{
                 completion((error?.localizedDescription)!)
@@ -49,9 +49,25 @@ final class PNFirebaseManager{
     
     func signInUser(email:String,
                   password:String,
-                  completion: @escaping (Error) -> Swift.Void){
-        
-        
+                  completion: @escaping (String) -> Swift.Void){
+        auth.signIn(withEmail: email, password: password) { (user, error) in
+            if error == nil {
+                self.databaseRef.child("Users").child((user?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+                    let value = snapshot.value as? NSDictionary
+                    let name = value?["Name"] as? String ?? ""
+                    let phoneNumber = value?["PhoneNumber"] as? String ?? ""
+                    let lat = value?["lat"] as? String ?? ""
+                    let lng = value?["lng"] as? String ?? ""
+                    let profileImageUrl = value?["profileImageUrl"] as? String ?? ""
+                    self.pnUser.setValues(id: (user?.uid)!, name: name, email: (user?.email)!, phoneNumber: phoneNumber, lat: lat, lng: lng, profileImageUrl: profileImageUrl)
+                    completion("")
+                }) { (error) in
+                    completion(error.localizedDescription)
+                }
+            }else{
+                completion((error?.localizedDescription)!)
+            }
+        }
     }
     
     func forgotPassowrd(email:String,

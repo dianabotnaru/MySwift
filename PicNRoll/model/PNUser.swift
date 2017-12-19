@@ -17,7 +17,8 @@ class PNUser{
     var lng: String = ""
     var profileImageUrl: String = ""    
     
-    init(id:String,name:String,email:String,phoneNumber:String,lat:String,lng:String,profileImageUrl:String){
+    
+    func setValues(id:String,name:String,email:String,phoneNumber:String,lat:String,lng:String,profileImageUrl:String){
         self.id = id
         self.name = name
         self.email = email

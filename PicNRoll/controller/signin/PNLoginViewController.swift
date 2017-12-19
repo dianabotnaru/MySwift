@@ -8,6 +8,7 @@
 
 import UIKit
 import Material
+import SVProgressHUD
 
 class PNLoginViewController: PNBaseViewController {
 
@@ -50,9 +51,18 @@ class PNLoginViewController: PNBaseViewController {
     }
     
     func signin(){
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.launchHomeScreen()
-        self.pushViewController(identifier: "PNFolderViewController")
+        SVProgressHUD.show()
+        PNFirebaseManager.shared.signInUser(email: emailTextField.text!,
+                                            password: pwTextField.text!){ (result: String) in
+                                                if result == ""{
+                                                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                                    appDelegate.launchHomeScreen()
+                                                    self.pushViewController(identifier: "PNFolderViewController")
+                                                }else{
+                                                    self.showAlarmViewController(message:result)
+                                                }
+                                                SVProgressHUD.dismiss()
+        }
     }
 }
 

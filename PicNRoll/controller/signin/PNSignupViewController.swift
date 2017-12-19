@@ -8,7 +8,7 @@
 
 import UIKit
 import Material
-import Firebase
+import SVProgressHUD
 
 
 class PNSignupViewController: PNBaseViewController {
@@ -56,6 +56,7 @@ class PNSignupViewController: PNBaseViewController {
     }
     
     func signup(){
+        SVProgressHUD.show()
         PNFirebaseManager.shared.createUser(email: emailTextField.text!,
                                             password: pwTextField.text!,
                                             name: nameTextField.text!,
@@ -69,6 +70,7 @@ class PNSignupViewController: PNBaseViewController {
                                                 }else{
                                                     self.showAlarmViewController(message:result)
                                                 }
+                                                SVProgressHUD.dismiss()
         }
     }
 }
