@@ -39,6 +39,15 @@ class PNForgotPwViewController: PNBaseViewController {
     }
     
     func fogotPassword(){
-        
+        SVProgressHUD.show()
+        PNFirebaseManager.shared.forgotPassowrd(email: emailTextField.text!){ (result: String) in
+                                                if result == ""{
+                                                    self.showAlarmViewController(message:"Submit success! Please check out your email.")
+                                                    self.btnCancelClicked()
+                                                }else{
+                                                    self.showAlarmViewController(message:result)
+                                                }
+                                                SVProgressHUD.dismiss()
+        }
     }
 }

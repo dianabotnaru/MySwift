@@ -31,7 +31,7 @@ class PNBaseViewController: UIViewController {
     }
     
     func showAlarmViewController(message: String){
-        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: {
             alert -> Void in
         }))

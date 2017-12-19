@@ -71,7 +71,13 @@ final class PNFirebaseManager{
     }
     
     func forgotPassowrd(email:String,
-                    completion: @escaping (Error) -> Swift.Void){
-        
+                        completion: @escaping (String) -> Swift.Void){
+        auth.sendPasswordReset(withEmail: email) { (error) in
+            if error == nil {
+                completion("")
+            }else{
+                completion((error?.localizedDescription)!)
+            }
+        }
     }
 }
