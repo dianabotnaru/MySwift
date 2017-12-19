@@ -24,6 +24,9 @@
 		8D84CBAF1FE7F1B4006B2F74 /* PNGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D84CBAD1FE7F1B4006B2F74 /* PNGroupTableViewCell.swift */; };
 		8D84CBB01FE7F1B4006B2F74 /* PNGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D84CBAE1FE7F1B4006B2F74 /* PNGroupTableViewCell.xib */; };
 		8D84CBB21FE80505006B2F74 /* PNGroupDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D84CBB11FE80505006B2F74 /* PNGroupDetailViewController.swift */; };
+		8D84CBB71FE8A0B1006B2F74 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D84CBB61FE8A0B0006B2F74 /* GoogleService-Info.plist */; };
+		8D84CBB91FE8A6BC006B2F74 /* PNUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D84CBB81FE8A6BC006B2F74 /* PNUser.swift */; };
+		8D84CBBC1FE8A8EF006B2F74 /* PNFirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D84CBBB1FE8A8EF006B2F74 /* PNFirebaseManager.swift */; };
 		8D942F291FE35B8A002354F8 /* PNFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D942F281FE35B8A002354F8 /* PNFolderViewController.swift */; };
 		8D942F2F1FE365F0002354F8 /* PNFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D942F2E1FE365F0002354F8 /* PNFolder.swift */; };
 		8D942F341FE366BD002354F8 /* PNFolderListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D942F321FE366BD002354F8 /* PNFolderListTableViewCell.swift */; };
@@ -56,6 +59,9 @@
 		8D84CBAD1FE7F1B4006B2F74 /* PNGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNGroupTableViewCell.swift; sourceTree = "<group>"; };
 		8D84CBAE1FE7F1B4006B2F74 /* PNGroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PNGroupTableViewCell.xib; sourceTree = "<group>"; };
 		8D84CBB11FE80505006B2F74 /* PNGroupDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNGroupDetailViewController.swift; sourceTree = "<group>"; };
+		8D84CBB61FE8A0B0006B2F74 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8D84CBB81FE8A6BC006B2F74 /* PNUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNUser.swift; sourceTree = "<group>"; };
+		8D84CBBB1FE8A8EF006B2F74 /* PNFirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNFirebaseManager.swift; sourceTree = "<group>"; };
 		8D942F281FE35B8A002354F8 /* PNFolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNFolderViewController.swift; sourceTree = "<group>"; };
 		8D942F2E1FE365F0002354F8 /* PNFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNFolder.swift; sourceTree = "<group>"; };
 		8D942F321FE366BD002354F8 /* PNFolderListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNFolderListTableViewCell.swift; sourceTree = "<group>"; };
@@ -114,6 +120,14 @@
 			path = test;
 			sourceTree = "<group>";
 		};
+		8D84CBBA1FE8A838006B2F74 /* manager */ = {
+			isa = PBXGroup;
+			children = (
+				8D84CBBB1FE8A8EF006B2F74 /* PNFirebaseManager.swift */,
+			);
+			path = manager;
+			sourceTree = "<group>";
+		};
 		8D942F271FE35B60002354F8 /* home */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +176,7 @@
 		8DB93D2B1FE2FCAD00E456C2 /* PicNRoll */ = {
 			isa = PBXGroup;
 			children = (
+				8D84CBBA1FE8A838006B2F74 /* manager */,
 				8D286C2F1FE7C75E0043105C /* test */,
 				8DB93D421FE2FF0E00E456C2 /* base */,
 				8DB93D401FE2FEF800E456C2 /* controller */,
@@ -171,6 +186,7 @@
 				8DB93D301FE2FCAD00E456C2 /* Main.storyboard */,
 				8DB93D331FE2FCAD00E456C2 /* Assets.xcassets */,
 				8DB93D351FE2FCAD00E456C2 /* LaunchScreen.storyboard */,
+				8D84CBB61FE8A0B0006B2F74 /* GoogleService-Info.plist */,
 				8DB93D381FE2FCAD00E456C2 /* Info.plist */,
 			);
 			path = PicNRoll;
@@ -189,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				8D942F2E1FE365F0002354F8 /* PNFolder.swift */,
+				8D84CBB81FE8A6BC006B2F74 /* PNUser.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -299,6 +316,7 @@
 				8D286C2D1FE767200043105C /* FocusView.xib in Resources */,
 				8DB93D341FE2FCAD00E456C2 /* Assets.xcassets in Resources */,
 				8DB93D321FE2FCAD00E456C2 /* Main.storyboard in Resources */,
+				8D84CBB71FE8A0B1006B2F74 /* GoogleService-Info.plist in Resources */,
 				8D286C371FE7E4A20043105C /* PNRollsTableViewCell.xib in Resources */,
 				8D286C2B1FE75C4B0043105C /* PNPagingCell.xib in Resources */,
 			);
@@ -329,15 +347,23 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PicNRoll/Pods-PicNRoll-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
 				"${BUILT_PRODUCTS_DIR}/Motion/Motion.framework",
 				"${BUILT_PRODUCTS_DIR}/PagingKit/PagingKit.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Material.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Motion.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PagingKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -379,7 +405,9 @@
 				8D72F2321FE4BE440047CB66 /* PNRollsViewController.swift in Sources */,
 				8DB93D4B1FE30A5D00E456C2 /* PNBaseViewController.swift in Sources */,
 				8D72F2361FE4BE6F0047CB66 /* PNProfileViewController.swift in Sources */,
+				8D84CBB91FE8A6BC006B2F74 /* PNUser.swift in Sources */,
 				8DB93D451FE2FF6600E456C2 /* PNGlobal.swift in Sources */,
+				8D84CBBC1FE8A8EF006B2F74 /* PNFirebaseManager.swift in Sources */,
 				8D942F2F1FE365F0002354F8 /* PNFolder.swift in Sources */,
 				8D942F341FE366BD002354F8 /* PNFolderListTableViewCell.swift in Sources */,
 				8DB93D491FE3087300E456C2 /* PNForgotPwViewController.swift in Sources */,

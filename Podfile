@@ -6,6 +6,10 @@ target 'PicNRoll' do
  use_frameworks!
  pod 'Material', '~> 2.0'
  pod "PagingKit"
+ pod 'Firebase/Core'
+ pod 'Firebase/Database'
+ pod 'Firebase/Auth'
+ pod 'Firebase/Storage'
 
  post_install do |installer|
      installer.pods_project.targets.each do |target|
