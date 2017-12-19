@@ -56,6 +56,7 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - PagingKit (1.1.0)
+  - SVProgressHUD (2.2.2)
 
 DEPENDENCIES:
   - Firebase/Auth
@@ -64,6 +65,16 @@ DEPENDENCIES:
   - Firebase/Storage
   - Material (~> 2.0)
   - PagingKit
+  - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD.git`)
+
+EXTERNAL SOURCES:
+  SVProgressHUD:
+    :git: https://github.com/SVProgressHUD/SVProgressHUD.git
+
+CHECKOUT OPTIONS:
+  SVProgressHUD:
+    :commit: bb4e4e460d4f8e2ecf20af99797f781e7cc09d8f
+    :git: https://github.com/SVProgressHUD/SVProgressHUD.git
 
 SPEC CHECKSUMS:
   Firebase: dbfb98ccec2dcfcd21ab9cc1b4981a3f3c8c5e26
@@ -80,7 +91,8 @@ SPEC CHECKSUMS:
   Motion: 88a8bee21926af792333f4b9e7170f710e9e48f3
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   PagingKit: 72a8a05c8bd23811c0ab6055360d941ff17a61f9
+  SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
 
-PODFILE CHECKSUM: d3347a5c04ad528df20ab44c07e18a1a2eb81c5a
+PODFILE CHECKSUM: 826f94ad1ab4f59b1a79caa5e2c3473732e18886
 
 COCOAPODS: 1.3.1

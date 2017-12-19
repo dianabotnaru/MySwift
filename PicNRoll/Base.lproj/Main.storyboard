@@ -823,7 +823,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="btnSigninClicked" destination="z8W-EM-JVx" eventType="touchUpInside" id="BZX-ma-dAl"/>
+                                            <action selector="btnSignupClicked" destination="z8W-EM-JVx" eventType="touchUpInside" id="4bG-rz-Ens"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -868,7 +868,7 @@
                                             <color key="titleColor" red="0.48627450979999998" green="0.70196078429999997" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="btnSigninClicked" destination="z8W-EM-JVx" eventType="touchUpInside" id="AVL-Nc-sKF"/>
+                                            <action selector="btnSigninClicked" destination="z8W-EM-JVx" eventType="touchUpInside" id="roF-NG-bkO"/>
                                         </connections>
                                     </button>
                                 </subviews>

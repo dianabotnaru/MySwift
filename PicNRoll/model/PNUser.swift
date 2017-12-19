@@ -15,5 +15,15 @@ class PNUser{
     var phoneNumber: String = ""
     var lat: String = ""
     var lng: String = ""
-    var profileImageUrl: String = ""
+    var profileImageUrl: String = ""    
+    
+    init(id:String,name:String,email:String,phoneNumber:String,lat:String,lng:String,profileImageUrl:String){
+        self.id = id
+        self.name = name
+        self.email = email
+        self.phoneNumber = phoneNumber
+        self.lat = lat
+        self.lng = lng
+        self.profileImageUrl = profileImageUrl
+    }
 }

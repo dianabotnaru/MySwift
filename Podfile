@@ -10,6 +10,7 @@ target 'PicNRoll' do
  pod 'Firebase/Database'
  pod 'Firebase/Auth'
  pod 'Firebase/Storage'
+ pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
 
  post_install do |installer|
      installer.pods_project.targets.each do |target|

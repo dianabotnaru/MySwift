@@ -8,6 +8,8 @@
 
 import UIKit
 import Material
+import Firebase
+
 
 class PNSignupViewController: PNBaseViewController {
     
@@ -54,7 +56,20 @@ class PNSignupViewController: PNBaseViewController {
     }
     
     func signup(){
-        
+        PNFirebaseManager.shared.createUser(email: emailTextField.text!,
+                                            password: pwTextField.text!,
+                                            name: nameTextField.text!,
+                                            phoneNumber: phoneNumberTextField.text!,
+                                            lat: "",
+                                            lng: ""){ (result: String) in
+                                                if result == ""{
+                                                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                                    appDelegate.launchHomeScreen()
+                                                    self.pushViewController(identifier: "PNFolderViewController")
+                                                }else{
+                                                    self.showAlarmViewController(message:result)
+                                                }
+        }
     }
 }
 
