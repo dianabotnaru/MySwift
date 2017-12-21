@@ -53,16 +53,18 @@ class PNLoginViewController: PNBaseViewController {
     func signin(){
         SVProgressHUD.show()
         PNFirebaseManager.shared.signInUser(email: emailTextField.text!,
-                                            password: pwTextField.text!){ (result: String) in
-                                                if result == ""{
+                                            password: pwTextField.text!,
+                                            completion:{ (pnUser: PNUser?,error: Error?) in
+                                                if error == nil{
+                                                    PNGlobal.currentUser = pnUser
                                                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                                                     appDelegate.launchHomeScreen()
                                                     self.pushViewController(identifier: "PNFolderViewController")
                                                 }else{
-                                                    self.showAlarmViewController(message:result)
+                                                    self.showAlarmViewController(message: (error?.localizedDescription)!)
                                                 }
                                                 SVProgressHUD.dismiss()
-        }
+        })
     }
 }
 

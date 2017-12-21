@@ -13,6 +13,7 @@ class PNUser{
     var name: String = ""
     var email: String = ""
     var phoneNumber: String = ""
+    var deviceToken: String = ""
     var lat: String = ""
     var lng: String = ""
     var profileImageUrl: String = ""    
@@ -26,5 +27,15 @@ class PNUser{
         self.lat = lat
         self.lng = lng
         self.profileImageUrl = profileImageUrl
+    }
+    
+    func setValuesWithSnapShot(value : NSDictionary){
+        self.name = value["Name"] as? String ?? ""
+        self.email = value["Email"] as? String ?? ""
+        self.phoneNumber = value["PhoneNumber"] as? String ?? ""
+        self.deviceToken = value["deviceToken"] as? String ?? ""
+        self.lat = value["lat"] as? String ?? ""
+        self.lng = value["lng"] as? String ?? ""
+        self.profileImageUrl = value["profileImageUrl"] as? String ?? ""
     }
 }

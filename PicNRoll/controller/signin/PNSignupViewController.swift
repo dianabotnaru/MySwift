@@ -62,16 +62,18 @@ class PNSignupViewController: PNBaseViewController {
                                             name: nameTextField.text!,
                                             phoneNumber: phoneNumberTextField.text!,
                                             lat: "",
-                                            lng: ""){ (result: String) in
-                                                if result == ""{
+                                            lng: "",
+                                            completion:{ (pnUser: PNUser?,error: Error?) in
+                                                if error == nil{
+                                                    PNGlobal.currentUser = pnUser
                                                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                                                     appDelegate.launchHomeScreen()
                                                     self.pushViewController(identifier: "PNFolderViewController")
                                                 }else{
-                                                    self.showAlarmViewController(message:result)
+                                                    self.showAlarmViewController(message:(error?.localizedDescription)!)
                                                 }
                                                 SVProgressHUD.dismiss()
-        }
+        })
     }
 }
 

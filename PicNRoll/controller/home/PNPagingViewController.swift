@@ -87,10 +87,10 @@ extension PNPagingViewController: PagingMenuViewControllerDelegate {
 
 extension PNPagingViewController: PagingContentViewControllerDelegate {
     func contentViewController(viewController: PagingContentViewController, didManualScrollOn index: Int, percent: CGFloat) {
-        let isRightCellSelected = percent > 0.5
-        menuViewController?.cellForItem(at: index)?.isSelected = !isRightCellSelected
-        menuViewController?.cellForItem(at: index + 1)?.isSelected = isRightCellSelected
-        menuViewController?.scroll(index: index, percent: percent, animated: false)
+//        let isRightCellSelected = percent > 0.5
+//        menuViewController?.cellForItem(at: index)?.isSelected = !isRightCellSelected
+//        menuViewController?.cellForItem(at: index + 1)?.isSelected = isRightCellSelected
+//        menuViewController?.scroll(index: index, percent: percent, animated: false)
     }
 }
 

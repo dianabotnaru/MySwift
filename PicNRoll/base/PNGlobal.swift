@@ -18,5 +18,5 @@ struct PNGlobal {
     static let PNColorTextBlueColor = UIColor(red: 0/255, green: 174/255, blue: 239/255, alpha: 1.0)
     static let PNColorTopBarPlaceHolder = UIColor(red: 164/255, green: 174/255, blue: 186/255, alpha: 1.0)
 
-
+    static var currentUser : PNUser?
 }
