@@ -43,6 +43,8 @@
 		D582C84D1FED2C2400315C60 /* PNSharePagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D582C84C1FED2C2400315C60 /* PNSharePagingViewController.swift */; };
 		D582C8501FED2C8600315C60 /* PNFriendsShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D582C84F1FED2C8600315C60 /* PNFriendsShareViewController.swift */; };
 		D582C8541FED2CA400315C60 /* PNGroupShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D582C8531FED2CA400315C60 /* PNGroupShareViewController.swift */; };
+		D582C8591FED59A800315C60 /* PNPictureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D582C8571FED59A800315C60 /* PNPictureCollectionViewCell.swift */; };
+		D582C85A1FED59A800315C60 /* PNPictureCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D582C8581FED59A800315C60 /* PNPictureCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +88,8 @@
 		D582C84C1FED2C2400315C60 /* PNSharePagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNSharePagingViewController.swift; sourceTree = "<group>"; };
 		D582C84F1FED2C8600315C60 /* PNFriendsShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNFriendsShareViewController.swift; sourceTree = "<group>"; };
 		D582C8531FED2CA400315C60 /* PNGroupShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNGroupShareViewController.swift; sourceTree = "<group>"; };
+		D582C8571FED59A800315C60 /* PNPictureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNPictureCollectionViewCell.swift; sourceTree = "<group>"; };
+		D582C8581FED59A800315C60 /* PNPictureCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PNPictureCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +165,8 @@
 				8D286C351FE7E4A20043105C /* PNRollsTableViewCell.xib */,
 				8D84CBAD1FE7F1B4006B2F74 /* PNGroupTableViewCell.swift */,
 				8D84CBAE1FE7F1B4006B2F74 /* PNGroupTableViewCell.xib */,
+				D582C8571FED59A800315C60 /* PNPictureCollectionViewCell.swift */,
+				D582C8581FED59A800315C60 /* PNPictureCollectionViewCell.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -331,6 +337,7 @@
 			files = (
 				8D286C361FE7E4A20043105C /* PNFolderListTableViewCell.xib in Resources */,
 				8D286C311FE7C7790043105C /* test.jpeg in Resources */,
+				D582C85A1FED59A800315C60 /* PNPictureCollectionViewCell.xib in Resources */,
 				8DB93D371FE2FCAD00E456C2 /* LaunchScreen.storyboard in Resources */,
 				8D84CBB01FE7F1B4006B2F74 /* PNGroupTableViewCell.xib in Resources */,
 				8D286C2D1FE767200043105C /* FocusView.xib in Resources */,
@@ -428,6 +435,7 @@
 				D582C8541FED2CA400315C60 /* PNGroupShareViewController.swift in Sources */,
 				8D72F2321FE4BE440047CB66 /* PNRollsViewController.swift in Sources */,
 				8DB93D4B1FE30A5D00E456C2 /* PNBaseViewController.swift in Sources */,
+				D582C8591FED59A800315C60 /* PNPictureCollectionViewCell.swift in Sources */,
 				8D72F2361FE4BE6F0047CB66 /* PNProfileViewController.swift in Sources */,
 				8D84CBB91FE8A6BC006B2F74 /* PNUser.swift in Sources */,
 				8DB93D451FE2FF6600E456C2 /* PNGlobal.swift in Sources */,
