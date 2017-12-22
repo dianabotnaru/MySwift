@@ -1071,7 +1071,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Al-Ie-OgR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="852" y="1747"/>
+            <point key="canvasLocation" x="852" y="1760"/>
         </scene>
         <!--Group Share View Controller-->
         <scene sceneID="2wc-cg-7YE">
@@ -1103,6 +1103,9 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n4d-H5-HlS">
                                                 <rect key="frame" x="0.0" y="0.0" width="90" height="32"/>
+                                                <connections>
+                                                    <action selector="btnShareClicked" destination="hlz-hv-sl3" eventType="touchUpInside" id="MAn-UU-SeQ"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1127,15 +1130,30 @@
                                     <constraint firstAttribute="trailing" secondItem="Y9k-Cx-AQo" secondAttribute="trailing" constant="20" id="pmX-LO-2yE"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d7v-zN-mo5">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="543"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="hlz-hv-sl3" id="AuV-va-Vlp"/>
+                                    <outlet property="delegate" destination="hlz-hv-sl3" id="rXg-76-egn"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="aa4-LB-7xu" secondAttribute="trailing" id="4BA-rh-Fn3"/>
                             <constraint firstItem="aa4-LB-7xu" firstAttribute="leading" secondItem="3Pe-sj-ob4" secondAttribute="leading" id="6wg-af-jms"/>
+                            <constraint firstAttribute="trailing" secondItem="d7v-zN-mo5" secondAttribute="trailing" id="9dZ-6P-o7R"/>
+                            <constraint firstItem="d7v-zN-mo5" firstAttribute="leading" secondItem="3Pe-sj-ob4" secondAttribute="leading" id="SJ5-lG-FlW"/>
                             <constraint firstItem="yZl-sY-nkn" firstAttribute="top" secondItem="aa4-LB-7xu" secondAttribute="bottom" id="WKC-Zu-bms"/>
+                            <constraint firstItem="d7v-zN-mo5" firstAttribute="top" secondItem="z8f-9Z-oae" secondAttribute="bottom" id="vIL-aJ-BJC"/>
+                            <constraint firstItem="aa4-LB-7xu" firstAttribute="top" secondItem="d7v-zN-mo5" secondAttribute="bottom" id="zd6-0i-pAD"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="groupTableView" destination="d7v-zN-mo5" id="d7D-hb-bP5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vUA-u4-Tsp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1156,6 +1174,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FT6-YC-h5r">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="543"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="w8d-Tl-Lpi" id="9bD-AX-k3F"/>
+                                    <outlet property="delegate" destination="w8d-Tl-Lpi" id="7JB-it-rpH"/>
+                                </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bD4-iv-vyE">
                                 <rect key="frame" x="0.0" y="543" width="375" height="60"/>
@@ -1175,6 +1197,9 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j1R-OR-yGl">
                                                 <rect key="frame" x="0.0" y="0.0" width="90" height="32"/>
+                                                <connections>
+                                                    <action selector="btnShareClicked" destination="w8d-Tl-Lpi" eventType="touchUpInside" id="Hdx-kk-N95"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1212,10 +1237,13 @@
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="groupTableView" destination="FT6-YC-h5r" id="ibo-JR-Uld"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NEo-Og-FiE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1577" y="2041"/>
+            <point key="canvasLocation" x="1577" y="2027"/>
         </scene>
         <!--Paging Content View Controller-->
         <scene sceneID="dk8-8c-bJA">
@@ -1229,7 +1257,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sat-ns-ROU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="852" y="2101"/>
+            <point key="canvasLocation" x="852" y="2089"/>
         </scene>
     </scenes>
     <resources>
