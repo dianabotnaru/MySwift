@@ -8,13 +8,12 @@
 
 import UIKit
 
-class PNFolderViewController: PNBaseViewController, UITableViewDelegate, UITableViewDataSource ,PNFolderListTableViewCellDelegate{
+class PNFolderViewController: PNBaseViewController{
 
     let cellReuseIdentifier = "PNFolderListTableViewCell"
     var floderList : [PNFolder] = []
 
     @IBOutlet var folderTableView: UITableView!
-//    @IBOutlet var addButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,30 +28,6 @@ class PNFolderViewController: PNBaseViewController, UITableViewDelegate, UITable
         self.navigationController?.isNavigationBarHidden = false
         folderTableView.register(UINib(nibName: "PNFolderListTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
         folderTableView.separatorStyle = UITableViewCellSeparatorStyle.none
-//        roundedAddButton()
-    }
-    
-//    func roundedAddButton(){
-//        addButton.layer.cornerRadius = 25
-//        addButton.clipsToBounds = true
-//    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        return 330
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return floderList.count
-        return 10;
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.folderTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! PNFolderListTableViewCell
-//        let folder = floderList[indexPath.row] as PNFolder
-//        cell.setLabels(folder: folder)
-//        cell.delegate = self
-//        cell.index = indexPath.row
-        return cell
     }
     
     @IBAction func btnAddClicked() {
@@ -79,14 +54,6 @@ class PNFolderViewController: PNBaseViewController, UITableViewDelegate, UITable
         })
         self.present(alertController, animated: true, completion: nil)
     }
-    
-    func didTapShareButton(index:Int){
-        
-    }
-    
-    func didAddPictureButtonTapped(index:Int){
-        
-    }
 
     func addFolder(folderName: String){
         let folder = PNFolder() as PNFolder
@@ -108,5 +75,36 @@ class PNFolderViewController: PNBaseViewController, UITableViewDelegate, UITable
             }
         }
         return false
+    }
+}
+
+
+extension PNFolderViewController: UITableViewDelegate, UITableViewDataSource ,PNFolderListTableViewCellDelegate{
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
+        return 330
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //        return floderList.count
+        return 10;
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.folderTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! PNFolderListTableViewCell
+        //        let folder = floderList[indexPath.row] as PNFolder
+        //        cell.setLabels(folder: folder)
+        cell.delegate = self
+        cell.index = indexPath.row
+        return cell
+    }
+    
+    func didTapShareButton(index:Int){
+        self.initBackItemTitle(title: "")
+        self.pushViewController(identifier: "PNSharePagingViewController")
+    }
+    
+    func didAddPictureButtonTapped(index:Int){
+        
     }
 }

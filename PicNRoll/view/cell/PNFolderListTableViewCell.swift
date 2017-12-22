@@ -76,5 +76,4 @@ class PNFolderListTableViewCell: UITableViewCell {
             self.delegate?.didAddPictureButtonTapped(index: self.index)
         }
     }
-
 }

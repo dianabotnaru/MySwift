@@ -39,6 +39,10 @@
 		8DB93D471FE3046900E456C2 /* PNSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB93D461FE3046900E456C2 /* PNSignupViewController.swift */; };
 		8DB93D491FE3087300E456C2 /* PNForgotPwViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB93D481FE3087300E456C2 /* PNForgotPwViewController.swift */; };
 		8DB93D4B1FE30A5D00E456C2 /* PNBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB93D4A1FE30A5D00E456C2 /* PNBaseViewController.swift */; };
+		D582C84B1FEC408800315C60 /* PNPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D582C84A1FEC408800315C60 /* PNPictureViewController.swift */; };
+		D582C84D1FED2C2400315C60 /* PNSharePagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D582C84C1FED2C2400315C60 /* PNSharePagingViewController.swift */; };
+		D582C8501FED2C8600315C60 /* PNFriendsShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D582C84F1FED2C8600315C60 /* PNFriendsShareViewController.swift */; };
+		D582C8541FED2CA400315C60 /* PNGroupShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D582C8531FED2CA400315C60 /* PNGroupShareViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +82,10 @@
 		8DB93D4A1FE30A5D00E456C2 /* PNBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNBaseViewController.swift; sourceTree = "<group>"; };
 		919922119B7910C4E033D838 /* Pods-PicNRoll.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicNRoll.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PicNRoll/Pods-PicNRoll.debug.xcconfig"; sourceTree = "<group>"; };
 		CD3BB80609E2B9855E91CA5B /* Pods-PicNRoll.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicNRoll.release.xcconfig"; path = "Pods/Target Support Files/Pods-PicNRoll/Pods-PicNRoll.release.xcconfig"; sourceTree = "<group>"; };
+		D582C84A1FEC408800315C60 /* PNPictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNPictureViewController.swift; sourceTree = "<group>"; };
+		D582C84C1FED2C2400315C60 /* PNSharePagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNSharePagingViewController.swift; sourceTree = "<group>"; };
+		D582C84F1FED2C8600315C60 /* PNFriendsShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNFriendsShareViewController.swift; sourceTree = "<group>"; };
+		D582C8531FED2CA400315C60 /* PNGroupShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNGroupShareViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +139,7 @@
 		8D942F271FE35B60002354F8 /* home */ = {
 			isa = PBXGroup;
 			children = (
+				D582C84E1FED2C4900315C60 /* sharing */,
 				8D942F281FE35B8A002354F8 /* PNFolderViewController.swift */,
 				8D72F2311FE4BE440047CB66 /* PNRollsViewController.swift */,
 				8D72F2331FE4BE570047CB66 /* PNGroupViewController.swift */,
@@ -138,6 +147,7 @@
 				8D72F2371FE4BF560047CB66 /* PNTabViewController.swift */,
 				8D286BC21FE704BD0043105C /* PNPagingViewController.swift */,
 				8D84CBB11FE80505006B2F74 /* PNGroupDetailViewController.swift */,
+				D582C84A1FEC408800315C60 /* PNPictureViewController.swift */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -236,6 +246,16 @@
 				8DB93D4A1FE30A5D00E456C2 /* PNBaseViewController.swift */,
 			);
 			path = base;
+			sourceTree = "<group>";
+		};
+		D582C84E1FED2C4900315C60 /* sharing */ = {
+			isa = PBXGroup;
+			children = (
+				D582C84C1FED2C2400315C60 /* PNSharePagingViewController.swift */,
+				D582C84F1FED2C8600315C60 /* PNFriendsShareViewController.swift */,
+				D582C8531FED2CA400315C60 /* PNGroupShareViewController.swift */,
+			);
+			path = sharing;
 			sourceTree = "<group>";
 		};
 		FF8792CA24F63D994FD0EEE7 /* Frameworks */ = {
@@ -401,15 +421,18 @@
 				8D286C2A1FE75C4B0043105C /* PNPagingCell.swift in Sources */,
 				8D286C331FE7E4230043105C /* PNRollsTableViewCell.swift in Sources */,
 				8DB93D2F1FE2FCAD00E456C2 /* PNLoginViewController.swift in Sources */,
+				D582C84D1FED2C2400315C60 /* PNSharePagingViewController.swift in Sources */,
 				8D72F2341FE4BE570047CB66 /* PNGroupViewController.swift in Sources */,
 				8DB93D2D1FE2FCAD00E456C2 /* AppDelegate.swift in Sources */,
 				8DB93D471FE3046900E456C2 /* PNSignupViewController.swift in Sources */,
+				D582C8541FED2CA400315C60 /* PNGroupShareViewController.swift in Sources */,
 				8D72F2321FE4BE440047CB66 /* PNRollsViewController.swift in Sources */,
 				8DB93D4B1FE30A5D00E456C2 /* PNBaseViewController.swift in Sources */,
 				8D72F2361FE4BE6F0047CB66 /* PNProfileViewController.swift in Sources */,
 				8D84CBB91FE8A6BC006B2F74 /* PNUser.swift in Sources */,
 				8DB93D451FE2FF6600E456C2 /* PNGlobal.swift in Sources */,
 				8D84CBBC1FE8A8EF006B2F74 /* PNFirebaseManager.swift in Sources */,
+				D582C8501FED2C8600315C60 /* PNFriendsShareViewController.swift in Sources */,
 				8D942F2F1FE365F0002354F8 /* PNFolder.swift in Sources */,
 				8D942F341FE366BD002354F8 /* PNFolderListTableViewCell.swift in Sources */,
 				8DB93D491FE3087300E456C2 /* PNForgotPwViewController.swift in Sources */,
@@ -417,6 +440,7 @@
 				8D84CBAF1FE7F1B4006B2F74 /* PNGroupTableViewCell.swift in Sources */,
 				8D72F2381FE4BF560047CB66 /* PNTabViewController.swift in Sources */,
 				8D84CBB21FE80505006B2F74 /* PNGroupDetailViewController.swift in Sources */,
+				D582C84B1FEC408800315C60 /* PNPictureViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
