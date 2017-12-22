@@ -155,10 +155,10 @@
 		8D942F2A1FE363A1002354F8 /* cell */ = {
 			isa = PBXGroup;
 			children = (
-				8D286C341FE7E4A10043105C /* PNFolderListTableViewCell.xib */,
-				8D286C351FE7E4A20043105C /* PNRollsTableViewCell.xib */,
 				8D942F321FE366BD002354F8 /* PNFolderListTableViewCell.swift */,
+				8D286C341FE7E4A10043105C /* PNFolderListTableViewCell.xib */,
 				8D286C321FE7E4230043105C /* PNRollsTableViewCell.swift */,
+				8D286C351FE7E4A20043105C /* PNRollsTableViewCell.xib */,
 				8D84CBAD1FE7F1B4006B2F74 /* PNGroupTableViewCell.swift */,
 				8D84CBAE1FE7F1B4006B2F74 /* PNGroupTableViewCell.xib */,
 			);

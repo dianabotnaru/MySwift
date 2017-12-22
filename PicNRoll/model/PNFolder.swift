@@ -11,7 +11,10 @@ import UIKit
 class PNFolder{
     var id: String = ""
     var name: String = ""
+    var vendor: String = ""
+    var firstImageUrl : String = ""
     var createdDate: Date = Date()
     var isShare: Bool = false
     var photoCount: Int32 = 0
+    
 }

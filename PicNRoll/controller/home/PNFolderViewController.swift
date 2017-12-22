@@ -11,10 +11,11 @@ import UIKit
 class PNFolderViewController: PNBaseViewController{
 
     let cellReuseIdentifier = "PNFolderListTableViewCell"
-    var floderList : [PNFolder] = []
+    var folderList : [PNFolder] = []
 
     @IBOutlet var folderTableView: UITableView!
-
+    let imagePicker = UIImagePickerController()
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         initUi()
@@ -28,6 +29,7 @@ class PNFolderViewController: PNBaseViewController{
         self.navigationController?.isNavigationBarHidden = false
         folderTableView.register(UINib(nibName: "PNFolderListTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
         folderTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        imagePicker.delegate = self
     }
     
     @IBAction func btnAddClicked() {
@@ -58,18 +60,19 @@ class PNFolderViewController: PNBaseViewController{
     func addFolder(folderName: String){
         let folder = PNFolder() as PNFolder
         folder.name = folderName
+        folder.vendor = "Me"
         folder.createdDate = Date()
-        self.floderList.append(folder)
-        self.folderTableView.reloadData()
+        self.folderList.append(folder)
+        self.reloadData()
     }
     
     func isExistingFolder(folderName: String) -> Bool{
-        if self.floderList.count == 0 {
+        if self.folderList.count == 0 {
             return false
         }
         
-        for i in 0...self.floderList.count-1 {
-            let folder = floderList[i] as PNFolder
+        for i in 0...self.folderList.count-1 {
+            let folder = folderList[i] as PNFolder
             if folder.name == folderName{
                 return true
             }
@@ -86,14 +89,13 @@ extension PNFolderViewController: UITableViewDelegate, UITableViewDataSource ,PN
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //        return floderList.count
-        return 10;
+        return folderList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.folderTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! PNFolderListTableViewCell
-        //        let folder = floderList[indexPath.row] as PNFolder
-        //        cell.setLabels(folder: folder)
+        let folder = folderList[indexPath.row] as PNFolder
+        cell.setLabels(folder: folder)
         cell.delegate = self
         cell.index = indexPath.row
         return cell
@@ -104,7 +106,71 @@ extension PNFolderViewController: UITableViewDelegate, UITableViewDataSource ,PN
         self.pushViewController(identifier: "PNSharePagingViewController")
     }
     
-    func didAddPictureButtonTapped(index:Int){
-        
+    func didAddPictureButtonTapped(_ index:Int, _ sender: UIButton){
+        let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
+            self.openCamera()
+        }))
+        alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { _ in
+            self.openGallary()
+        }))
+        alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+        switch UIDevice.current.userInterfaceIdiom {
+        case .pad:
+            alert.popoverPresentationController?.sourceView = sender
+            alert.popoverPresentationController?.sourceRect = sender.bounds
+            alert.popoverPresentationController?.permittedArrowDirections = .up
+        default:
+            break
+        }
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func reloadData(){
+        self.folderTableView.reloadData()
+        DispatchQueue.main.async {
+            let itemheight = CGFloat(self.folderList.count) * 350
+            if itemheight > self.folderTableView.frame.size.height{
+                let scrollPoint = CGPoint(x: 0, y: self.folderTableView.contentSize.height - self.folderTableView.frame.size.height)
+                self.folderTableView.setContentOffset(scrollPoint, animated: true)
+            }
+        }
     }
 }
+
+extension PNFolderViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+    
+    func openCamera()
+    {
+        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.camera))
+        {
+            imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+        else
+        {
+            let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func openGallary()
+    {
+        imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        imagePicker.allowsEditing = true
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+//        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+

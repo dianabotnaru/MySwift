@@ -11,7 +11,7 @@ import UIKit
 protocol PNFolderListTableViewCellDelegate: class
 {
     func didTapShareButton(index:Int)
-    func didAddPictureButtonTapped(index:Int)
+    func didAddPictureButtonTapped(_ index:Int, _ sender: UIButton)
 
 }
 
@@ -19,12 +19,14 @@ class PNFolderListTableViewCell: UITableViewCell {
     
     weak var delegate:PNFolderListTableViewCellDelegate?
     
+    @IBOutlet var addPictureLabel: UILabel!
+    
     @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var dateLabel: UILabel!
-    @IBOutlet var photoCountLabel: UILabel!
+    @IBOutlet var vendorLabel: UILabel!
     @IBOutlet var shareButton: UIButton!
     @IBOutlet var addPictureButton: UIButton!
     @IBOutlet var profileImageView: UIImageView!
+    @IBOutlet var firstImageView: UIImageView!
 
     var index : Int = 0
 
@@ -38,25 +40,15 @@ class PNFolderListTableViewCell: UITableViewCell {
     }
     
     func initUi(){
-        addPictureButton.layer.cornerRadius = 15
-        addPictureButton.clipsToBounds = true
+        addPictureLabel.layer.cornerRadius = 15
+        addPictureLabel.clipsToBounds = true
         profileImageView.layer.cornerRadius = 20
         profileImageView.clipsToBounds = true
     }
     
     func setLabels(folder: PNFolder){
         nameLabel.text = folder.name
-        dateLabel.text = getTimeStringFromDate(date: folder.createdDate)
-        if folder.photoCount == 0{
-            photoCountLabel.text = "No photo"
-        }else{
-            photoCountLabel.text = String((folder.photoCount)) + "Photos"
-        }
-        if folder.isShare == true{
-            shareButton.setBackgroundImage(UIImage.init(named: "ic_share"), for: UIControlState.normal)
-        }else{
-            shareButton.setBackgroundImage(UIImage.init(named: "ic_noshare"), for: UIControlState.normal)
-        }
+        vendorLabel.text = folder.vendor
     }
     
     func getTimeStringFromDate(date:Date) -> String{
@@ -71,9 +63,10 @@ class PNFolderListTableViewCell: UITableViewCell {
         }
     }
     
-    @IBAction func addPictureButtonTapped(){
+    @IBAction func btnAppPictureTapped(_ sender: UIButton) {
         if delegate != nil{
-            self.delegate?.didAddPictureButtonTapped(index: self.index)
+            self.delegate?.didAddPictureButtonTapped(index,sender)
         }
+
     }
 }

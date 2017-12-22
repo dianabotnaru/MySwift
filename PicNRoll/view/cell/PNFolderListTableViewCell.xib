@@ -74,7 +74,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_share" translatesAutoresizingMaskIntoConstraints="NO" id="JGH-ee-dd7">
-                                                <rect key="frame" x="-0.5" y="4" width="15" height="12"/>
+                                                <rect key="frame" x="-15.5" y="-2" width="30" height="24"/>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -94,35 +94,46 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uPS-xe-dt3">
                                         <rect key="frame" x="16" y="16.5" width="100" height="30"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LxM-MI-25T">
-                                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                                <color key="backgroundColor" red="0.89803921568627454" green="0.22352941176470587" blue="0.20784313725490194" alpha="1" colorSpace="calibratedRGB"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVX-qP-AJ6">
+                                                <rect key="frame" x="0.0" y="-0.5" width="30" height="30"/>
+                                                <color key="backgroundColor" red="0.8980392157" green="0.22352941179999999" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="2FU-xJ-CpE"/>
-                                                    <constraint firstAttribute="width" constant="30" id="XdT-Sq-vjy"/>
+                                                    <constraint firstAttribute="width" constant="30" id="HuA-dR-b9a"/>
+                                                    <constraint firstAttribute="height" constant="30" id="OlJ-ia-fgJ"/>
                                                 </constraints>
-                                                <state key="normal" title="+">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="addPictureButtonTapped" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gZU-nE-SNm"/>
-                                                </connections>
-                                            </button>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Picture" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BBt-bh-c8s">
                                                 <rect key="frame" x="38" y="6" width="46" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" red="0.8980392157" green="0.22352941179999999" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LxM-MI-25T">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="btnAppPictureTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="asD-1k-sZb"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="3ux-hn-zAM"/>
                                             <constraint firstItem="BBt-bh-c8s" firstAttribute="centerY" secondItem="uPS-xe-dt3" secondAttribute="centerY" id="A3C-JV-g0e"/>
-                                            <constraint firstItem="LxM-MI-25T" firstAttribute="leading" secondItem="uPS-xe-dt3" secondAttribute="leading" id="IT5-00-MyR"/>
-                                            <constraint firstItem="BBt-bh-c8s" firstAttribute="leading" secondItem="LxM-MI-25T" secondAttribute="trailing" constant="8" id="QgJ-nw-Ko2"/>
+                                            <constraint firstItem="BBt-bh-c8s" firstAttribute="leading" secondItem="rVX-qP-AJ6" secondAttribute="trailing" constant="8" id="Av8-YC-GMB"/>
+                                            <constraint firstItem="LxM-MI-25T" firstAttribute="top" secondItem="uPS-xe-dt3" secondAttribute="top" id="EMJ-bF-fir"/>
+                                            <constraint firstAttribute="bottom" secondItem="LxM-MI-25T" secondAttribute="bottom" id="EiL-bZ-Bcu"/>
+                                            <constraint firstAttribute="trailing" secondItem="LxM-MI-25T" secondAttribute="trailing" id="Lff-4o-LFi"/>
+                                            <constraint firstItem="rVX-qP-AJ6" firstAttribute="centerY" secondItem="uPS-xe-dt3" secondAttribute="centerY" id="NOk-Oe-Sto"/>
                                             <constraint firstAttribute="height" constant="30" id="VzY-Wt-HBo"/>
-                                            <constraint firstItem="LxM-MI-25T" firstAttribute="centerY" secondItem="uPS-xe-dt3" secondAttribute="centerY" id="nn5-Qd-gqm"/>
+                                            <constraint firstItem="rVX-qP-AJ6" firstAttribute="leading" secondItem="uPS-xe-dt3" secondAttribute="leading" id="tfu-U8-HmC"/>
+                                            <constraint firstItem="LxM-MI-25T" firstAttribute="leading" secondItem="uPS-xe-dt3" secondAttribute="leading" id="zLF-Sl-VI0"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -176,15 +187,17 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="addPictureButton" destination="LxM-MI-25T" id="Oh3-qs-5Wf"/>
-                <outlet property="dateLabel" destination="RvX-xv-ux4" id="WXe-0X-k5i"/>
-                <outlet property="nameLabel" destination="DCx-Ya-Dsa" id="F1w-5O-3lC"/>
-                <outlet property="profileImageView" destination="YJu-8B-WOq" id="Cnk-c7-SD7"/>
+                <outlet property="addPictureLabel" destination="rVX-qP-AJ6" id="fUa-UW-XgV"/>
+                <outlet property="firstImageView" destination="3bS-0F-Xf6" id="G4N-KA-FIL"/>
+                <outlet property="nameLabel" destination="DCx-Ya-Dsa" id="NRh-TH-ga8"/>
+                <outlet property="profileImageView" destination="YJu-8B-WOq" id="hE5-CD-1R3"/>
+                <outlet property="vendorLabel" destination="RvX-xv-ux4" id="08W-PN-QGi"/>
             </connections>
             <point key="canvasLocation" x="49.5" y="157"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ic_share" width="15" height="12"/>
+        <image name="ic_share" width="30" height="24"/>
         <image name="test.jpeg" width="281" height="179"/>
     </resources>
 </document>
