@@ -170,6 +170,7 @@ extension PNFolderViewController : UIImagePickerControllerDelegate,UINavigationC
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 //        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        self.pushViewController(identifier: "PNPictureViewController")
         dismiss(animated: true, completion: nil)
     }
     
