@@ -11,7 +11,7 @@ target 'PicNRoll' do
  pod 'Firebase/Auth'
  pod 'Firebase/Storage'
  pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
- pod 'ImageSlideshow', '~> 1.4'
+ pod 'SKPhotoBrowser'
 
  post_install do |installer|
      installer.pods_project.targets.each do |target|

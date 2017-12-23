@@ -101,6 +101,11 @@ extension PNFolderViewController: UITableViewDelegate, UITableViewDataSource ,PN
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.initBackItemTitle(title: "")
+        self.pushViewController(identifier: "PNPictureViewController")
+    }
+    
     func didTapShareButton(index:Int){
         self.initBackItemTitle(title: "")
         self.pushViewController(identifier: "PNSharePagingViewController")
