@@ -58,10 +58,10 @@ final class PNFirebaseManager{
                   completion: @escaping (PNUser?,Error?) -> Swift.Void){
         auth.signIn(withEmail: email, password: password) { (user, error) in
             if error == nil {
-                self.getUserInformation(userId: (user?.uid)!, completion: {(pnUser: PNUser?,error: Error?) in
-                    pnUser?.id = (user?.uid)!
-                    completion(pnUser,error)
-                })
+//                self.getUserInformation(userId: (user?.uid)!, completion: {(pnUser: PNUser?,error: Error?) in
+//                    pnUser?.id = (user?.uid)!
+//                    completion(pnUser,error)
+//                })
             }else{
                 completion(nil,error)
             }
@@ -80,15 +80,25 @@ final class PNFirebaseManager{
     }
     
     func getUserInformation(userId:String,
-                            completion: @escaping (PNUser?,Error?) -> Swift.Void){
+                            completion: @escaping (PNUser?,[PNFolder]?,Error?) -> Swift.Void){
         self.databaseRef.child(USERTABLE).child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
             let pnUser = PNUser()
             let value = snapshot.value as? NSDictionary
             pnUser.id = userId
             pnUser.setValuesWithSnapShot(value: value!)
-            completion(pnUser,nil)
+            
+            var folderList : [PNFolder] = []
+            let foldeDict = value?["folders"] as? NSDictionary
+            let componentArray = foldeDict?.allKeys
+            for index in 0...(componentArray?.count)!-1{
+                let folderValue = foldeDict?[componentArray![index]] as! NSDictionary
+                let pnFolder = PNFolder()
+                pnFolder.setValuesWithSnapShot(value: folderValue)
+                folderList.append(pnFolder)
+            }
+            completion(pnUser,folderList,nil)
         }) { (error) in
-            completion(nil,error)
+            completion(nil,nil,error)
         }
     }
     
@@ -101,8 +111,8 @@ final class PNFirebaseManager{
                     "vendorId": folder.vendorId,
                     "vendorName": folder.vendorName,
                     "createdDate": folder.createdDate.toString(),
-                    "isShare": String(folder.isShare),
-                    "firstImageUrl":""] as [AnyHashable : String]
+                    "isShare": folder.isShare,
+                    "firstImageUrl":""] as [AnyHashable : AnyObject]
         self.databaseRef.child(USERTABLE).child(getCurrentUserID()!).child("folders/" + folder.id).setValue(post)
         completion()
     }
@@ -111,6 +121,7 @@ final class PNFirebaseManager{
                       folder:PNFolder,
                       completion: @escaping (Error?) -> Swift.Void){
         
+
     }
     
     func generatedID(){

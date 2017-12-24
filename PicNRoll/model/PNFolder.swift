@@ -27,4 +27,15 @@ class PNFolder{
         self.createdDate = createdDate
         self.isShare = isShare
     }
+    
+    func setValuesWithSnapShot(value : NSDictionary){
+        self.id = value["id"] as? String ?? ""
+        self.name = value["name"] as? String ?? ""
+        self.vendorId = value["vendorId"] as? String ?? ""
+        self.vendorName = value["vendorName"] as? String ?? ""
+        let dateString = value["createdDate"] as? String ?? ""
+        self.createdDate = dateString.toDate()
+        self.isShare = value["isShare"] as? Bool ?? false
+    }
+
 }

@@ -16,8 +16,10 @@ class PNPagingViewController: PNBaseViewController {
     var menuViewController: PagingMenuViewController!
     var contentViewController: PagingContentViewController!
     
+    var folderList : [PNFolder] = []
+    
     static let rollsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PNRollsViewController") as UIViewController
-    static let foldersViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PNFolderViewController") as UIViewController
+    static let foldersViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PNFolderViewController") as! PNFolderViewController
     static let groupsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PNGroupViewController") as UIViewController
     static let profileViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PNProfileViewController") as UIViewController
 
@@ -27,10 +29,11 @@ class PNPagingViewController: PNBaseViewController {
         super.viewDidLoad()
         if PNGlobal.currentUser == nil{
             SVProgressHUD.show()
-            PNFirebaseManager.shared.getUserInformation(userId: (Auth.auth().currentUser!.uid), completion: {(pnUser: PNUser?,error: Error?) in
+            PNFirebaseManager.shared.getUserInformation(userId: (Auth.auth().currentUser!.uid), completion: {(pnUser: PNUser?,folderList:[PNFolder]?,error: Error?) in
                 SVProgressHUD.dismiss()
                 if error == nil {
                     PNGlobal.currentUser = pnUser
+                    self.folderList = folderList!
                 }else{
                     self.showAlarmViewController(message: (error?.localizedDescription)!)
                 }

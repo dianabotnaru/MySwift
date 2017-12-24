@@ -12,7 +12,7 @@ import SVProgressHUD
 class PNFolderViewController: PNBaseViewController{
 
     let cellReuseIdentifier = "PNFolderListTableViewCell"
-    var folderList : [PNFolder] = []
+    public var folderList : [PNFolder] = []
 
     @IBOutlet var folderTableView: UITableView!
     let imagePicker = UIImagePickerController()
