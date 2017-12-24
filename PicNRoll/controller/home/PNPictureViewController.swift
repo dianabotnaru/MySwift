@@ -9,7 +9,7 @@
 import UIKit
 import SKPhotoBrowser
 
-class PNPictureViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, SKPhotoBrowserDelegate {
+class PNPictureViewController: UIViewController, SKPhotoBrowserDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
     var images = [SKPhotoProtocol]()
@@ -18,10 +18,11 @@ class PNPictureViewController: UIViewController, UICollectionViewDataSource, UIC
         super.viewDidLoad()
         SKPhotoBrowserOptions.displayAction = true
         SKPhotoBrowserOptions.displayStatusbar = true
-        collectionView!.register(PNPictureCollectionViewCell.self, forCellWithReuseIdentifier: "PNPictureCollectionViewCell")
+        collectionView.register(UINib(nibName: "PNPictureCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PNPictureCollectionViewCell")
         collectionView.delegate = self
         collectionView.dataSource = self
         initPhotoArrays()
+        collectionView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,40 +44,35 @@ class PNPictureViewController: UIViewController, UICollectionViewDataSource, UIC
 }
 
 // MARK: - UICollectionViewDataSource
-extension PNPictureViewController {
+extension PNPictureViewController: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return images.count
     }
     
-    @objc(collectionView:cellForItemAtIndexPath:) func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PNPictureCollectionViewCell", for: indexPath) as? PNPictureCollectionViewCell else {
-            return UICollectionViewCell()
-        }
-//        cell.imageView.image = UIImage.init(named: "test.jpeg")
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PNPictureCollectionViewCell",
+                                                      for: indexPath) as! PNPictureCollectionViewCell
+        cell.setImage(image:UIImage(named: "test.jpeg")!)
         return cell
     }
-}
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return CGSize(width:collectionView.frame.width/5-5, height: collectionView.frame.width/5-5)
+        }else{
+            return CGSize(width:collectionView.frame.width/2-1, height: collectionView.frame.width/2-1)
+        }
+    }
 
-// MARK: - UICollectionViewDelegate
-
-extension PNPictureViewController {
     @objc(collectionView:didSelectItemAtIndexPath:) func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         let browser = SKPhotoBrowser(photos: images, initialPageIndex: indexPath.row)
         browser.delegate = self
         //        browser.updateCloseButton(UIImage(named: "image1.jpg")!)
         
         present(browser, animated: true, completion: {})
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            return CGSize(width: UIScreen.main.bounds.size.width / 2 - 5, height: 300)
-        } else {
-            return CGSize(width: UIScreen.main.bounds.size.width / 2 - 5, height: 200)
-        }
-    }
 }
+
 
 // MARK: - SKPhotoBrowserDelegate
 extension PNPictureViewController {

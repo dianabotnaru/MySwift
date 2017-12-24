@@ -12,6 +12,7 @@ class PNRollsViewController: PNBaseViewController {
 
     let cellReuseIdentifier = "PNRollsTableViewCell"
     @IBOutlet var rollsTableView: UITableView!
+    var rollsList : [PNFolder] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,7 @@ extension PNRollsViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return rollsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

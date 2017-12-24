@@ -87,4 +87,24 @@ final class PNFirebaseManager{
             completion(nil,error)
         }
     }
+    
+    
+    func createFolder(userId:String,
+                            folder:PNFolder,
+                            completion: @escaping (Error?) -> Swift.Void){
+        let post = ["id": folder.id,
+                    "name": folder.name,
+                    "vendorId": folder.vendorId,
+                    "vendorName": folder.vendorName,
+                    "createdDate": folder.createdDate,
+                    "isShare": String(folder.isShare),
+                    "firstImageUrl":""] as! [AnyHashable : String]
+        self.databaseRef.child(USERTABLE).child("folders/" + folder.id).setValue(post)
+    }
+    
+    func getFolders(userId:String,
+                      folder:PNFolder,
+                      completion: @escaping (Error?) -> Swift.Void){
+        
+    }
 }

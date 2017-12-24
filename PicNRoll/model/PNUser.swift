@@ -16,8 +16,7 @@ class PNUser{
     var deviceToken: String = ""
     var lat: String = ""
     var lng: String = ""
-    var profileImageUrl: String = ""    
-    
+    var profileImageUrl: String = ""
     
     func setValues(id:String,name:String,email:String,phoneNumber:String,lat:String,lng:String,profileImageUrl:String){
         self.id = id

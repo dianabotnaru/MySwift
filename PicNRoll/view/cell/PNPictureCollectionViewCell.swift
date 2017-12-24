@@ -10,10 +10,14 @@ import UIKit
 
 class PNPictureCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet var imageView: UIImageView!
+    @IBOutlet weak var galleryImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+    
+    func setImage(image:UIImage){
+        self.galleryImageView.image = image
     }
 
 }

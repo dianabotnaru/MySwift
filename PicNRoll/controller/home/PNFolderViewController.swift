@@ -60,7 +60,7 @@ class PNFolderViewController: PNBaseViewController{
     func addFolder(folderName: String){
         let folder = PNFolder() as PNFolder
         folder.name = folderName
-        folder.vendor = "Me"
+        folder.vendorName = "Me"
         folder.createdDate = Date()
         self.folderList.append(folder)
         self.reloadData()

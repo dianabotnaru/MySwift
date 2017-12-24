@@ -49,7 +49,7 @@ class PNFolderListTableViewCell: UITableViewCell {
     
     func setLabels(folder: PNFolder){
         nameLabel.text = folder.name
-        vendorLabel.text = folder.vendor
+        vendorLabel.text = folder.vendorName
     }
     
     func getTimeStringFromDate(date:Date) -> String{

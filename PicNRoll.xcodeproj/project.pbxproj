@@ -45,6 +45,7 @@
 		D582C8541FED2CA400315C60 /* PNGroupShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D582C8531FED2CA400315C60 /* PNGroupShareViewController.swift */; };
 		D582C8591FED59A800315C60 /* PNPictureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D582C8571FED59A800315C60 /* PNPictureCollectionViewCell.swift */; };
 		D582C85A1FED59A800315C60 /* PNPictureCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D582C8581FED59A800315C60 /* PNPictureCollectionViewCell.xib */; };
+		D5C484AE1FEFB00F00B76D24 /* PNUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C484AD1FEFB00F00B76D24 /* PNUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		D582C8531FED2CA400315C60 /* PNGroupShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNGroupShareViewController.swift; sourceTree = "<group>"; };
 		D582C8571FED59A800315C60 /* PNPictureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNPictureCollectionViewCell.swift; sourceTree = "<group>"; };
 		D582C8581FED59A800315C60 /* PNPictureCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PNPictureCollectionViewCell.xib; sourceTree = "<group>"; };
+		D5C484AD1FEFB00F00B76D24 /* PNUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				8D84CBBB1FE8A8EF006B2F74 /* PNFirebaseManager.swift */,
+				D5C484AD1FEFB00F00B76D24 /* PNUtil.swift */,
 			);
 			path = manager;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				8DB93D4B1FE30A5D00E456C2 /* PNBaseViewController.swift in Sources */,
 				D582C8591FED59A800315C60 /* PNPictureCollectionViewCell.swift in Sources */,
 				8D72F2361FE4BE6F0047CB66 /* PNProfileViewController.swift in Sources */,
+				D5C484AE1FEFB00F00B76D24 /* PNUtil.swift in Sources */,
 				8D84CBB91FE8A6BC006B2F74 /* PNUser.swift in Sources */,
 				8DB93D451FE2FF6600E456C2 /* PNGlobal.swift in Sources */,
 				8D84CBBC1FE8A8EF006B2F74 /* PNFirebaseManager.swift in Sources */,
