@@ -8,8 +8,10 @@
 
 import UIKit
 import PagingKit
+import SVProgressHUD
+import Firebase
 
-class PNPagingViewController: UIViewController {
+class PNPagingViewController: PNBaseViewController {
 
     var menuViewController: PagingMenuViewController!
     var contentViewController: PagingContentViewController!
@@ -23,6 +25,17 @@ class PNPagingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if PNGlobal.currentUser == nil{
+            SVProgressHUD.show()
+            PNFirebaseManager.shared.getUserInformation(userId: (Auth.auth().currentUser!.uid), completion: {(pnUser: PNUser?,error: Error?) in
+                SVProgressHUD.dismiss()
+                if error == nil {
+                    PNGlobal.currentUser = pnUser
+                }else{
+                    self.showAlarmViewController(message: (error?.localizedDescription)!)
+                }
+            })
+        }
         menuViewController?.register(nib: UINib(nibName: "PNPagingCell", bundle: nil), forCellWithReuseIdentifier: "PNPagingCell")
         menuViewController?.registerFocusView(nib: UINib(nibName: "FocusView", bundle: nil))
         menuViewController?.reloadData()

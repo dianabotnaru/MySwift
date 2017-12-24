@@ -23,6 +23,10 @@ final class PNFirebaseManager{
         return auth.currentUser?.uid
     }
     
+    func getRamdomID() -> String? {
+        return  getCurrentUserID()! + "_" + Date().timeStampString()
+    }
+    
     func createUser(email:String,
                  password:String,
                  name:String,
@@ -91,20 +95,25 @@ final class PNFirebaseManager{
     
     func createFolder(userId:String,
                             folder:PNFolder,
-                            completion: @escaping (Error?) -> Swift.Void){
+                            completion: @escaping () -> Swift.Void){
         let post = ["id": folder.id,
                     "name": folder.name,
                     "vendorId": folder.vendorId,
                     "vendorName": folder.vendorName,
-                    "createdDate": folder.createdDate,
+                    "createdDate": folder.createdDate.toString(),
                     "isShare": String(folder.isShare),
-                    "firstImageUrl":""] as! [AnyHashable : String]
-        self.databaseRef.child(USERTABLE).child("folders/" + folder.id).setValue(post)
+                    "firstImageUrl":""] as [AnyHashable : String]
+        self.databaseRef.child(USERTABLE).child(getCurrentUserID()!).child("folders/" + folder.id).setValue(post)
+        completion()
     }
     
     func getFolders(userId:String,
                       folder:PNFolder,
                       completion: @escaping (Error?) -> Swift.Void){
         
+    }
+    
+    func generatedID(){
+        return
     }
 }

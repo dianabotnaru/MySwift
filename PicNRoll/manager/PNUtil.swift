@@ -8,11 +8,22 @@
 
 import UIKit
 
-final class PNUtil {
+extension Date
+{
     
-    static let shared = PNUtil()
+    func toString() -> String
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MMM/dd HH:mm:ss"
+        return dateFormatter.string(from: self)
+    }
     
-    func getDateString(date:Date){
-        
+    func timeStampString() ->String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMMddHHmmss"
+        return dateFormatter.string(from: self)
     }
 }
+
+
+

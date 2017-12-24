@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class PNFolderViewController: PNBaseViewController{
 
@@ -58,12 +59,20 @@ class PNFolderViewController: PNBaseViewController{
     }
 
     func addFolder(folderName: String){
+        SVProgressHUD.show()
         let folder = PNFolder() as PNFolder
-        folder.name = folderName
-        folder.vendorName = "Me"
-        folder.createdDate = Date()
-        self.folderList.append(folder)
-        self.reloadData()
+        folder.setValues(id: PNFirebaseManager.shared.getRamdomID()!,
+                         name: folderName,
+                         vendorId: (PNGlobal.currentUser?.id)!,
+                         vendorName: (PNGlobal.currentUser?.name)!,
+                         firstImageUrl: "",
+                         createdDate: Date(),
+                         isShare: false)
+        PNFirebaseManager.shared.createFolder(userId: (PNGlobal.currentUser?.id)!, folder: folder, completion:{ () in
+            SVProgressHUD.dismiss()
+            self.folderList.append(folder)
+            self.reloadData()
+        })
     }
     
     func isExistingFolder(folderName: String) -> Bool{

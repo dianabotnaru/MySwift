@@ -21,20 +21,7 @@ class PNProfileViewController: PNBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if PNGlobal.currentUser == nil{
-            SVProgressHUD.show()
-            PNFirebaseManager.shared.getUserInformation(userId: (Auth.auth().currentUser!.uid), completion: {(pnUser: PNUser?,error: Error?) in
-                SVProgressHUD.dismiss()
-                if error == nil {
-                    PNGlobal.currentUser = pnUser
-                    self.initLabels()
-                }else{
-                    self.showAlarmViewController(message: (error?.localizedDescription)!)
-                }
-            })
-        }else{
-            initLabels()
-        }
+        initLabels()
     }
 
     override func didReceiveMemoryWarning() {
