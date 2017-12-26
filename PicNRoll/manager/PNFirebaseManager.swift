@@ -15,6 +15,7 @@ final class PNFirebaseManager{
     
     let USERTABLE = "Users"
     let ALBUMTABLE = "Albums"
+    let PHOTOFILED = "Photos"
 
     var storageRef: StorageReference = Storage.storage().reference()
     var databaseRef: DatabaseReference = Database.database().reference()
@@ -118,6 +119,46 @@ final class PNFirebaseManager{
                 folderList.append(pnFolder)
             }
             completion(folderList,nil)
+        }) { (error) in
+            completion(nil,error)
+        }
+    }
+    
+    func addPicture(userId:String,
+                    folderID:String,
+                    image : UIImage,
+                    photo:PNPhoto,
+                    completion: @escaping (Error?) -> Swift.Void){
+        
+        let imageData = UIImageJPEGRepresentation(image, 1.0)
+        let riversRef = storageRef.child("Files/"+userId+"/"+photo.id+".jpg")
+        riversRef.putData(imageData!, metadata: nil) { (metadata, error) in
+            if error == nil{
+                let downloadURL = metadata?.downloadURL()
+                let post = ["id": photo.id,
+                            "name": photo.name,
+                            "vendorId": photo.vendorId,
+                            "vendorName": photo.vendorName,
+                            "createdDate": photo.createdDate.toString(),
+                            "firstImageUrl":downloadURL?.absoluteString] as [AnyHashable : AnyObject]
+                self.databaseRef.child(self.ALBUMTABLE).child(userId).child(folderID).child(photo.id).setValue(post)
+            }
+            completion(error)
+        }
+    }
+    
+    func getPictures(userId:String,
+                    folderID:String,
+                    completion: @escaping ([PNPhoto]?,Error?) -> Swift.Void){
+        self.databaseRef.child(ALBUMTABLE).child(userId).child(folderID).observeSingleEvent(of: .value, with: { (snapshot) in
+            var photoList : [PNPhoto] = []
+            for snapshot in snapshot.children.allObjects as! [DataSnapshot]{
+                let pnPhoto = PNPhoto()
+                let value = snapshot.value as? NSDictionary
+                pnPhoto.setValuesWithSnapShot(value: value!)
+                photoList.append(pnPhoto)
+            }
+            completion(photoList,nil)
         }) { (error) in
             completion(nil,error)
         }
