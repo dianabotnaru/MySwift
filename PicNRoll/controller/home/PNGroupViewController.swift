@@ -109,9 +109,7 @@ extension PNGroupViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.groupTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! PNGroupTableViewCell
-        if(indexPath.section == 0){
-            cell.setNameLabelwithGroup(groupName:self.groupList[indexPath.row].name)
-        }
+        cell.setNameLabelwithGroup(groupName:self.groupList[indexPath.row].name)
         return cell
     }
     
