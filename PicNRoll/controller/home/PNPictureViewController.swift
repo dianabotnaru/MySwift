@@ -8,12 +8,15 @@
 
 import UIKit
 import SKPhotoBrowser
+import SVProgressHUD
 
-class PNPictureViewController: UIViewController, SKPhotoBrowserDelegate {
+class PNPictureViewController: PNBaseViewController, SKPhotoBrowserDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
     var images = [SKPhotoProtocol]()
-
+    var pnPhotoList = [PNPhoto]()
+    var folderId: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         SKPhotoBrowserOptions.displayAction = true
@@ -21,8 +24,7 @@ class PNPictureViewController: UIViewController, SKPhotoBrowserDelegate {
         collectionView.register(UINib(nibName: "PNPictureCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PNPictureCollectionViewCell")
         collectionView.delegate = self
         collectionView.dataSource = self
-        initPhotoArrays()
-        collectionView.reloadData()
+        getPhotos()
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,16 +32,30 @@ class PNPictureViewController: UIViewController, SKPhotoBrowserDelegate {
     }
     
     func createLocalPhotos() -> [SKPhotoProtocol] {
-        return (0..<10).map { (i: Int) -> SKPhotoProtocol in
-            let photo = SKPhoto.photoWithImage(UIImage(named: "test.jpeg")!)
-            //            photo.contentMode = .ScaleAspectFill
+        return (0..<self.pnPhotoList.count-1).map { (i: Int) -> SKPhotoProtocol in
+            let pnPhoto = self.pnPhotoList[i] as PNPhoto
+            let photo = SKPhoto.photoWithImageURL(pnPhoto.imageUrl)
+            photo.shouldCachePhotoURLImage = true
             return photo
         }
     }
 
     func initPhotoArrays(){
         images = createLocalPhotos()
-        
+    }
+    
+    func getPhotos(){
+        SVProgressHUD.show()
+        PNFirebaseManager.shared.getPictures(userId: (PNGlobal.currentUser?.id)!, folderID: folderId, completion: { (photoList: [PNPhoto]?,error: Error?) in
+            SVProgressHUD.dismiss()
+            if error == nil{
+                self.pnPhotoList = photoList!
+                self.initPhotoArrays()
+                self.collectionView.reloadData()
+            }else{
+                self.showAlarmViewController(message: (error?.localizedDescription)!)
+            }
+        })
     }
 }
 
@@ -52,7 +68,8 @@ extension PNPictureViewController: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PNPictureCollectionViewCell",
                                                       for: indexPath) as! PNPictureCollectionViewCell
-        cell.setImage(image:UIImage(named: "test.jpeg")!)
+        let pnPhoto = self.pnPhotoList[indexPath.row] as PNPhoto
+        cell.setImageWithUrl(url: pnPhoto.imageUrl)
         return cell
     }
     

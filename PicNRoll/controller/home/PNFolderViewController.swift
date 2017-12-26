@@ -17,6 +17,8 @@ class PNFolderViewController: PNBaseViewController{
     @IBOutlet var folderTableView: UITableView!
     let imagePicker = UIImagePickerController()
    
+    var selectedFolderId: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initUi()
@@ -59,19 +61,36 @@ class PNFolderViewController: PNBaseViewController{
         self.present(alertController, animated: true, completion: nil)
     }
     
-    func getFolderLists(){
-      SVProgressHUD.show()
-      PNFirebaseManager.shared.getFolders(userId: (PNGlobal.currentUser?.id)!, completion:{ (folderList: [PNFolder]?,error: Error?) in
-        SVProgressHUD.dismiss()
-        if error == nil{
-            self.folderList = folderList!
-            self.folderTableView.reloadData()
-        }else{
-            self.showAlarmViewController(message: (error?.localizedDescription)!)
+    
+    func isExistingFolder(folderName: String) -> Bool{
+        if self.folderList.count == 0 {
+            return false
         }
-      })
+        
+        for i in 0...self.folderList.count-1 {
+            let folder = folderList[i] as PNFolder
+            if folder.name == folderName{
+                return true
+            }
+        }
+        return false
     }
+}
 
+extension PNFolderViewController{
+    func getFolderLists(){
+        SVProgressHUD.show()
+        PNFirebaseManager.shared.getFolders(userId: (PNGlobal.currentUser?.id)!, completion:{ (folderList: [PNFolder]?,error: Error?) in
+            SVProgressHUD.dismiss()
+            if error == nil{
+                self.folderList = folderList!
+                self.folderTableView.reloadData()
+            }else{
+                self.showAlarmViewController(message: (error?.localizedDescription)!)
+            }
+        })
+    }
+    
     func addFolder(folderName: String){
         SVProgressHUD.show()
         let folder = PNFolder() as PNFolder
@@ -89,18 +108,15 @@ class PNFolderViewController: PNBaseViewController{
         })
     }
     
-    func isExistingFolder(folderName: String) -> Bool{
-        if self.folderList.count == 0 {
-            return false
-        }
-        
-        for i in 0...self.folderList.count-1 {
-            let folder = folderList[i] as PNFolder
-            if folder.name == folderName{
-                return true
-            }
-        }
-        return false
+    func addPicture(folderId:String,image:UIImage){
+        SVProgressHUD.show()
+        PNFirebaseManager.shared.addPicture(userId: (PNGlobal.currentUser?.id)!, folderID: folderId, image: image,completion: { (error: Error?) in
+            SVProgressHUD.dismiss()
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let pictureVC = storyboard.instantiateViewController(withIdentifier: "PNPictureViewController") as! PNPictureViewController
+            pictureVC.folderId = folderId
+            self.navigationController?.pushViewController(pictureVC, animated: true)
+        })
     }
 }
 
@@ -125,8 +141,11 @@ extension PNFolderViewController: UITableViewDelegate, UITableViewDataSource ,PN
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.initBackItemTitle(title: "")
-        self.pushViewController(identifier: "PNPictureViewController")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let pictureVC = storyboard.instantiateViewController(withIdentifier: "PNPictureViewController") as! PNPictureViewController
+        let folderId = folderList[indexPath.row].id
+        pictureVC.folderId = folderId
+        self.navigationController?.pushViewController(pictureVC, animated: true)
     }
     
     func didTapShareButton(index:Int){
@@ -135,6 +154,8 @@ extension PNFolderViewController: UITableViewDelegate, UITableViewDataSource ,PN
     }
     
     func didAddPictureButtonTapped(_ index:Int, _ sender: UIButton){
+        let folder = folderList[index] as PNFolder
+        selectedFolderId = folder.id
         let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
             self.openCamera()
@@ -192,8 +213,8 @@ extension PNFolderViewController : UIImagePickerControllerDelegate,UINavigationC
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-//        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        self.pushViewController(identifier: "PNPictureViewController")
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        self.addPicture(folderId: selectedFolderId, image: chosenImage)
         dismiss(animated: true, completion: nil)
     }
     

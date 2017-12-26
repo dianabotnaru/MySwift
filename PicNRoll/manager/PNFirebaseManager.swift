@@ -127,21 +127,20 @@ final class PNFirebaseManager{
     func addPicture(userId:String,
                     folderID:String,
                     image : UIImage,
-                    photo:PNPhoto,
                     completion: @escaping (Error?) -> Swift.Void){
-        
+        let photoId = getRamdomID() as String?
         let imageData = UIImageJPEGRepresentation(image, 1.0)
-        let riversRef = storageRef.child("Files/"+userId+"/"+photo.id+".jpg")
+        let riversRef = storageRef.child("Files/"+userId+"/"+photoId!+".jpg")
         riversRef.putData(imageData!, metadata: nil) { (metadata, error) in
             if error == nil{
                 let downloadURL = metadata?.downloadURL()
-                let post = ["id": photo.id,
-                            "name": photo.name,
-                            "vendorId": photo.vendorId,
-                            "vendorName": photo.vendorName,
-                            "createdDate": photo.createdDate.toString(),
+                let post = ["id": photoId,
+                            "name": "",
+                            "vendorId": userId,
+                            "vendorName": PNGlobal.currentUser?.name,
+                            "createdDate": Date().toString(),
                             "firstImageUrl":downloadURL?.absoluteString] as [AnyHashable : AnyObject]
-                self.databaseRef.child(self.ALBUMTABLE).child(userId).child(folderID).child(photo.id).setValue(post)
+                self.databaseRef.child(self.ALBUMTABLE).child(userId).child(folderID).child(self.PHOTOFILED).child(photoId!).setValue(post)
             }
             completion(error)
         }
@@ -150,7 +149,7 @@ final class PNFirebaseManager{
     func getPictures(userId:String,
                     folderID:String,
                     completion: @escaping ([PNPhoto]?,Error?) -> Swift.Void){
-        self.databaseRef.child(ALBUMTABLE).child(userId).child(folderID).observeSingleEvent(of: .value, with: { (snapshot) in
+        self.databaseRef.child(ALBUMTABLE).child(userId).child(folderID).child(self.PHOTOFILED).observeSingleEvent(of: .value, with: { (snapshot) in
             var photoList : [PNPhoto] = []
             for snapshot in snapshot.children.allObjects as! [DataSnapshot]{
                 let pnPhoto = PNPhoto()

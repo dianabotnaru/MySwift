@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class PNPictureCollectionViewCell: UICollectionViewCell {
 
@@ -19,5 +20,8 @@ class PNPictureCollectionViewCell: UICollectionViewCell {
     func setImage(image:UIImage){
         self.galleryImageView.image = image
     }
-
+    
+    func setImageWithUrl(url:String){
+        self.galleryImageView.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: ""))
+    }
 }
