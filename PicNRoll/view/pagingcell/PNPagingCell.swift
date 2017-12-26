@@ -2,7 +2,7 @@
 //  PNPagingCell.swift
 //  PicNRoll
 //
-//  Created by jordi on 18/12/2017.
+//  Created by diana on 18/12/2017.
 //  Copyright © 2017 test. All rights reserved.
 //
 

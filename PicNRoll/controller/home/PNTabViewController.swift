@@ -2,7 +2,7 @@
 //  PNTabViewController.swift
 //  PicNRoll
 //
-//  Created by jordi on 16/12/2017.
+//  Created by diana on 16/12/2017.
 //  Copyright © 2017 test. All rights reserved.
 //
 

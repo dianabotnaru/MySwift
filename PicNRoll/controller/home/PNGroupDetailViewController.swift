@@ -2,17 +2,20 @@
 //  PNGroupDetailViewController.swift
 //  PicNRoll
 //
-//  Created by jordi on 18/12/2017.
+//  Created by diana on 18/12/2017.
 //  Copyright © 2017 test. All rights reserved.
 //
 
 import UIKit
+import MessageUI
 
 class PNGroupDetailViewController: PNBaseViewController {
 
     let cellReuseIdentifier = "PNGroupTableViewCell"
     @IBOutlet var groupMembersTableView: UITableView!
     @IBOutlet var groupImageView: UIImageView!
+
+    public var friendList : [PNUser] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +28,38 @@ class PNGroupDetailViewController: PNBaseViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    @IBAction func btnAddClicked() {
+    }
 }
+
+extension PNGroupDetailViewController:MFMailComposeViewControllerDelegate{
+    
+    func sendEmail(){
+        let mailComposeViewController = configuredMailComposeViewController()
+        if MFMailComposeViewController.canSendMail() {
+            self.present(mailComposeViewController, animated: true, completion: nil)
+        }else {
+            self.showAlarmViewController(message: "Your device could not send e-mail.  Please check e-mail configuration and try again.")
+        }
+    }
+    
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
+        
+        mailComposerVC.setToRecipients(["someone@somewhere.com"])
+        mailComposerVC.setSubject("Sending you an in-app e-mail...")
+        mailComposerVC.setMessageBody("Sending e-mail in-app is not so bad!", isHTML: false)
+        return mailComposerVC
+    }
+
+    // MARK: MFMailComposeViewControllerDelegate Method
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+}
+
 
 extension PNGroupDetailViewController: UITableViewDelegate, UITableViewDataSource{
     
@@ -34,11 +68,12 @@ extension PNGroupDetailViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10;
+        return friendList.count;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.groupMembersTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! PNGroupTableViewCell
+        cell.setNameLabelwithGroup(groupName:self.friendList[indexPath.row].name)
         return cell
     }
     

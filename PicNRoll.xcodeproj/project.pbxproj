@@ -89,6 +89,7 @@
 		CD3BB80609E2B9855E91CA5B /* Pods-PicNRoll.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicNRoll.release.xcconfig"; path = "Pods/Target Support Files/Pods-PicNRoll/Pods-PicNRoll.release.xcconfig"; sourceTree = "<group>"; };
 		D52C8F981FF24F3A00791F9A /* PNPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNPhoto.swift; sourceTree = "<group>"; };
 		D52C8F9C1FF2822400791F9A /* PNGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNGroup.swift; sourceTree = "<group>"; };
+		D52C8F9E1FF293F700791F9A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		D582C84A1FEC408800315C60 /* PNPictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNPictureViewController.swift; sourceTree = "<group>"; };
 		D582C84C1FED2C2400315C60 /* PNSharePagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNSharePagingViewController.swift; sourceTree = "<group>"; };
 		D582C84F1FED2C8600315C60 /* PNFriendsShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNFriendsShareViewController.swift; sourceTree = "<group>"; };
@@ -276,6 +277,7 @@
 		FF8792CA24F63D994FD0EEE7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D52C8F9E1FF293F700791F9A /* MessageUI.framework */,
 				8D286C241FE751820043105C /* Foundation.framework */,
 				19D6A79A9DA7277930147EE9 /* Pods_PicNRoll.framework */,
 			);

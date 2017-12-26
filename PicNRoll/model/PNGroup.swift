@@ -2,7 +2,7 @@
 //  PNGroup.swift
 //  PicNRoll
 //
-//  Created by new on 12/26/17.
+//  Created by diana on 12/26/17.
 //  Copyright © 2017 test. All rights reserved.
 //
 

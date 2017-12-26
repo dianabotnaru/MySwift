@@ -61,7 +61,6 @@ class PNFolderViewController: PNBaseViewController{
         self.present(alertController, animated: true, completion: nil)
     }
     
-    
     func isExistingFolder(folderName: String) -> Bool{
         if self.folderList.count == 0 {
             return false
