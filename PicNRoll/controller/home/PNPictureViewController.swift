@@ -83,9 +83,7 @@ extension PNPictureViewController: UICollectionViewDataSource, UICollectionViewD
 
     @objc(collectionView:didSelectItemAtIndexPath:) func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let browser = SKPhotoBrowser(photos: images, initialPageIndex: indexPath.row)
-        browser.delegate = self
-        //        browser.updateCloseButton(UIImage(named: "image1.jpg")!)
-        
+        browser.delegate = self        
         present(browser, animated: true, completion: {})
     }
 }
