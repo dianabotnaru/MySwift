@@ -22,6 +22,6 @@ class PNPictureCollectionViewCell: UICollectionViewCell {
     }
     
     func setImageWithUrl(url:String){
-        self.galleryImageView.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: ""))
+        self.galleryImageView.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "logo"))
     }
 }

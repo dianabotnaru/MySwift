@@ -32,7 +32,7 @@ class PNPictureViewController: PNBaseViewController, SKPhotoBrowserDelegate {
     }
     
     func createLocalPhotos() -> [SKPhotoProtocol] {
-        return (0..<self.pnPhotoList.count-1).map { (i: Int) -> SKPhotoProtocol in
+        return (0..<self.pnPhotoList.count).map { (i: Int) -> SKPhotoProtocol in
             let pnPhoto = self.pnPhotoList[i] as PNPhoto
             let photo = SKPhoto.photoWithImageURL(pnPhoto.imageUrl)
             photo.shouldCachePhotoURLImage = true

@@ -129,7 +129,7 @@ final class PNFirebaseManager{
                     image : UIImage,
                     completion: @escaping (Error?) -> Swift.Void){
         let photoId = getRamdomID() as String?
-        let imageData = UIImageJPEGRepresentation(image, 1.0)
+        let imageData = UIImageJPEGRepresentation(image, 0.7)
         let riversRef = storageRef.child("Files/"+userId+"/"+photoId!+".jpg")
         riversRef.putData(imageData!, metadata: nil) { (metadata, error) in
             if error == nil{
@@ -139,7 +139,7 @@ final class PNFirebaseManager{
                             "vendorId": userId,
                             "vendorName": PNGlobal.currentUser?.name,
                             "createdDate": Date().toString(),
-                            "firstImageUrl":downloadURL?.absoluteString] as [AnyHashable : AnyObject]
+                            "imageUrl":downloadURL?.absoluteString] as [AnyHashable : AnyObject]
                 self.databaseRef.child(self.ALBUMTABLE).child(userId).child(folderID).child(self.PHOTOFILED).child(photoId!).setValue(post)
             }
             completion(error)
