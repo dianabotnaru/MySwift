@@ -11,6 +11,7 @@ import UIKit
 class PNGroupTableViewCell: UITableViewCell {
 
     @IBOutlet var groupImageView: UIImageView!
+    @IBOutlet var nameLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,6 +25,8 @@ class PNGroupTableViewCell: UITableViewCell {
         groupImageView.layer.cornerRadius = 20
         groupImageView.clipsToBounds = true
     }
-
     
+    func setNameLabelwithGroup(groupName:String){
+        nameLabel.text = groupName
+    }
 }

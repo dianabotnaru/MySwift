@@ -43,6 +43,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="groupImageView" destination="EBG-BS-DNb" id="J7I-Iz-rxz"/>
+                <outlet property="nameLabel" destination="OlX-Y2-TEv" id="eLM-hf-f9U"/>
             </connections>
         </tableViewCell>
     </objects>

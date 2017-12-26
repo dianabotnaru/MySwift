@@ -16,6 +16,7 @@ final class PNFirebaseManager{
     let USERTABLE = "Users"
     let ALBUMTABLE = "Albums"
     let PHOTOFILED = "Photos"
+    let GROUPTABLE = "Groups"
 
     var storageRef: StorageReference = Storage.storage().reference()
     var databaseRef: DatabaseReference = Database.database().reference()
@@ -163,6 +164,35 @@ final class PNFirebaseManager{
         }
     }
     
+    func createGroup(userId:String,
+                     groupName:String,
+                      completion: @escaping () -> Swift.Void){
+        let groupId = getRamdomID() as String?
+        let post = ["id": groupId,
+                    "name": groupName,
+                    "vendorId": userId,
+                    "vendorName": PNGlobal.currentUser?.name,
+                    "createdDate": Date().toString()] as [AnyHashable : AnyObject]
+        self.databaseRef.child(GROUPTABLE).child(userId).child(groupId!).setValue(post)
+        completion()
+    }
+    
+    func getGroups(userId:String,
+                     completion: @escaping ([PNGroup]?,Error?) -> Swift.Void){
+        self.databaseRef.child(GROUPTABLE).child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
+            var groupList : [PNGroup] = []
+            for snapshot in snapshot.children.allObjects as! [DataSnapshot]{
+                let pnGroup = PNGroup()
+                let value = snapshot.value as? NSDictionary
+                pnGroup.setValuesWithSnapShot(value: value!)
+                groupList.append(pnGroup)
+            }
+            completion(groupList,nil)
+        }) { (error) in
+            completion(nil,error)
+        }
+    }
+
     func generatedID(){
         return
     }
