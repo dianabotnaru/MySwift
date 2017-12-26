@@ -14,7 +14,8 @@ final class PNFirebaseManager{
     static let shared = PNFirebaseManager()
     
     let USERTABLE = "Users"
-    
+    let ALBUMTABLE = "Albums"
+
     var storageRef: StorageReference = Storage.storage().reference()
     var databaseRef: DatabaseReference = Database.database().reference()
     var auth = Auth.auth()
@@ -58,10 +59,10 @@ final class PNFirebaseManager{
                   completion: @escaping (PNUser?,Error?) -> Swift.Void){
         auth.signIn(withEmail: email, password: password) { (user, error) in
             if error == nil {
-//                self.getUserInformation(userId: (user?.uid)!, completion: {(pnUser: PNUser?,error: Error?) in
-//                    pnUser?.id = (user?.uid)!
-//                    completion(pnUser,error)
-//                })
+                self.getUserInformation(userId: (user?.uid)!, completion: {(pnUser: PNUser?,error: Error?) in
+                    pnUser?.id = (user?.uid)!
+                    completion(pnUser,error)
+                })
             }else{
                 completion(nil,error)
             }
@@ -80,28 +81,17 @@ final class PNFirebaseManager{
     }
     
     func getUserInformation(userId:String,
-                            completion: @escaping (PNUser?,[PNFolder]?,Error?) -> Swift.Void){
+                            completion: @escaping (PNUser?,Error?) -> Swift.Void){
         self.databaseRef.child(USERTABLE).child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
             let pnUser = PNUser()
             let value = snapshot.value as? NSDictionary
             pnUser.id = userId
             pnUser.setValuesWithSnapShot(value: value!)
-            
-            var folderList : [PNFolder] = []
-            let foldeDict = value?["folders"] as? NSDictionary
-            let componentArray = foldeDict?.allKeys
-            for index in 0...(componentArray?.count)!-1{
-                let folderValue = foldeDict?[componentArray![index]] as! NSDictionary
-                let pnFolder = PNFolder()
-                pnFolder.setValuesWithSnapShot(value: folderValue)
-                folderList.append(pnFolder)
-            }
-            completion(pnUser,folderList,nil)
+            completion(pnUser,nil)
         }) { (error) in
-            completion(nil,nil,error)
+            completion(nil,error)
         }
     }
-    
     
     func createFolder(userId:String,
                             folder:PNFolder,
@@ -113,15 +103,24 @@ final class PNFirebaseManager{
                     "createdDate": folder.createdDate.toString(),
                     "isShare": folder.isShare,
                     "firstImageUrl":""] as [AnyHashable : AnyObject]
-        self.databaseRef.child(USERTABLE).child(getCurrentUserID()!).child("folders/" + folder.id).setValue(post)
+        self.databaseRef.child(ALBUMTABLE).child(getCurrentUserID()!).child(folder.id).setValue(post)
         completion()
     }
     
     func getFolders(userId:String,
-                      folder:PNFolder,
-                      completion: @escaping (Error?) -> Swift.Void){
-        
-
+                      completion: @escaping ([PNFolder]?,Error?) -> Swift.Void){
+        self.databaseRef.child(ALBUMTABLE).child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
+            var folderList : [PNFolder] = []
+            for snapshot in snapshot.children.allObjects as! [DataSnapshot]{
+                let pnFolder = PNFolder()
+                let value = snapshot.value as? NSDictionary
+                pnFolder.setValuesWithSnapShot(value: value!)
+                folderList.append(pnFolder)
+            }
+            completion(folderList,nil)
+        }) { (error) in
+            completion(nil,error)
+        }
     }
     
     func generatedID(){

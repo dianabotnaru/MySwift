@@ -20,6 +20,7 @@ class PNFolderViewController: PNBaseViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         initUi()
+        getFolderLists()
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,6 +58,19 @@ class PNFolderViewController: PNBaseViewController{
         })
         self.present(alertController, animated: true, completion: nil)
     }
+    
+    func getFolderLists(){
+      SVProgressHUD.show()
+      PNFirebaseManager.shared.getFolders(userId: (PNGlobal.currentUser?.id)!, completion:{ (folderList: [PNFolder]?,error: Error?) in
+        SVProgressHUD.dismiss()
+        if error == nil{
+            self.folderList = folderList!
+            self.folderTableView.reloadData()
+        }else{
+            self.showAlarmViewController(message: (error?.localizedDescription)!)
+        }
+      })
+    }
 
     func addFolder(folderName: String){
         SVProgressHUD.show()
@@ -71,7 +85,7 @@ class PNFolderViewController: PNBaseViewController{
         PNFirebaseManager.shared.createFolder(userId: (PNGlobal.currentUser?.id)!, folder: folder, completion:{ () in
             SVProgressHUD.dismiss()
             self.folderList.append(folder)
-            self.reloadData()
+            self.folderTableView.reloadData()
         })
     }
     

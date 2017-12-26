@@ -28,21 +28,10 @@ class PNPagingViewController: PNBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if PNGlobal.currentUser == nil{
-            SVProgressHUD.show()
-            PNFirebaseManager.shared.getUserInformation(userId: (Auth.auth().currentUser!.uid), completion: {(pnUser: PNUser?,folderList:[PNFolder]?,error: Error?) in
-                SVProgressHUD.dismiss()
-                if error == nil {
-                    PNGlobal.currentUser = pnUser
-                    self.folderList = folderList!
-                }else{
-                    self.showAlarmViewController(message: (error?.localizedDescription)!)
-                }
-            })
+            getUserInformation()
+        }else{
+            initPagingViewController()
         }
-        menuViewController?.register(nib: UINib(nibName: "PNPagingCell", bundle: nil), forCellWithReuseIdentifier: "PNPagingCell")
-        menuViewController?.registerFocusView(nib: UINib(nibName: "FocusView", bundle: nil))
-        menuViewController?.reloadData()
-        contentViewController?.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,6 +48,26 @@ class PNPagingViewController: PNBaseViewController {
             contentViewController?.delegate = self
             contentViewController.dataSource = self
         }
+    }
+    
+    func initPagingViewController(){
+        menuViewController?.register(nib: UINib(nibName: "PNPagingCell", bundle: nil), forCellWithReuseIdentifier: "PNPagingCell")
+        menuViewController?.registerFocusView(nib: UINib(nibName: "FocusView", bundle: nil))
+        menuViewController?.reloadData()
+        contentViewController?.reloadData()
+    }
+    
+    func getUserInformation(){
+        SVProgressHUD.show()
+        PNFirebaseManager.shared.getUserInformation(userId: (Auth.auth().currentUser!.uid), completion: {(pnUser: PNUser?,error: Error?) in
+            SVProgressHUD.dismiss()
+            if error == nil {
+                PNGlobal.currentUser = pnUser
+                self.initPagingViewController()
+            }else{
+                self.showAlarmViewController(message: (error?.localizedDescription)!)
+            }
+        })
     }
 }
 
