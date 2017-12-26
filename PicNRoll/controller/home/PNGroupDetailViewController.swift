@@ -14,19 +14,26 @@ class PNGroupDetailViewController: PNBaseViewController {
     let cellReuseIdentifier = "PNGroupTableViewCell"
     @IBOutlet var groupMembersTableView: UITableView!
     @IBOutlet var groupImageView: UIImageView!
+    @IBOutlet var groupNameLabel: UILabel!
 
+    public var selectedGroup : PNGroup?
     public var friendList : [PNUser] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        groupMembersTableView.register(UINib(nibName: "PNGroupTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
-        groupMembersTableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        groupImageView.layer.cornerRadius = 20
-        groupImageView.clipsToBounds = true
+        initUi()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func initUi(){
+        groupMembersTableView.register(UINib(nibName: "PNGroupTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
+        groupMembersTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        groupImageView.layer.cornerRadius = 20
+        groupImageView.clipsToBounds = true
+        groupNameLabel.text = selectedGroup?.name
     }
     
     @IBAction func btnAddClicked() {
@@ -47,7 +54,6 @@ extension PNGroupDetailViewController:MFMailComposeViewControllerDelegate{
     func configuredMailComposeViewController() -> MFMailComposeViewController {
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
-        
         mailComposerVC.setToRecipients(["someone@somewhere.com"])
         mailComposerVC.setSubject("Sending you an in-app e-mail...")
         mailComposerVC.setMessageBody("Sending e-mail in-app is not so bad!", isHTML: false)
@@ -59,7 +65,6 @@ extension PNGroupDetailViewController:MFMailComposeViewControllerDelegate{
         controller.dismiss(animated: true, completion: nil)
     }
 }
-
 
 extension PNGroupDetailViewController: UITableViewDelegate, UITableViewDataSource{
     

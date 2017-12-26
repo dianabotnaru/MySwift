@@ -384,6 +384,7 @@
                     <connections>
                         <outlet property="groupImageView" destination="8yU-NM-hhJ" id="Krw-LV-1Td"/>
                         <outlet property="groupMembersTableView" destination="tHe-oX-yGk" id="acW-ve-xs6"/>
+                        <outlet property="groupNameLabel" destination="twK-J3-1e0" id="N46-4V-6Ft"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="khA-nL-SbL" userLabel="First Responder" sceneMemberID="firstResponder"/>

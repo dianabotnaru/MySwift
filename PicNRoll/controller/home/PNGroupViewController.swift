@@ -128,7 +128,12 @@ extension PNGroupViewController: UITableViewDelegate, UITableViewDataSource{
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.initBackItemTitle(title: "Back to groups")
-        self.pushViewController(identifier: "PNGroupDetailViewController")
+        if indexPath.section == 0{
+            self.initBackItemTitle(title: "Back to groups")
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let groupDetailVC = storyboard.instantiateViewController(withIdentifier: "PNGroupDetailViewController") as! PNGroupDetailViewController
+            groupDetailVC.selectedGroup = self.groupList[indexPath.row]
+            navigationController?.pushViewController(groupDetailVC, animated: true)
+        }
     }
 }
