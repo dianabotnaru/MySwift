@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MessageUI
 
 class PNGroupDetailViewController: PNBaseViewController {
 
@@ -41,32 +40,6 @@ class PNGroupDetailViewController: PNBaseViewController {
         let groupInviteVC = storyboard.instantiateViewController(withIdentifier: "PNGroupInviteViewController") as! PNGroupInviteViewController
         groupInviteVC.selectedGroup = self.selectedGroup
         self.navigationController?.pushViewController(groupInviteVC, animated: true)
-    }
-}
-
-extension PNGroupDetailViewController:MFMailComposeViewControllerDelegate{
-    
-    func sendEmail(){
-        let mailComposeViewController = configuredMailComposeViewController()
-        if MFMailComposeViewController.canSendMail() {
-            self.present(mailComposeViewController, animated: true, completion: nil)
-        }else {
-            self.showAlarmViewController(message: "Your device could not send e-mail.  Please check e-mail configuration and try again.")
-        }
-    }
-    
-    func configuredMailComposeViewController() -> MFMailComposeViewController {
-        let mailComposerVC = MFMailComposeViewController()
-        mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
-        mailComposerVC.setToRecipients(["someone@somewhere.com"])
-        mailComposerVC.setSubject("Sending you an in-app e-mail...")
-        mailComposerVC.setMessageBody("Sending e-mail in-app is not so bad!", isHTML: false)
-        return mailComposerVC
-    }
-
-    // MARK: MFMailComposeViewControllerDelegate Method
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true, completion: nil)
     }
 }
 

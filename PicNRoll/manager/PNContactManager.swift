@@ -57,9 +57,10 @@ class PNContactManager{
                     
                     let user = PNUser()
                     user.phoneNumber = phone_number!
+                    user.email = "\(contact.emailAddresses[0].value)"
                     user.name = "\(contact.givenName) \(contact.familyName)"
                     contacts.append(user)
-                }
+                 }
             })
         } catch let e as NSError {
             print(e.localizedDescription)

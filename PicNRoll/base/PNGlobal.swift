@@ -9,8 +9,9 @@
 import UIKit
 
 struct PNGlobal {
-    static let PNPrimaryColor = UIColor(red: 38/255, green: 50/255, blue: 56/255, alpha: 1.0)
+    static let PNAppLink = "https://google.com"
     
+    static let PNPrimaryColor = UIColor(red: 38/255, green: 50/255, blue: 56/255, alpha: 1.0)    
     static let PNGreenColor = UIColor(red: 124/255, green: 179/255, blue: 66/255, alpha: 1.0)
 
     static let PNDarkGrayColor = UIColor(red: 33/255, green: 33/255, blue: 33/255, alpha: 1.0)

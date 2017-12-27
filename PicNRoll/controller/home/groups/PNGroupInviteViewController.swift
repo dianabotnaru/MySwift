@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import MessageUI
 
 class PNGroupInviteViewController: PNBaseViewController {
 
     let cellReuseIdentifier = "PNGroupTableViewCell"
     public var friendList : [PNUser] = []
+    public var selectedFriendList : [PNUser] = []
     public var selectedGroup : PNGroup?
+    
+    public var appInviteRecipientList : [String] = []
+
 
     @IBOutlet var friendTableView: UITableView!
 
@@ -35,7 +40,28 @@ class PNGroupInviteViewController: PNBaseViewController {
     }
     
     @IBAction func barButtonDoneClicked() {
-        
+        selectedFriendList = getSelectedFriendList()
+        if selectedFriendList.count == 0{
+            self.showAlarmViewController(message: "Please select friends to add.")
+        }else{
+            sendInvite()
+        }
+    }
+    
+    func getSelectedFriendList() -> [PNUser]{
+        var selectedFriendList : [PNUser] = []
+        for i in 0...self.friendList.count-1 {
+            let indexPath = IndexPath(item: i, section: 0)
+            let cell = self.friendTableView.cellForRow(at: indexPath) as! PNGroupTableViewCell
+            if cell.isChecked == true{
+                selectedFriendList.append(self.friendList[i])
+            }
+        }
+        return selectedFriendList
+    }
+    
+    func sendInvite(){
+        self.sendEmail()
     }
 }
 
@@ -72,6 +98,39 @@ extension PNGroupInviteViewController: UITableViewDelegate, UITableViewDataSourc
         cell.setCheckedState()
     }
 }
+
+extension PNGroupInviteViewController:MFMailComposeViewControllerDelegate{
+    
+    func sendEmail(){
+        let mailComposeViewController = configuredMailComposeViewController()
+        if MFMailComposeViewController.canSendMail() {
+            self.present(mailComposeViewController, animated: true, completion: nil)
+        }else {
+            self.showAlarmViewController(message: "Your device could not send e-mail.  Please check e-mail configuration and try again.")
+        }
+    }
+    
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        for i in 0...self.selectedFriendList.count-1 {
+            self.appInviteRecipientList.append(self.selectedFriendList[i].email)
+        }
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
+        mailComposerVC.setToRecipients(self.appInviteRecipientList)
+        mailComposerVC.setSubject("PicNRoll App invite")
+        mailComposerVC.setMessageBody("Please download PicNRoll in app store" + PNGlobal.PNAppLink, isHTML: false)
+        return mailComposerVC
+    }
+    
+    // MARK: MFMailComposeViewControllerDelegate Method
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func getAppInviteReceipientList(){
+    }
+}
+
 
 
 
