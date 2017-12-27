@@ -1,40 +1,45 @@
 //
-//  PNFriendsShareViewController.swift
+//  PNGroupInviteViewController.swift
 //  PicNRoll
 //
-//  Created by diana on 12/22/17.
+//  Created by diana on 12/27/17.
 //  Copyright © 2017 test. All rights reserved.
 //
 
 import UIKit
 
-class PNFriendsShareViewController: UIViewController {
+class PNGroupInviteViewController: PNBaseViewController {
 
     let cellReuseIdentifier = "PNGroupTableViewCell"
-    let section = ["Groups", "Friends"]
     public var friendList : [PNUser] = []
+    public var selectedGroup : PNGroup?
 
-    @IBOutlet var groupTableView: UITableView!
-    
+    @IBOutlet var friendTableView: UITableView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        groupTableView.register(UINib(nibName: "PNGroupTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
-        groupTableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        PNContactManager.shared.syncContacts { (response) in
-            self.friendList = PNContactManager.shared.contactBookInfo
-            self.groupTableView.reloadData()
-        }
+        initUi()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func btnShareClicked() {
+    func initUi(){
+        friendTableView.register(UINib(nibName: "PNGroupTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
+        friendTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        PNContactManager.shared.syncContacts { (response) in
+            self.friendList = PNContactManager.shared.contactBookInfo
+            self.friendTableView.reloadData()
+        }
+    }
+    
+    @IBAction func barButtonDoneClicked() {
+        
     }
 }
 
-extension PNFriendsShareViewController: UITableViewDelegate, UITableViewDataSource{
+extension PNGroupInviteViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         return 80
@@ -45,13 +50,13 @@ extension PNFriendsShareViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.groupTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! PNGroupTableViewCell
+        let cell = self.friendTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! PNGroupTableViewCell
         cell.setNameLabelwithGroup(groupName:self.friendList[indexPath.row].name)
         return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Select friends to share"
+        return "Select friends to add"
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -63,7 +68,10 @@ extension PNFriendsShareViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = self.groupTableView.cellForRow(at: indexPath) as! PNGroupTableViewCell
+        let cell = self.friendTableView.cellForRow(at: indexPath) as! PNGroupTableViewCell
         cell.setCheckedState()
     }
 }
+
+
+

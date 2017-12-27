@@ -43,6 +43,7 @@
 		D52C8F9D1FF2822400791F9A /* PNGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52C8F9C1FF2822400791F9A /* PNGroup.swift */; };
 		D53C95D61FF3D3E300659964 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C95D51FF3D3DC00659964 /* Contacts.framework */; };
 		D53C95D81FF3D7E300659964 /* PNContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53C95D71FF3D7E300659964 /* PNContactManager.swift */; };
+		D53C95DB1FF3E78300659964 /* PNGroupInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53C95DA1FF3E78300659964 /* PNGroupInviteViewController.swift */; };
 		D582C84B1FEC408800315C60 /* PNPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D582C84A1FEC408800315C60 /* PNPictureViewController.swift */; };
 		D582C84D1FED2C2400315C60 /* PNSharePagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D582C84C1FED2C2400315C60 /* PNSharePagingViewController.swift */; };
 		D582C8501FED2C8600315C60 /* PNFriendsShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D582C84F1FED2C8600315C60 /* PNFriendsShareViewController.swift */; };
@@ -94,6 +95,7 @@
 		D52C8F9E1FF293F700791F9A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		D53C95D51FF3D3DC00659964 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		D53C95D71FF3D7E300659964 /* PNContactManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNContactManager.swift; sourceTree = "<group>"; };
+		D53C95DA1FF3E78300659964 /* PNGroupInviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNGroupInviteViewController.swift; sourceTree = "<group>"; };
 		D582C84A1FEC408800315C60 /* PNPictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNPictureViewController.swift; sourceTree = "<group>"; };
 		D582C84C1FED2C2400315C60 /* PNSharePagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNSharePagingViewController.swift; sourceTree = "<group>"; };
 		D582C84F1FED2C8600315C60 /* PNFriendsShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNFriendsShareViewController.swift; sourceTree = "<group>"; };
@@ -157,14 +159,13 @@
 		8D942F271FE35B60002354F8 /* home */ = {
 			isa = PBXGroup;
 			children = (
+				D53C95D91FF3E74200659964 /* groups */,
 				D582C84E1FED2C4900315C60 /* sharing */,
 				8D942F281FE35B8A002354F8 /* PNFolderViewController.swift */,
 				8D72F2311FE4BE440047CB66 /* PNRollsViewController.swift */,
-				8D72F2331FE4BE570047CB66 /* PNGroupViewController.swift */,
 				8D72F2351FE4BE6F0047CB66 /* PNProfileViewController.swift */,
 				8D72F2371FE4BF560047CB66 /* PNTabViewController.swift */,
 				8D286BC21FE704BD0043105C /* PNPagingViewController.swift */,
-				8D84CBB11FE80505006B2F74 /* PNGroupDetailViewController.swift */,
 				D582C84A1FEC408800315C60 /* PNPictureViewController.swift */,
 			);
 			path = home;
@@ -268,6 +269,16 @@
 				8DB93D4A1FE30A5D00E456C2 /* PNBaseViewController.swift */,
 			);
 			path = base;
+			sourceTree = "<group>";
+		};
+		D53C95D91FF3E74200659964 /* groups */ = {
+			isa = PBXGroup;
+			children = (
+				8D72F2331FE4BE570047CB66 /* PNGroupViewController.swift */,
+				8D84CBB11FE80505006B2F74 /* PNGroupDetailViewController.swift */,
+				D53C95DA1FF3E78300659964 /* PNGroupInviteViewController.swift */,
+			);
+			path = groups;
 			sourceTree = "<group>";
 		};
 		D582C84E1FED2C4900315C60 /* sharing */ = {
@@ -447,6 +458,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D286BC31FE704BD0043105C /* PNPagingViewController.swift in Sources */,
+				D53C95DB1FF3E78300659964 /* PNGroupInviteViewController.swift in Sources */,
 				8D286C2A1FE75C4B0043105C /* PNPagingCell.swift in Sources */,
 				D53C95D81FF3D7E300659964 /* PNContactManager.swift in Sources */,
 				8D286C331FE7E4230043105C /* PNRollsTableViewCell.swift in Sources */,

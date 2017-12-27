@@ -37,6 +37,10 @@ class PNGroupDetailViewController: PNBaseViewController {
     }
     
     @IBAction func btnAddClicked() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let groupInviteVC = storyboard.instantiateViewController(withIdentifier: "PNGroupInviteViewController") as! PNGroupInviteViewController
+        groupInviteVC.selectedGroup = self.selectedGroup
+        self.navigationController?.pushViewController(groupInviteVC, animated: true)
     }
 }
 
@@ -73,13 +77,12 @@ extension PNGroupDetailViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-//        return friendList.count;
+        return friendList.count;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.groupMembersTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! PNGroupTableViewCell
-//        cell.setNameLabelwithGroup(groupName:self.friendList[indexPath.row].name)
+        cell.setNameLabelwithGroup(groupName:self.friendList[indexPath.row].name)
         return cell
     }
     
