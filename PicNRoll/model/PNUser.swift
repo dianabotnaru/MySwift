@@ -9,6 +9,7 @@
 import UIKit
 
 class PNUser{
+    
     var id: String = ""
     var name: String = ""
     var email: String = ""

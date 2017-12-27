@@ -22,6 +22,10 @@ class PNGroupViewController: PNBaseViewController {
         super.viewDidLoad()
         groupTableView.register(UINib(nibName: "PNGroupTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
         groupTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        PNContactManager.shared.syncContacts { (response) in
+            self.friendList = PNContactManager.shared.contactBookInfo
+            self.groupTableView.reloadData()
+        }
         getGroups()
     }
 
@@ -109,7 +113,11 @@ extension PNGroupViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.groupTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! PNGroupTableViewCell
-        cell.setNameLabelwithGroup(groupName:self.groupList[indexPath.row].name)
+        if indexPath.section == 0{
+            cell.setNameLabelwithGroup(groupName:self.groupList[indexPath.row].name)
+        }else{
+            cell.setNameLabelwithGroup(groupName:self.friendList[indexPath.row].name)
+        }
         return cell
     }
     

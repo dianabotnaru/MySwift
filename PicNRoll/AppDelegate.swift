@@ -8,11 +8,17 @@
 
 import UIKit
 import Firebase
+import Contacts
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var contactStore = CNContactStore()
+
+    class func getAppDelegate() -> AppDelegate {
+        return UIApplication.shared.delegate as! AppDelegate
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
@@ -60,6 +66,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let homeNavigationController = storyboard.instantiateViewController(withIdentifier: "HomeNavigationViewController") as! UINavigationController
         self.window!.rootViewController = homeNavigationController
         window!.makeKeyAndVisible()
+    }
+    
+    func requestForAccess(completionHandler: @escaping (_ accessGranded: Bool) -> Void) {
+        let authorizationStatus = CNContactStore.authorizationStatus(for: .contacts)
+        
+        switch authorizationStatus {
+        case .authorized:
+            completionHandler(true)
+        case .denied, .notDetermined:
+            self.contactStore.requestAccess(for: .contacts, completionHandler: { (access, accessError) in
+                if access {
+                    completionHandler(access)
+                } else {
+                    if authorizationStatus == .denied {
+                        DispatchQueue.main.async(execute: { () -> Void in
+                            let message = "\(accessError!.localizedDescription)\n\nPlease allow the app to access your contacts through the Settings."
+                            self.showMessage(title: "Warnning", message: message)
+                        })
+                    }
+                }
+            })
+        default:
+            completionHandler(false)
+        }
+    }
+    
+    func showMessage(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle:.alert)
+        let dismissAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alertController.addAction(dismissAction)
+        let pushedViewControllers = (self.window?.rootViewController as! UINavigationController).viewControllers
+        let presentedViewController = pushedViewControllers[pushedViewControllers.count - 1]
+        presentedViewController.present(alertController, animated: true, completion: nil)
     }
 }
 
