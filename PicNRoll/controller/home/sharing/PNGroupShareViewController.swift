@@ -77,6 +77,8 @@ extension PNGroupShareViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = self.groupTableView.cellForRow(at: indexPath) as! PNGroupTableViewCell
+        cell.setCheckedState()
     }
 }
 

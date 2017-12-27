@@ -73,15 +73,18 @@ extension PNGroupDetailViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return friendList.count;
+        return 10
+//        return friendList.count;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.groupMembersTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! PNGroupTableViewCell
-        cell.setNameLabelwithGroup(groupName:self.friendList[indexPath.row].name)
+//        cell.setNameLabelwithGroup(groupName:self.friendList[indexPath.row].name)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = self.groupMembersTableView.cellForRow(at: indexPath) as! PNGroupTableViewCell
+        cell.setCheckedState()
     }
 }

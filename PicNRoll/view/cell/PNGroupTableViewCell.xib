@@ -32,22 +32,33 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_select" translatesAutoresizingMaskIntoConstraints="NO" id="shb-wm-uZv">
+                        <rect key="frame" x="280" y="12" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="IKX-3F-EeR"/>
+                            <constraint firstAttribute="height" constant="20" id="mL3-xw-O5L"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="shb-wm-uZv" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="1h5-Yc-CFJ"/>
                     <constraint firstItem="OlX-Y2-TEv" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="YFc-0k-o0f"/>
                     <constraint firstItem="OlX-Y2-TEv" firstAttribute="leading" secondItem="EBG-BS-DNb" secondAttribute="trailing" constant="8" id="dic-bj-FcF"/>
                     <constraint firstItem="EBG-BS-DNb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="fye-1w-kXd"/>
                     <constraint firstItem="EBG-BS-DNb" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="vgN-Vu-FXi"/>
+                    <constraint firstAttribute="trailing" secondItem="shb-wm-uZv" secondAttribute="trailing" constant="20" id="wlV-Kb-aU5"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="checkImageView" destination="shb-wm-uZv" id="z6K-Db-cYV"/>
                 <outlet property="groupImageView" destination="EBG-BS-DNb" id="J7I-Iz-rxz"/>
                 <outlet property="nameLabel" destination="OlX-Y2-TEv" id="eLM-hf-f9U"/>
             </connections>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="ic_select" width="25" height="25"/>
         <image name="test.jpeg" width="281" height="179"/>
     </resources>
 </document>

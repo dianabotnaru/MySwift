@@ -12,7 +12,8 @@ class PNFriendsShareViewController: UIViewController {
 
     let cellReuseIdentifier = "PNGroupTableViewCell"
     let section = ["Groups", "Friends"]
-    
+    public var friendsList : [PNUser] = []
+
     @IBOutlet var groupTableView: UITableView!
     
     override func viewDidLoad() {
@@ -36,11 +37,13 @@ extension PNFriendsShareViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5;
+        return 10
+//        return friendsList.count;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.groupTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! PNGroupTableViewCell
+//        cell.setNameLabelwithGroup(groupName:self.friendsList[indexPath.row].name)
         return cell
     }
     
@@ -57,5 +60,7 @@ extension PNFriendsShareViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = self.groupTableView.cellForRow(at: indexPath) as! PNGroupTableViewCell
+        cell.setCheckedState()
     }
 }

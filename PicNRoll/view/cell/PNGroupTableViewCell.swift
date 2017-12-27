@@ -12,6 +12,9 @@ class PNGroupTableViewCell: UITableViewCell {
 
     @IBOutlet var groupImageView: UIImageView!
     @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var checkImageView: UIImageView!
+
+    var isChecked : Bool = false
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,4 +32,15 @@ class PNGroupTableViewCell: UITableViewCell {
     func setNameLabelwithGroup(groupName:String){
         nameLabel.text = groupName
     }
+    
+    func setCheckedState(){
+        if isChecked == false{
+            isChecked = true
+            checkImageView.isHidden = false
+        }else{
+            isChecked = false
+            checkImageView.isHidden = true
+        }
+    }
+
 }
