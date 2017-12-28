@@ -15,7 +15,7 @@ final class PNFirebaseManager{
     
     let USERTABLE = "Users"
     let ALBUMTABLE = "Albums"
-    let PHOTOFILED = "Photos"
+    let PHOTOFILETABLE = "Files"
     let GROUPTABLE = "Groups"
     let GROUPMEMBERTABLE = "GroupMembers"
     let SHAREDUSERTABLE = "SharedUsers"
@@ -154,7 +154,7 @@ final class PNFirebaseManager{
                             "vendorName": PNGlobal.currentUser?.name,
                             "createdDate": Date().toString(),
                             "imageUrl":urlString] as [AnyHashable : AnyObject]
-                self.databaseRef.child(self.ALBUMTABLE).child(userId).child(folderID).child(self.PHOTOFILED).child(photoId!).setValue(post)
+                self.databaseRef.child(self.PHOTOFILETABLE).child(folderID).child(photoId!).setValue(post)
             }
             completion(urlString,error)
         }
@@ -163,7 +163,7 @@ final class PNFirebaseManager{
     func getPictures(userId:String,
                     folderID:String,
                     completion: @escaping ([PNPhoto]?,Error?) -> Swift.Void){
-        self.databaseRef.child(ALBUMTABLE).child(userId).child(folderID).child(self.PHOTOFILED).observeSingleEvent(of: .value, with: { (snapshot) in
+        self.databaseRef.child(PHOTOFILETABLE).child(folderID).observeSingleEvent(of: .value, with: { (snapshot) in
             var photoList : [PNPhoto] = []
             for snapshot in snapshot.children.allObjects as! [DataSnapshot]{
                 let pnPhoto = PNPhoto()
@@ -303,6 +303,8 @@ final class PNFirebaseManager{
                     "name": pnFolder.name,
                     "vendorId": pnFolder.vendorId,
                     "vendorName": pnFolder.vendorName,
+                    "firstImageUrl": pnFolder.firstImageUrl,
+                    "isShare": true,
                     "canAddPicture": true,
                     "createdDate": pnFolder.createdDate.toString()] as [AnyHashable : AnyObject]
         self.databaseRef.child(ALBUMTABLE).child(pnUser.id).child(pnFolder.id).setValue(post)
