@@ -19,6 +19,10 @@ class PNUser{
     var lng: String = ""
     var profileImageUrl: String = ""
     
+    var isInvite: Bool = false
+    var canShowGroup: Bool = false
+    var canAddPicture: Bool = false
+    
     func setValues(id:String,name:String,email:String,phoneNumber:String,lat:String,lng:String,profileImageUrl:String){
         self.id = id
         self.name = name
@@ -29,7 +33,8 @@ class PNUser{
         self.profileImageUrl = profileImageUrl
     }
     
-    func setValuesWithSnapShot(value : NSDictionary){
+    func setValuesWithSnapShot(id:String,value : NSDictionary){
+        self.id =  id
         self.name = value["Name"] as? String ?? ""
         self.email = value["Email"] as? String ?? ""
         self.phoneNumber = value["PhoneNumber"] as? String ?? ""

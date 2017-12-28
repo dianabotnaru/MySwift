@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class PNGroupDetailViewController: PNBaseViewController {
 
@@ -16,11 +17,12 @@ class PNGroupDetailViewController: PNBaseViewController {
     @IBOutlet var groupNameLabel: UILabel!
 
     public var selectedGroup : PNGroup?
-    public var friendList : [PNUser] = []
+    public var groupMemberList : [PNUser] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         initUi()
+        getGroupMembers()
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,7 +41,22 @@ class PNGroupDetailViewController: PNBaseViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let groupInviteVC = storyboard.instantiateViewController(withIdentifier: "PNGroupInviteViewController") as! PNGroupInviteViewController
         groupInviteVC.selectedGroup = self.selectedGroup
+        groupInviteVC.delegate = self
         self.navigationController?.pushViewController(groupInviteVC, animated: true)
+    }
+    
+    func getGroupMembers(){
+        SVProgressHUD.show()
+        PNFirebaseManager.shared.getGroupMembers(groupId: (selectedGroup?.id)!, completion: {(memberList: [PNUser]) in
+            SVProgressHUD.dismiss()
+            self.groupMemberList = memberList
+            self.groupMembersTableView.reloadData()
+        })
+    }
+}
+extension PNGroupDetailViewController: PNGroupInviteViewControllerDelegate{
+    func didAddFriends(){
+        getGroupMembers()
     }
 }
 
@@ -50,12 +67,12 @@ extension PNGroupDetailViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return friendList.count;
+        return groupMemberList.count;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.groupMembersTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! PNGroupTableViewCell
-        cell.setNameLabelwithGroup(groupName:self.friendList[indexPath.row].name)
+        cell.setNameLabelwithGroup(groupName:self.groupMemberList[indexPath.row].name)
         return cell
     }
     

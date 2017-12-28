@@ -17,6 +17,7 @@ final class PNFirebaseManager{
     let ALBUMTABLE = "Albums"
     let PHOTOFILED = "Photos"
     let GROUPTABLE = "Groups"
+    let GROUPMEMBERTABLE = "GroupMembers"
 
     var storageRef: StorageReference = Storage.storage().reference()
     var databaseRef: DatabaseReference = Database.database().reference()
@@ -86,9 +87,9 @@ final class PNFirebaseManager{
                             completion: @escaping (PNUser?,Error?) -> Swift.Void){
         self.databaseRef.child(USERTABLE).child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
             let pnUser = PNUser()
+            let userId = snapshot.key
             let value = snapshot.value as? NSDictionary
-            pnUser.id = userId
-            pnUser.setValuesWithSnapShot(value: value!)
+            pnUser.setValuesWithSnapShot(id:userId,value: value!)
             completion(pnUser,nil)
         }) { (error) in
             completion(nil,error)
@@ -104,6 +105,7 @@ final class PNFirebaseManager{
                     "vendorName": folder.vendorName,
                     "createdDate": folder.createdDate.toString(),
                     "isShare": folder.isShare,
+                    "canAddPicture": true,
                     "firstImageUrl":""] as [AnyHashable : AnyObject]
         self.databaseRef.child(ALBUMTABLE).child(getCurrentUserID()!).child(folder.id).setValue(post)
         completion()
@@ -168,10 +170,11 @@ final class PNFirebaseManager{
                      groupName:String,
                       completion: @escaping () -> Swift.Void){
         let groupId = getRamdomID() as String?
-        let post = ["id": groupId,
+        let post = ["id": groupId ?? "",
                     "name": groupName,
                     "vendorId": userId,
-                    "vendorName": PNGlobal.currentUser?.name,
+                    "vendorName": PNGlobal.currentUser?.name ?? "",
+                    "canShowGroupMember": true,
                     "createdDate": Date().toString()] as [AnyHashable : AnyObject]
         self.databaseRef.child(GROUPTABLE).child(userId).child(groupId!).setValue(post)
         completion()
@@ -202,13 +205,62 @@ final class PNFirebaseManager{
         databaseRef.child(USERTABLE).observeSingleEvent(of: .value, with: {snapshot in
             for snapshot in snapshot.children.allObjects as! [DataSnapshot]{
                 let pnUser = PNUser()
+                let userId = snapshot.key as String
                 let value = snapshot.value as? NSDictionary
-                pnUser.setValuesWithSnapShot(value: value!)
+                pnUser.setValuesWithSnapShot(id:userId,value: value!)
                 usersArr.append(pnUser)
             }
             completion(usersArr)
         })
     }
+    
+    func addMembers(pnGroup:PNGroup,
+                    friendList: [PNUser],
+                    contactList: [PNUser],
+                    completion: @escaping () -> Swift.Void){
+        for pnUser in friendList{
+            let post = ["id": pnUser.id,
+                        "name": pnUser.name,
+                        "isInvite":false] as [AnyHashable : AnyObject]
+            self.databaseRef.child(GROUPMEMBERTABLE).child(pnGroup.id).childByAutoId().setValue(post)
+            self.addGrouptoUsers(pnUser: pnUser, pnGroup: pnGroup)
+        }
+        
+        for pnUser in contactList{
+            let post = ["id": pnUser.id,
+                        "name": pnUser.name,
+                        "isInvite":true] as [AnyHashable : AnyObject]
+            self.databaseRef.child(GROUPMEMBERTABLE).child(pnGroup.id).childByAutoId().setValue(post)
+        }
+        completion()
+    }
+    
+    func addGrouptoUsers(pnUser:PNUser,pnGroup:PNGroup){
+        let post = ["id": pnGroup.id,
+                    "name": pnGroup.name,
+                    "vendorId": pnGroup.vendorId,
+                    "vendorName": pnGroup.vendorName,
+                    "canShowGroupMember": true,
+                    "createdDate": Date().toString()] as [AnyHashable : AnyObject]
+        self.databaseRef.child(GROUPTABLE).child(pnUser.id).child(pnGroup.id).setValue(post)
+    }
+    
+    func getGroupMembers(groupId:String,
+                         completion: @escaping ([PNUser]) -> Swift.Void){
+        databaseRef.child(GROUPMEMBERTABLE).child(groupId).observeSingleEvent(of: .value, with: {snapshot in
+            var usersArr: [PNUser] = []
+            for snapshot in snapshot.children.allObjects as! [DataSnapshot]{
+                let pnUser = PNUser()
+                let value = snapshot.value as? NSDictionary
+                pnUser.id = value!["id"] as? String ?? ""
+                pnUser.name = value!["name"] as? String ?? ""
+                pnUser.isInvite = value!["isInvite"] as? Bool ?? false
+                usersArr.append(pnUser)
+            }
+            completion(usersArr)
+        })
+    }
+
     
 //    func getUserFriendIds(block: @escaping ([String]) -> Swift.Void) {
 //        guard let userId = getCurrentUserID() else {return}
