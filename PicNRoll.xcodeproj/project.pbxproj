@@ -41,6 +41,7 @@
 		8DB93D4B1FE30A5D00E456C2 /* PNBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB93D4A1FE30A5D00E456C2 /* PNBaseViewController.swift */; };
 		D52C8F991FF24F3A00791F9A /* PNPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52C8F981FF24F3A00791F9A /* PNPhoto.swift */; };
 		D52C8F9D1FF2822400791F9A /* PNGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52C8F9C1FF2822400791F9A /* PNGroup.swift */; };
+		D531D1D21FF51231000B093D /* PNFriendContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D531D1D11FF51231000B093D /* PNFriendContactsViewController.swift */; };
 		D53C95D61FF3D3E300659964 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C95D51FF3D3DC00659964 /* Contacts.framework */; };
 		D53C95D81FF3D7E300659964 /* PNContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53C95D71FF3D7E300659964 /* PNContactManager.swift */; };
 		D53C95DB1FF3E78300659964 /* PNGroupInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53C95DA1FF3E78300659964 /* PNGroupInviteViewController.swift */; };
@@ -93,6 +94,7 @@
 		D52C8F981FF24F3A00791F9A /* PNPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNPhoto.swift; sourceTree = "<group>"; };
 		D52C8F9C1FF2822400791F9A /* PNGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNGroup.swift; sourceTree = "<group>"; };
 		D52C8F9E1FF293F700791F9A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		D531D1D11FF51231000B093D /* PNFriendContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNFriendContactsViewController.swift; sourceTree = "<group>"; };
 		D53C95D51FF3D3DC00659964 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		D53C95D71FF3D7E300659964 /* PNContactManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNContactManager.swift; sourceTree = "<group>"; };
 		D53C95DA1FF3E78300659964 /* PNGroupInviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNGroupInviteViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				8D72F2371FE4BF560047CB66 /* PNTabViewController.swift */,
 				8D286BC21FE704BD0043105C /* PNPagingViewController.swift */,
 				D582C84A1FEC408800315C60 /* PNPictureViewController.swift */,
+				D531D1D11FF51231000B093D /* PNFriendContactsViewController.swift */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				D5C484AE1FEFB00F00B76D24 /* PNUtil.swift in Sources */,
 				8D84CBB91FE8A6BC006B2F74 /* PNUser.swift in Sources */,
 				8DB93D451FE2FF6600E456C2 /* PNGlobal.swift in Sources */,
+				D531D1D21FF51231000B093D /* PNFriendContactsViewController.swift in Sources */,
 				8D84CBBC1FE8A8EF006B2F74 /* PNFirebaseManager.swift in Sources */,
 				D582C8501FED2C8600315C60 /* PNFriendsShareViewController.swift in Sources */,
 				8D942F2F1FE365F0002354F8 /* PNFolder.swift in Sources */,

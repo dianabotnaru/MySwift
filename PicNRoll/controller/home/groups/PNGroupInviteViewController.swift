@@ -14,11 +14,15 @@ class PNGroupInviteViewController: PNBaseViewController {
 
     let cellReuseIdentifier = "PNGroupTableViewCell"
     public var friendList : [PNUser] = []
+    public var contactList : [PNUser] = []
+
     public var selectedFriendList : [PNUser] = []
+    public var selectedContactList : [PNUser] = []
     public var selectedGroup : PNGroup?
     
     public var appInviteRecipientList : [String] = []
 
+    let section = ["Friends", "Contacts"]
 
     @IBOutlet var friendTableView: UITableView!
 
@@ -69,6 +73,7 @@ extension PNGroupInviteViewController{
         PNContactManager.shared.syncContacts { (response) in
             SVProgressHUD.dismiss()
             self.friendList = PNContactManager.shared.contactFriendInfo
+            self.contactList = PNContactManager.shared.contactUnFriendInfo
             self.friendTableView.reloadData()
         }
     }
@@ -82,21 +87,29 @@ extension PNGroupInviteViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return friendList.count;
+        if section == 0{
+            return friendList.count;
+        }else{
+            return contactList.count;
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.section[section]
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.friendTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! PNGroupTableViewCell
-        cell.setNameLabelwithGroup(groupName:self.friendList[indexPath.row].name)
+        if indexPath.section == 0{
+            cell.setNameLabelwithGroup(groupName:self.friendList[indexPath.row].name)
+        }else{
+            cell.setNameLabelwithGroup(groupName:self.contactList[indexPath.row].name)
+        }
         return cell
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Select friends to add"
-    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

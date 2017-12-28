@@ -20,6 +20,9 @@ class PNContactManager{
     static let shared = PNContactManager()
 
     func syncContacts(_ completionHandler:@escaping (_ result : Bool) -> Void) {
+        self.contactBookInfo.removeAll()
+        self.contactFriendInfo.removeAll()
+        self.contactUnFriendInfo.removeAll()
         AppDelegate.getAppDelegate().requestForAccess { (accessGranted) in
             if accessGranted {
                 self.contactBookInfo = self.getContacts()
