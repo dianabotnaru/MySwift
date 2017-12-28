@@ -15,7 +15,7 @@ class PNPictureViewController: PNBaseViewController, SKPhotoBrowserDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
     var images = [SKPhotoProtocol]()
     var pnPhotoList = [PNPhoto]()
-    var folderId: String = ""
+    var selectedFolder: PNFolder?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +46,7 @@ class PNPictureViewController: PNBaseViewController, SKPhotoBrowserDelegate {
     
     func getPhotos(){
         SVProgressHUD.show()
-        PNFirebaseManager.shared.getPictures(userId: (PNGlobal.currentUser?.id)!, folderID: folderId, completion: { (photoList: [PNPhoto]?,error: Error?) in
+        PNFirebaseManager.shared.getPictures(userId: (PNGlobal.currentUser?.id)!, folderID: (selectedFolder?.id)!, completion: { (photoList: [PNPhoto]?,error: Error?) in
             SVProgressHUD.dismiss()
             if error == nil{
                 self.pnPhotoList = photoList!

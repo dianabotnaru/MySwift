@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 protocol PNFolderListTableViewCellDelegate: class
 {
@@ -50,6 +51,7 @@ class PNFolderListTableViewCell: UITableViewCell {
     func setLabels(folder: PNFolder){
         nameLabel.text = folder.name
         vendorLabel.text = folder.vendorName
+        firstImageView.sd_setImage(with: URL(string: folder.firstImageUrl), placeholderImage: UIImage(named: "logo"))
     }
     
     func getTimeStringFromDate(date:Date) -> String{

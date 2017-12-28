@@ -111,6 +111,14 @@ final class PNFirebaseManager{
         completion()
     }
     
+    func setImageUrlofFolder(folderId:String,
+                             vendorId:String,
+                             url:String,
+                             completion: @escaping () -> Swift.Void){
+        self.databaseRef.child(ALBUMTABLE).child(vendorId).child(folderId).child("firstImageUrl").setValue(url)
+        completion()
+    }
+    
     func getFolders(userId:String,
                       completion: @escaping ([PNFolder]?,Error?) -> Swift.Void){
         self.databaseRef.child(ALBUMTABLE).child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -130,22 +138,24 @@ final class PNFirebaseManager{
     func addPicture(userId:String,
                     folderID:String,
                     image : UIImage,
-                    completion: @escaping (Error?) -> Swift.Void){
+                    completion: @escaping (String?,Error?) -> Swift.Void){
         let photoId = getRamdomID() as String?
         let imageData = UIImageJPEGRepresentation(image, 0.7)
         let riversRef = storageRef.child("Files/"+userId+"/"+photoId!+".jpg")
         riversRef.putData(imageData!, metadata: nil) { (metadata, error) in
+            var urlString: String = ""
             if error == nil{
                 let downloadURL = metadata?.downloadURL()
+                urlString = (downloadURL?.absoluteString)!
                 let post = ["id": photoId,
                             "name": "",
                             "vendorId": userId,
                             "vendorName": PNGlobal.currentUser?.name,
                             "createdDate": Date().toString(),
-                            "imageUrl":downloadURL?.absoluteString] as [AnyHashable : AnyObject]
+                            "imageUrl":urlString] as [AnyHashable : AnyObject]
                 self.databaseRef.child(self.ALBUMTABLE).child(userId).child(folderID).child(self.PHOTOFILED).child(photoId!).setValue(post)
             }
-            completion(error)
+            completion(urlString,error)
         }
     }
     

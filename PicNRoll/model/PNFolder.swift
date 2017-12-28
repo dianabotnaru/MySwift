@@ -34,6 +34,8 @@ class PNFolder{
         self.name = value["name"] as? String ?? ""
         self.vendorId = value["vendorId"] as? String ?? ""
         self.vendorName = value["vendorName"] as? String ?? ""
+        self.firstImageUrl = value["firstImageUrl"] as? String ?? ""
+
         let dateString = value["createdDate"] as? String ?? ""
         self.createdDate = dateString.toDate()
         self.isShare = value["isShare"] as? Bool ?? false
