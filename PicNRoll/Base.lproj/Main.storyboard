@@ -392,7 +392,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="khA-nL-SbL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="810.39999999999998" y="1256.2218890554723"/>
+            <point key="canvasLocation" x="809" y="1274"/>
         </scene>
         <!--Picture View Controller-->
         <scene sceneID="tp7-tP-ll0">
@@ -1280,8 +1280,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="543"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="w8d-Tl-Lpi" id="9bD-AX-k3F"/>
-                                    <outlet property="delegate" destination="w8d-Tl-Lpi" id="7JB-it-rpH"/>
+                                    <outlet property="dataSource" destination="w8d-Tl-Lpi" id="f5T-Cu-Erv"/>
+                                    <outlet property="delegate" destination="w8d-Tl-Lpi" id="hoV-bf-n9y"/>
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bD4-iv-vyE">
@@ -1343,7 +1343,7 @@
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
-                        <outlet property="groupTableView" destination="FT6-YC-h5r" id="ibo-JR-Uld"/>
+                        <outlet property="friendTableView" destination="FT6-YC-h5r" id="W1f-G4-aAD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NEo-Og-FiE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1411,7 +1411,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HmT-sf-LTX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1497" y="1275"/>
+            <point key="canvasLocation" x="1497" y="1273"/>
         </scene>
     </scenes>
     <resources>

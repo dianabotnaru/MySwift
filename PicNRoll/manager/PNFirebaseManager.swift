@@ -18,6 +18,7 @@ final class PNFirebaseManager{
     let PHOTOFILED = "Photos"
     let GROUPTABLE = "Groups"
     let GROUPMEMBERTABLE = "GroupMembers"
+    let SHAREDUSERTABLE = "SharedUsers"
 
     var storageRef: StorageReference = Storage.storage().reference()
     var databaseRef: DatabaseReference = Database.database().reference()
@@ -253,7 +254,7 @@ final class PNFirebaseManager{
                     "vendorId": pnGroup.vendorId,
                     "vendorName": pnGroup.vendorName,
                     "canShowGroupMember": true,
-                    "createdDate": Date().toString()] as [AnyHashable : AnyObject]
+                    "createdDate": pnGroup.createdDate.toString()] as [AnyHashable : AnyObject]
         self.databaseRef.child(GROUPTABLE).child(pnUser.id).child(pnGroup.id).setValue(post)
     }
     
@@ -273,6 +274,40 @@ final class PNFirebaseManager{
             completion(usersArr)
         })
     }
+    
+    func addSharedUserForFolder(pnFoder:PNFolder,
+                    friendList: [PNUser],
+                    contactList: [PNUser],
+                    completion: @escaping () -> Swift.Void){
+        for pnUser in friendList{
+            let post = ["id": pnUser.id,
+                        "name": pnUser.name,
+                        "profileImageUrl":pnUser.profileImageUrl,
+                        "isInvite":false] as [AnyHashable : AnyObject]
+            self.databaseRef.child(SHAREDUSERTABLE).child(pnFoder.id).childByAutoId().setValue(post)
+            self.addFoldertoUsers(pnUser: pnUser, pnFolder: pnFoder)
+        }
+        
+        for pnUser in contactList{
+            let post = ["id": pnUser.id,
+                        "name": pnUser.name,
+                        "profileImageUrl":"",
+                        "isInvite":true] as [AnyHashable : AnyObject]
+            self.databaseRef.child(SHAREDUSERTABLE).child(pnFoder.id).childByAutoId().setValue(post)
+        }
+        completion()
+    }
+    
+    func addFoldertoUsers(pnUser:PNUser,pnFolder:PNFolder){
+        let post = ["id": pnFolder.id,
+                    "name": pnFolder.name,
+                    "vendorId": pnFolder.vendorId,
+                    "vendorName": pnFolder.vendorName,
+                    "canAddPicture": true,
+                    "createdDate": pnFolder.createdDate.toString()] as [AnyHashable : AnyObject]
+        self.databaseRef.child(ALBUMTABLE).child(pnUser.id).child(pnFolder.id).setValue(post)
+    }
+
 
     
 //    func getUserFriendIds(block: @escaping ([String]) -> Swift.Void) {
