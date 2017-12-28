@@ -8,6 +8,7 @@
 
 import UIKit
 import MessageUI
+import SVProgressHUD
 
 class PNGroupInviteViewController: PNBaseViewController {
 
@@ -33,10 +34,7 @@ class PNGroupInviteViewController: PNBaseViewController {
     func initUi(){
         friendTableView.register(UINib(nibName: "PNGroupTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
         friendTableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        PNContactManager.shared.syncContacts { (response) in
-            self.friendList = PNContactManager.shared.contactBookInfo
-            self.friendTableView.reloadData()
-        }
+        getFriends()
     }
     
     @IBAction func barButtonDoneClicked() {
@@ -64,6 +62,18 @@ class PNGroupInviteViewController: PNBaseViewController {
         self.sendEmail()
     }
 }
+
+extension PNGroupInviteViewController{
+    func getFriends(){
+        SVProgressHUD.show()
+        PNContactManager.shared.syncContacts { (response) in
+            SVProgressHUD.dismiss()
+            self.friendList = PNContactManager.shared.contactFriendInfo
+            self.friendTableView.reloadData()
+        }
+    }
+}
+
 
 extension PNGroupInviteViewController: UITableViewDelegate, UITableViewDataSource{
     

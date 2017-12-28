@@ -12,6 +12,10 @@ import Contacts
 class PNContactManager{
     
     var contactBookInfo: [PNUser] = []
+    var contactFriendInfo: [PNUser] = []
+    var contactUnFriendInfo: [PNUser] = []
+
+    var emails: [String] = []
 
     static let shared = PNContactManager()
 
@@ -19,8 +23,12 @@ class PNContactManager{
         AppDelegate.getAppDelegate().requestForAccess { (accessGranted) in
             if accessGranted {
                 self.contactBookInfo = self.getContacts()
+                self.getContactFriendAndUnFriendInfo(completion: {() in
+                    completionHandler(accessGranted)
+                })
+            }else{
+                completionHandler(accessGranted)
             }
-            completionHandler(accessGranted)
         }
     }
 
@@ -67,5 +75,26 @@ class PNContactManager{
             print(e.localizedDescription)
         }
         return contacts
+    }
+    
+    func getContactFriendAndUnFriendInfo (completion: @escaping () -> Swift.Void){
+        PNFirebaseManager.shared.getAllUsers { (allUsers) in
+            if allUsers.count > 0{
+                for contactUser in self.contactBookInfo{
+                    var isFireUser :Bool = false
+                    for fireUser in allUsers{
+                        if contactUser.email == fireUser.email{
+                            self.contactFriendInfo.append(fireUser)
+                            isFireUser = true
+                            break
+                        }
+                    }
+                    if !isFireUser{
+                        self.contactUnFriendInfo.append(contactUser)
+                    }
+                }
+            }
+            completion()
+        }
     }
 }

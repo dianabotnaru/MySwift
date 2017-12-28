@@ -22,10 +22,7 @@ class PNGroupViewController: PNBaseViewController {
         super.viewDidLoad()
         groupTableView.register(UINib(nibName: "PNGroupTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
         groupTableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        PNContactManager.shared.syncContacts { (response) in
-            self.friendList = PNContactManager.shared.contactBookInfo
-            self.groupTableView.reloadData()
-        }
+        getFriends()
         getGroups()
     }
 
@@ -74,6 +71,15 @@ class PNGroupViewController: PNBaseViewController {
 }
 
 extension PNGroupViewController{
+    
+    func getFriends(){
+        SVProgressHUD.show()
+        PNContactManager.shared.syncContacts { (response) in
+            SVProgressHUD.dismiss()
+            self.friendList = PNContactManager.shared.contactFriendInfo
+            self.groupTableView.reloadData()
+        }
+    }
     
     func getGroups(){
         SVProgressHUD.show()

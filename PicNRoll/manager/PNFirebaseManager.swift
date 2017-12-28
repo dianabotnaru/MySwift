@@ -205,68 +205,36 @@ final class PNFirebaseManager{
                 let value = snapshot.value as? NSDictionary
                 pnUser.setValuesWithSnapShot(value: value!)
                 usersArr.append(pnUser)
-                completion(usersArr)
             }
+            completion(usersArr)
         })
     }
     
-    func getUserFriendIds(block: @escaping ([String]) -> Swift.Void) {
-        guard let userId = getCurrentUserID() else {return}
-        var ids: [String] = []
-        databaseRef.child(USERTABLE).child(userId).child("friends").observeSingleEvent(of: .value, with: { friends in
-            if let friendsJson = friends.value as? NSDictionary {
-                for (key, _) in friendsJson {
-                    ids.append(key as! String)
-                }
-            }
-            block(ids)
-        })
-    }
-
-    func addNewFriend(friendID:String,
-                      completion: @escaping (Error?) -> Swift.Void) {
-        guard let userID = getCurrentUserID() else { return }
-        databaseRef.child(USERTABLE).child(userID).child("friends").child(friendID).setValue(true) { error, ref in
-            if error != nil {
-                self.databaseRef.child(self.USERTABLE).child(friendID).child("friends").child(userID).setValue(true) { error, ref in
-                    completion(error)
-                }
-            }else{
-                completion(error)
-            }
-        }
-    }
-    
-    func syncAppContacts(emails: [String]) {
-        getAllUsers { (allUsers) in
-            if allUsers.count > 0 {
-                
-                self.getUserFriendIds(block: { (friendIds) in
-                    
-                    var updateFriends = false
-                    for user in allUsers {
-                        if !friendIds.contains(user.id) {
-                            if !(user.email.isEmpty) {
-                                
-                                if emails.contains(user.email) {
-                                    self.addNewFriend(friendID: user.id, completion: { (error: Error?) in
-                                        
-                                    })
-                                    updateFriends = true
-                                }
-                                
-                            }
-                        }
-                    }
-                    
-                    if updateFriends {
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updated_friends"), object: nil)
-                    }
-                    
-                })
-                
-            }
-        }
-    }
+//    func getUserFriendIds(block: @escaping ([String]) -> Swift.Void) {
+//        guard let userId = getCurrentUserID() else {return}
+//        var ids: [String] = []
+//        databaseRef.child(USERTABLE).child(userId).child("friends").observeSingleEvent(of: .value, with: { friends in
+//            if let friendsJson = friends.value as? NSDictionary {
+//                for (key, _) in friendsJson {
+//                    ids.append(key as! String)
+//                }
+//            }
+//            block(ids)
+//        })
+//    }
+//
+//    func addNewFriend(friendID:String,
+//                      completion: @escaping (Error?) -> Swift.Void) {
+//        guard let userID = getCurrentUserID() else { return }
+//        databaseRef.child(USERTABLE).child(userID).child("friends").child(friendID).setValue(true) { error, ref in
+//            if error != nil {
+//                self.databaseRef.child(self.USERTABLE).child(friendID).child("friends").child(userID).setValue(true) { error, ref in
+//                    completion(error)
+//                }
+//            }else{
+//                completion(error)
+//            }
+//        }
+//    }
 
 }
