@@ -159,6 +159,8 @@ extension PNFolderViewController: UITableViewDelegate, UITableViewDataSource ,PN
     }
     
     func didTapShareButton(index:Int){
+        selectedFolder = folderList[index]
+        PNSharePagingViewController.selectedFolder = selectedFolder!
         self.initBackItemTitle(title: "")
         self.pushViewController(identifier: "PNSharePagingViewController")
     }

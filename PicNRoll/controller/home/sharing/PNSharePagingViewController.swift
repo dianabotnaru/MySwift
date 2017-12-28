@@ -10,13 +10,15 @@ import UIKit
 import PagingKit
 
 class PNSharePagingViewController: UIViewController {
-
+    
+    static var selectedFolder: PNFolder = PNFolder()
+    
     var menuViewController: PagingMenuViewController!
     var contentViewController: PagingContentViewController!
 
     static let friendsShareViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PNFriendsShareViewController") as UIViewController
     static let groupShareViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PNGroupShareViewController") as UIViewController
-
+    
     let dataSource = [(menuTitle: "Friends", vc: friendsShareViewController), (menuTitle: "Groups", vc: groupShareViewController)]
 
     override func viewDidLoad() {

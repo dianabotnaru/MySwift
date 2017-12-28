@@ -11,6 +11,8 @@ import SVProgressHUD
 
 class PNGroupShareViewController: PNBaseViewController {
 
+    var selectedFolder: PNFolder?
+
     let cellReuseIdentifier = "PNGroupTableViewCell"
     let section = ["Groups", "Friends"]
     @IBOutlet var groupTableView: UITableView!
