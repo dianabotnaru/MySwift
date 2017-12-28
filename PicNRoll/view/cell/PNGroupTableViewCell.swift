@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import SDWebImage
 
 class PNGroupTableViewCell: UITableViewCell {
 
-    @IBOutlet var groupImageView: UIImageView!
+    @IBOutlet var profileImageView: UIImageView!
     @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var invitedLabel: UILabel!
     @IBOutlet var checkImageView: UIImageView!
 
     var isChecked : Bool = false
@@ -25,12 +27,26 @@ class PNGroupTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     func initUi(){
-        groupImageView.layer.cornerRadius = 20
-        groupImageView.clipsToBounds = true
+        profileImageView.layer.cornerRadius = 20
+        profileImageView.clipsToBounds = true
     }
     
     func setNameLabelwithGroup(groupName:String){
         nameLabel.text = groupName
+    }
+    
+    func setProfileImageWithUrl(url:String){
+        self.profileImageView.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "logo"))
+    }
+    
+    func setLabelsWithPnuser(_ pnUser: PNUser){
+        self.nameLabel.text = pnUser.name
+        self.profileImageView.sd_setImage(with: URL(string: pnUser.profileImageUrl), placeholderImage: UIImage(named: "logo"))
+        if pnUser.isInvite{
+            self.invitedLabel.isHidden = false
+        }else{
+            self.invitedLabel.isHidden = true
+        }
     }
     
     func setCheckedState(){

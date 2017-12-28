@@ -15,10 +15,14 @@ class PNGroupDetailViewController: PNBaseViewController {
     @IBOutlet var groupMembersTableView: UITableView!
     @IBOutlet var groupImageView: UIImageView!
     @IBOutlet var groupNameLabel: UILabel!
+    
+    private let refreshControl = UIRefreshControl()
 
     public var selectedGroup : PNGroup?
     public var groupMemberList : [PNUser] = []
 
+    var isRefresh : Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initUi()
@@ -35,7 +39,23 @@ class PNGroupDetailViewController: PNBaseViewController {
         groupImageView.layer.cornerRadius = 20
         groupImageView.clipsToBounds = true
         groupNameLabel.text = selectedGroup?.name
+        initRefreshController()
     }
+    
+    func initRefreshController(){
+        if #available(iOS 10.0, *) {
+            groupMembersTableView.refreshControl = refreshControl
+        } else {
+            groupMembersTableView.addSubview(refreshControl)
+        }
+        refreshControl.addTarget(self, action: #selector(refreshGroupMembers(_:)), for: .valueChanged)
+    }
+    
+    @objc private func refreshGroupMembers(_ sender: Any) {
+        isRefresh = true
+        getGroupMembers()
+    }
+
     
     @IBAction func btnAddClicked() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -46,9 +66,16 @@ class PNGroupDetailViewController: PNBaseViewController {
     }
     
     func getGroupMembers(){
-        SVProgressHUD.show()
+        if self.isRefresh == false {
+            SVProgressHUD.show()
+        }
         PNFirebaseManager.shared.getGroupMembers(groupId: (selectedGroup?.id)!, completion: {(memberList: [PNUser]) in
-            SVProgressHUD.dismiss()
+            if self.isRefresh == true {
+                self.isRefresh = false
+                self.refreshControl.endRefreshing()
+            }else{
+                SVProgressHUD.dismiss()
+            }
             self.groupMemberList = memberList
             self.groupMembersTableView.reloadData()
         })
@@ -72,12 +99,12 @@ extension PNGroupDetailViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.groupMembersTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! PNGroupTableViewCell
-        cell.setNameLabelwithGroup(groupName:self.groupMemberList[indexPath.row].name)
+        cell.setLabelsWithPnuser(self.groupMemberList[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = self.groupMembersTableView.cellForRow(at: indexPath) as! PNGroupTableViewCell
-        cell.setCheckedState()
+//        let cell = self.groupMembersTableView.cellForRow(at: indexPath) as! PNGroupTableViewCell
+//        cell.setCheckedState()
     }
 }

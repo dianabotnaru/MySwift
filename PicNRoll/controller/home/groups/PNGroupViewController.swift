@@ -14,17 +14,38 @@ class PNGroupViewController: PNBaseViewController {
     let cellReuseIdentifier = "PNGroupTableViewCell"
     let section = ["Groups", "Friends"]
     @IBOutlet var groupTableView: UITableView!
+    private let refreshControl = UIRefreshControl()
 
     public var groupList : [PNGroup] = []
     public var friendList : [PNUser] = []
+
+    var isRefresh : Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         groupTableView.register(UINib(nibName: "PNGroupTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
         groupTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        initRefreshController()
         getFriends()
         getGroups()
     }
+    
+    func initRefreshController(){
+        if #available(iOS 10.0, *) {
+            groupTableView.refreshControl = refreshControl
+        } else {
+            groupTableView.addSubview(refreshControl)
+        }
+        refreshControl.addTarget(self, action: #selector(refreshFriendContactList(_:)), for: .valueChanged)
+    }
+    
+    @objc private func refreshFriendContactList(_ sender: Any) {
+        isRefresh = true
+        getFriends()
+        getGroups()
+    }
+
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -73,8 +94,16 @@ class PNGroupViewController: PNBaseViewController {
 extension PNGroupViewController{
     
     func getFriends(){
-        SVProgressHUD.show()
+        if isRefresh == false{
+            SVProgressHUD.show()
+        }
         PNContactManager.shared.syncContacts { (response) in
+            if self.isRefresh == true {
+                self.isRefresh = false
+                self.refreshControl.endRefreshing()
+            }else{
+                SVProgressHUD.dismiss()
+            }
             SVProgressHUD.dismiss()
             self.friendList = PNContactManager.shared.contactFriendInfo
             self.groupTableView.reloadData()
@@ -82,9 +111,16 @@ extension PNGroupViewController{
     }
     
     func getGroups(){
-        SVProgressHUD.show()
+        if isRefresh == false{
+            SVProgressHUD.show()
+        }
         PNFirebaseManager.shared.getGroups(userId: (PNGlobal.currentUser?.id)!,completion:{ (groupList: [PNGroup]?,error: Error?) in
-            SVProgressHUD.dismiss()
+            if self.isRefresh == true {
+                self.isRefresh = false
+                self.refreshControl.endRefreshing()
+            }else{
+                SVProgressHUD.dismiss()
+            }
             if error == nil{
                 self.groupList = groupList!
                 self.groupTableView.reloadData()

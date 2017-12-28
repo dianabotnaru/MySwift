@@ -39,21 +39,30 @@
                             <constraint firstAttribute="height" constant="20" id="mL3-xw-O5L"/>
                         </constraints>
                     </imageView>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invited" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdu-mU-63s">
+                        <rect key="frame" x="260.5" y="13.5" width="43.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.68235294120000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="shb-wm-uZv" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="1h5-Yc-CFJ"/>
                     <constraint firstItem="OlX-Y2-TEv" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="YFc-0k-o0f"/>
                     <constraint firstItem="OlX-Y2-TEv" firstAttribute="leading" secondItem="EBG-BS-DNb" secondAttribute="trailing" constant="8" id="dic-bj-FcF"/>
                     <constraint firstItem="EBG-BS-DNb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="fye-1w-kXd"/>
+                    <constraint firstAttribute="trailing" secondItem="rdu-mU-63s" secondAttribute="trailing" constant="16" id="th0-XV-StY"/>
                     <constraint firstItem="EBG-BS-DNb" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="vgN-Vu-FXi"/>
                     <constraint firstAttribute="trailing" secondItem="shb-wm-uZv" secondAttribute="trailing" constant="20" id="wlV-Kb-aU5"/>
+                    <constraint firstItem="rdu-mU-63s" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="wlp-VT-bbG"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="checkImageView" destination="shb-wm-uZv" id="z6K-Db-cYV"/>
-                <outlet property="groupImageView" destination="EBG-BS-DNb" id="J7I-Iz-rxz"/>
+                <outlet property="invitedLabel" destination="rdu-mU-63s" id="qVJ-l7-8cy"/>
                 <outlet property="nameLabel" destination="OlX-Y2-TEv" id="eLM-hf-f9U"/>
+                <outlet property="profileImageView" destination="EBG-BS-DNb" id="Tfo-Ca-Viz"/>
             </connections>
         </tableViewCell>
     </objects>

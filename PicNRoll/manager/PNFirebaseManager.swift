@@ -221,6 +221,7 @@ final class PNFirebaseManager{
         for pnUser in friendList{
             let post = ["id": pnUser.id,
                         "name": pnUser.name,
+                        "profileImageUrl":pnUser.profileImageUrl,
                         "isInvite":false] as [AnyHashable : AnyObject]
             self.databaseRef.child(GROUPMEMBERTABLE).child(pnGroup.id).childByAutoId().setValue(post)
             self.addGrouptoUsers(pnUser: pnUser, pnGroup: pnGroup)
@@ -229,6 +230,7 @@ final class PNFirebaseManager{
         for pnUser in contactList{
             let post = ["id": pnUser.id,
                         "name": pnUser.name,
+                        "profileImageUrl":"",
                         "isInvite":true] as [AnyHashable : AnyObject]
             self.databaseRef.child(GROUPMEMBERTABLE).child(pnGroup.id).childByAutoId().setValue(post)
         }
@@ -255,6 +257,7 @@ final class PNFirebaseManager{
                 pnUser.id = value!["id"] as? String ?? ""
                 pnUser.name = value!["name"] as? String ?? ""
                 pnUser.isInvite = value!["isInvite"] as? Bool ?? false
+                pnUser.profileImageUrl = value!["profileImageUrl"] as? String ?? ""
                 usersArr.append(pnUser)
             }
             completion(usersArr)
