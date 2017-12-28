@@ -51,12 +51,13 @@ class PNContactManager{
         var contacts: [PNUser] = []
         do {
             try CNContactStore().enumerateContacts(with: fetchRequest, usingBlock: { (contact, stop) in
-                if contact.phoneNumbers.count > 0 {
-                    var phone_number = contact.phoneNumbers.first?.value.value(forKey: "digits") as? String
-                    phone_number = phone_number?.replacingOccurrences(of: "+", with: "")
-                    
+                if contact.emailAddresses.count > 0 {
                     let user = PNUser()
-                    user.phoneNumber = phone_number!
+                    if contact.phoneNumbers.count > 0{
+                        var phone_number = contact.phoneNumbers.first?.value.value(forKey: "digits") as? String
+                        phone_number = phone_number?.replacingOccurrences(of: "+", with: "")
+                        user.phoneNumber = phone_number!
+                    }
                     user.email = "\(contact.emailAddresses[0].value)"
                     user.name = "\(contact.givenName) \(contact.familyName)"
                     contacts.append(user)

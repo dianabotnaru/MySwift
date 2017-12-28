@@ -99,6 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let pushedViewControllers = (self.window?.rootViewController as! UINavigationController).viewControllers
         let presentedViewController = pushedViewControllers[pushedViewControllers.count - 1]
         presentedViewController.present(alertController, animated: true, completion: nil)
-    }
+    }    
+
 }
 
