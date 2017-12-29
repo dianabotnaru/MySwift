@@ -20,11 +20,26 @@ class PNRollsViewController: PNBaseViewController {
         super.viewDidLoad()
         rollsTableView.register(UINib(nibName: "PNRollsTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
         rollsTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        getRollsLists()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    func getRollsLists(){
+        SVProgressHUD.show()
+        PNFirebaseManager.shared.getFolders(userId: (PNGlobal.currentUser?.id)!, completion:{ (folderList: [PNFolder]?,error: Error?) in
+            SVProgressHUD.dismiss()
+            if error == nil{
+                self.rollsList = folderList!
+                self.rollsTableView.reloadData()
+            }else{
+                self.showAlarmViewController(message: (error?.localizedDescription)!)
+            }
+        })
+    }
+
 }
 
 extension PNRollsViewController: UITableViewDelegate, UITableViewDataSource{
@@ -38,6 +53,7 @@ extension PNRollsViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.rollsTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! PNRollsTableViewCell
+        cell.setLabels(rollsList[indexPath.row])
         return cell
     }
 }

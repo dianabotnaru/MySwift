@@ -92,7 +92,10 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="firstImageView" destination="3bS-0F-Xf6" id="bvY-q9-2dA"/>
+                <outlet property="folderNameLabel" destination="DCx-Ya-Dsa" id="UI5-3j-pLX"/>
                 <outlet property="profileImageView" destination="YJu-8B-WOq" id="IOe-Cg-U8f"/>
+                <outlet property="vendorNameLabel" destination="RvX-xv-ux4" id="RNM-XA-Qxt"/>
             </connections>
             <point key="canvasLocation" x="49.5" y="157"/>
         </tableViewCell>

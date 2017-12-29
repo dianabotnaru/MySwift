@@ -50,7 +50,11 @@ class PNFolderListTableViewCell: UITableViewCell {
     
     func setLabels(folder: PNFolder){
         nameLabel.text = folder.name
-        vendorLabel.text = folder.vendorName
+        if folder.vendorId == PNGlobal.currentUser?.id{
+            vendorLabel.text = "me"
+        }else{
+            vendorLabel.text = folder.vendorName
+        }
         firstImageView.sd_setImage(with: URL(string: folder.firstImageUrl), placeholderImage: UIImage(named: "logo"))
     }
     
