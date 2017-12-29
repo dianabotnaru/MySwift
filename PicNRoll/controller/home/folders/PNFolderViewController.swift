@@ -82,7 +82,11 @@ extension PNFolderViewController{
         PNFirebaseManager.shared.getFolders(userId: (PNGlobal.currentUser?.id)!, completion:{ (folderList: [PNFolder]?,error: Error?) in
             SVProgressHUD.dismiss()
             if error == nil{
-                self.folderList = folderList!
+                for pnFolder in folderList!{
+                    if pnFolder.vendorId == PNGlobal.currentUser?.id{
+                        self.folderList.append(pnFolder)
+                    }
+                }
                 self.folderTableView.reloadData()
             }else{
                 self.showAlarmViewController(message: (error?.localizedDescription)!)

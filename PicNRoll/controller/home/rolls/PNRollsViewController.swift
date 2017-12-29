@@ -56,4 +56,11 @@ extension PNRollsViewController: UITableViewDelegate, UITableViewDataSource{
         cell.setLabels(rollsList[indexPath.row])
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let pictureVC = storyboard.instantiateViewController(withIdentifier: "PNPictureViewController") as! PNPictureViewController
+        pictureVC.selectedFolder = rollsList[indexPath.row]
+        self.navigationController?.pushViewController(pictureVC, animated: true)
+    }
 }
