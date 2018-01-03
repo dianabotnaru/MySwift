@@ -59,7 +59,6 @@ class PNLoginViewController: PNBaseViewController {
                                                     PNGlobal.currentUser = pnUser
                                                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                                                     appDelegate.launchHomeScreen()
-                                                    self.pushViewController(identifier: "PNFolderViewController")
                                                 }else{
                                                     self.showAlarmViewController(message: (error?.localizedDescription)!)
                                                 }

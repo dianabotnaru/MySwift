@@ -96,7 +96,7 @@ extension PNPagingViewController{
     func signOut(){
         PNFirebaseManager.shared.SignOut()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.launchHomeScreen()
+        appDelegate.launchSignInScreen()
     }
     
     func gotoNotificationVC(){
