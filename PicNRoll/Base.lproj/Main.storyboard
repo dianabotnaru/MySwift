@@ -675,7 +675,7 @@
                                         </constraints>
                                         <color key="textColor" red="0.2470588235" green="0.25098039220000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Email"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="placeholderVerticalOffset">
@@ -694,6 +694,9 @@
                                                 <color key="value" red="0.48627450979999998" green="0.70196078429999997" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="kPu-YE-T1f" id="BaV-lt-ttQ"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dfd-Be-KrD" customClass="ErrorTextField" customModule="Material">
                                         <rect key="frame" x="20" y="188" width="303" height="30"/>
@@ -703,7 +706,7 @@
                                         </constraints>
                                         <color key="textColor" red="0.2470588235" green="0.25098039220000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Password"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="placeholderVerticalOffset">
@@ -722,6 +725,9 @@
                                                 <color key="value" red="0.48627450979999998" green="0.70196078429999997" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="kPu-YE-T1f" id="yJx-R7-fYR"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cq4-XU-Wep" customClass="ErrorTextField" customModule="Material">
                                         <rect key="frame" x="20" y="243" width="303" height="30"/>
@@ -731,7 +737,7 @@
                                         </constraints>
                                         <color key="textColor" red="0.2470588235" green="0.25098039220000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Mobile"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="placeholderVerticalOffset">
@@ -750,6 +756,9 @@
                                                 <color key="value" red="0.48627450979999998" green="0.70196078429999997" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="kPu-YE-T1f" id="hcv-GY-uaa"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qP3-HT-hrR" customClass="RaisedButton" customModule="Material">
                                         <rect key="frame" x="20" y="308" width="130" height="30"/>
@@ -787,7 +796,7 @@
                                         <color key="tintColor" red="0.78039215689999997" green="0.78039215689999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" red="0.2470588235" green="0.25098039220000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Email"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="placeholderVerticalOffset">
@@ -806,6 +815,9 @@
                                                 <color key="value" red="0.48627450979999998" green="0.70196078429999997" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="kPu-YE-T1f" id="Ea9-gR-EHn"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
