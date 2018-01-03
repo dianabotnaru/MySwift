@@ -65,7 +65,6 @@ class PNRollsViewController: PNBaseViewController {
             }
         })
     }
-
 }
 
 extension PNRollsViewController: UITableViewDelegate, UITableViewDataSource{
