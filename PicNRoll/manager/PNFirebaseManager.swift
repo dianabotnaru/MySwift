@@ -78,6 +78,25 @@ final class PNFirebaseManager{
         }
     }
     
+    func updateUserProfile(image : UIImage,
+                           completion: @escaping (String?,Error?) -> Swift.Void){
+        let photoId = getRamdomID() as String?
+        let userId = getCurrentUserID() as String?
+
+        let imageData = UIImageJPEGRepresentation(image, 0.7)
+        let riversRef = storageRef.child("Files/"+userId!+"/profile/"+photoId!+".jpg")
+        riversRef.putData(imageData!, metadata: nil) { (metadata, error) in
+            var urlString: String = ""
+            if error == nil{
+                let downloadURL = metadata?.downloadURL()
+                urlString = (downloadURL?.absoluteString)!
+                let post = ["profileImageUrl":urlString] as [AnyHashable : AnyObject]
+                self.databaseRef.child("Users").child(userId!).updateChildValues(post)
+            }
+            completion(urlString,error)
+        }
+    }
+
     func signInUser(email:String,
                   password:String,
                   completion: @escaping (PNUser?,Error?) -> Swift.Void){
