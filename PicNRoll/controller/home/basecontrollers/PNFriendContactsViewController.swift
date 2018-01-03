@@ -39,7 +39,6 @@ class PNFriendContactsViewController: PNBaseViewController {
         friendTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         getFriends()
     }
-
 }
 
 extension PNFriendContactsViewController{

@@ -58,6 +58,20 @@ final class PNFirebaseManager{
             }
         }
     }
+    
+    func updateUser(pnUser:PNUser,
+                    completion: @escaping (Error?) -> Swift.Void){
+        let post = ["Email": pnUser.email,
+                    "Name": pnUser.name,
+                    "PhoneNumber":pnUser.phoneNumber ,
+                    "deviceToken": "",
+                    "lat":pnUser.lat,
+                    "lng":pnUser.lng,
+                    "profileImageUrl":""] as [AnyHashable : String]
+        self.databaseRef.child("Users").child((pnUser.id)).updateChildValues(post)
+        completion(nil)
+    }
+    
     func signInUser(email:String,
                   password:String,
                   completion: @escaping (PNUser?,Error?) -> Swift.Void){

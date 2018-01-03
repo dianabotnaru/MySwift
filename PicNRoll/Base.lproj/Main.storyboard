@@ -777,7 +777,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="btnForgotpasswordClicked" destination="Ri3-fC-tF6" eventType="touchUpInside" id="Dsr-6I-AV0"/>
+                                            <action selector="btnSaveClicked" destination="kPu-YE-T1f" eventType="touchUpInside" id="VO7-5e-nUD"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ssk-RH-ZdT">
