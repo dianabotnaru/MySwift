@@ -72,6 +72,12 @@ final class PNFirebaseManager{
         completion(nil)
     }
     
+    func updateUserEmail(email:String,completion: @escaping (Error?) -> Swift.Void){
+        Auth.auth().currentUser?.updateEmail(to: email) { (error) in
+            completion(error)
+        }
+    }
+    
     func signInUser(email:String,
                   password:String,
                   completion: @escaping (PNUser?,Error?) -> Swift.Void){

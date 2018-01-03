@@ -19,7 +19,8 @@ class PNProfileViewController: PNBaseViewController {
     @IBOutlet var pwTextField: ErrorTextField!
     @IBOutlet var mobileTextField: ErrorTextField!
     @IBOutlet var nameTextField: ErrorTextField!
-
+    var currentUser : PNUser!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initLabels()
@@ -46,7 +47,7 @@ class PNProfileViewController: PNBaseViewController {
             let alertController = UIAlertController(title: nil, message: "Are you sure want to update profile information?", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: {
                 alert -> Void in
-                self.updateUserInformation()
+                self.updateUserInformationWithEmail()
             }))
             alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {
                 alert -> Void in
@@ -55,17 +56,35 @@ class PNProfileViewController: PNBaseViewController {
         }
     }
     
+    func updateUserInformationWithEmail(){
+        self.view.endEditing(true)
+        self.currentUser = PNGlobal.currentUser
+        if currentUser?.email != emailTextField.text!{
+            currentUser?.email = emailTextField.text!
+            SVProgressHUD.show()
+            PNFirebaseManager.shared.updateUserEmail(email: (currentUser?.email)!,
+                                                completion:{ (error: Error?) in
+                                                    if error == nil{
+                                                        self.updateUserInformation()
+                                                    }else{
+                                                        self.showAlarmViewController(message: (error?.localizedDescription)!)
+                                                    }
+                                                    SVProgressHUD.dismiss()
+            })
+
+        }else{
+            updateUserInformation()
+        }
+    }
+    
     func updateUserInformation(){
-        let currentUser = PNGlobal.currentUser
+        SVProgressHUD.show()
         currentUser?.name = nameTextField.text!
         currentUser?.phoneNumber = mobileTextField.text!
-        currentUser?.email = emailTextField.text!
-        self.view.endEditing(true)
-        SVProgressHUD.show()
         PNFirebaseManager.shared.updateUser(pnUser: currentUser!,
                                             completion:{ (error: Error?) in
                                                 if error == nil{
-                                                    PNGlobal.currentUser = currentUser
+                                                    PNGlobal.currentUser = self.currentUser
                                                     self.initLabels()
                                                 }else{
                                                     self.showAlarmViewController(message: (error?.localizedDescription)!)
