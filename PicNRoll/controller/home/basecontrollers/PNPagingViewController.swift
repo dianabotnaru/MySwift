@@ -71,6 +71,39 @@ class PNPagingViewController: PNBaseViewController {
     }
 }
 
+extension PNPagingViewController{
+    
+    @IBAction func btnMoreClicked(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Notifications", style: .default, handler: { _ in
+            self.gotoNotificationVC()
+        }))
+        alert.addAction(UIAlertAction(title: "Logout", style: .default, handler: { _ in
+            self.signOut()
+        }))
+        alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+        switch UIDevice.current.userInterfaceIdiom {
+        case .pad:
+            alert.popoverPresentationController?.barButtonItem = sender
+            alert.popoverPresentationController?.permittedArrowDirections = .up
+        default:
+            break
+        }
+        alert.view.tintColor = PNGlobal.PNPrimaryColor
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func signOut(){
+        PNFirebaseManager.shared.SignOut()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.launchHomeScreen()
+    }
+    
+    func gotoNotificationVC(){
+        
+    }
+}
+
 extension PNPagingViewController: PagingMenuViewControllerDataSource {
     func numberOfItemsForMenuViewController(viewController: PagingMenuViewController) -> Int {
         return dataSource.count

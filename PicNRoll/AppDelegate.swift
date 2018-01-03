@@ -68,6 +68,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window!.makeKeyAndVisible()
     }
     
+    func launchSignInScreen(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let rootNavigationController = storyboard.instantiateViewController(withIdentifier: "RootNavigationController") as! UINavigationController
+        self.window!.rootViewController = rootNavigationController
+        window!.makeKeyAndVisible()
+    }
+    
     func requestForAccess(completionHandler: @escaping (_ accessGranded: Bool) -> Void) {
         let authorizationStatus = CNContactStore.authorizationStatus(for: .contacts)
         

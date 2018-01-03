@@ -310,7 +310,9 @@ final class PNFirebaseManager{
         self.databaseRef.child(ALBUMTABLE).child(pnUser.id).child(pnFolder.id).setValue(post)
     }
 
-
+    func SignOut(){
+        try! Auth.auth().signOut()
+    }
     
 //    func getUserFriendIds(block: @escaping ([String]) -> Swift.Void) {
 //        guard let userId = getCurrentUserID() else {return}
