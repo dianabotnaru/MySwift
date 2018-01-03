@@ -55,7 +55,7 @@ class PNFolderListTableViewCell: UITableViewCell {
         }else{
             vendorLabel.text = folder.vendorName
         }
-        firstImageView.sd_setImage(with: URL(string: folder.firstImageUrl), placeholderImage: UIImage(named: "logo"))
+        firstImageView.sd_setImage(with: URL(string: folder.firstImageUrl), placeholderImage: UIImage(named: ""))
     }
     
     func getTimeStringFromDate(date:Date) -> String{

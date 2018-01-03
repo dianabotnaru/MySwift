@@ -19,6 +19,10 @@ class PNFolderViewController: PNBaseViewController{
    
     var selectedFolder: PNFolder?
     
+    private let refreshControl = UIRefreshControl()
+    
+    var isRefresh : Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initUi()
@@ -34,6 +38,21 @@ class PNFolderViewController: PNBaseViewController{
         folderTableView.register(UINib(nibName: "PNFolderListTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
         folderTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         imagePicker.delegate = self
+        initRefreshController()
+    }
+    
+    func initRefreshController(){
+        if #available(iOS 10.0, *) {
+            folderTableView.refreshControl = refreshControl
+        } else {
+            folderTableView.addSubview(refreshControl)
+        }
+        refreshControl.addTarget(self, action: #selector(refreshFolderList(_:)), for: .valueChanged)
+    }
+    
+    @objc private func refreshFolderList(_ sender: Any) {
+        isRefresh = true
+        getFolderLists()
     }
     
     @IBAction func btnAddClicked() {
@@ -78,9 +97,16 @@ class PNFolderViewController: PNBaseViewController{
 
 extension PNFolderViewController{
     func getFolderLists(){
-        SVProgressHUD.show()
+        if isRefresh == false{
+            SVProgressHUD.show()
+        }
         PNFirebaseManager.shared.getFolders(userId: (PNGlobal.currentUser?.id)!, completion:{ (folderList: [PNFolder]?,error: Error?) in
-            SVProgressHUD.dismiss()
+            if self.isRefresh == true {
+                self.isRefresh = false
+                self.refreshControl.endRefreshing()
+            }else{
+                SVProgressHUD.dismiss()
+            }
             if error == nil{
                 for pnFolder in folderList!{
                     if pnFolder.vendorId == PNGlobal.currentUser?.id{

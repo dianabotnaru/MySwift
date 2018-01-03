@@ -32,7 +32,7 @@ class PNRollsTableViewCell: UITableViewCell {
     }
     
     func setLabels(_ pnfolder : PNFolder){
-        firstImageView.sd_setImage(with: URL(string: pnfolder.firstImageUrl), placeholderImage: UIImage(named: "logo"))
+        firstImageView.sd_setImage(with: URL(string: pnfolder.firstImageUrl), placeholderImage: UIImage(named: ""))
         folderNameLabel.text = pnfolder.name
         if pnfolder.vendorId == PNGlobal.currentUser?.id{
             vendorNameLabel.text = "me"

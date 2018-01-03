@@ -45,8 +45,12 @@ class PNFriendContactsViewController: PNBaseViewController {
 extension PNFriendContactsViewController{
     
     func getSelectedFriendContactList() -> Bool{
-        self.selectedFriendList = self.getSelectedUserList(0, self.friendList)
-        self.selectedContactList = self.getSelectedUserList(1, self.contactList)
+        if self.friendList.count != 0{
+            self.selectedFriendList = self.getSelectedUserList(0, self.friendList)
+        }
+        if self.contactList.count != 0{
+            self.selectedContactList = self.getSelectedUserList(1, self.contactList)
+        }
         if (selectedFriendList.count == 0) && (selectedContactList.count == 0){
             return false
         }

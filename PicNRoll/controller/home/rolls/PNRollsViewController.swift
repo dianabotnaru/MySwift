@@ -16,10 +16,15 @@ class PNRollsViewController: PNBaseViewController {
     @IBOutlet var rollsTableView: UITableView!
     var rollsList : [PNFolder] = []
 
+    private let refreshControl = UIRefreshControl()
+
+    var isRefresh : Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         rollsTableView.register(UINib(nibName: "PNRollsTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
         rollsTableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        initRefreshController()
         getRollsLists()
     }
 
@@ -27,10 +32,31 @@ class PNRollsViewController: PNBaseViewController {
         super.didReceiveMemoryWarning()
     }
     
+    func initRefreshController(){
+        if #available(iOS 10.0, *) {
+            rollsTableView.refreshControl = refreshControl
+        } else {
+            rollsTableView.addSubview(refreshControl)
+        }
+        refreshControl.addTarget(self, action: #selector(refreshRollsList(_:)), for: .valueChanged)
+    }
+    
+    @objc private func refreshRollsList(_ sender: Any) {
+        isRefresh = true
+        getRollsLists()
+    }
+
     func getRollsLists(){
-        SVProgressHUD.show()
+        if isRefresh == false{
+            SVProgressHUD.show()
+        }
         PNFirebaseManager.shared.getFolders(userId: (PNGlobal.currentUser?.id)!, completion:{ (folderList: [PNFolder]?,error: Error?) in
-            SVProgressHUD.dismiss()
+            if self.isRefresh == true {
+                self.isRefresh = false
+                self.refreshControl.endRefreshing()
+            }else{
+                SVProgressHUD.dismiss()
+            }
             if error == nil{
                 self.rollsList = folderList!
                 self.rollsTableView.reloadData()
