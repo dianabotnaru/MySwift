@@ -102,9 +102,9 @@ extension PNFriendContactsViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.friendTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! PNGroupTableViewCell
         if indexPath.section == 0{
-            cell.setNameLabelwithGroup(groupName:self.friendList[indexPath.row].name)
+            cell.setNameLabelwithFriend(friendName:self.friendList[indexPath.row].name)
         }else{
-            cell.setNameLabelwithGroup(groupName:self.contactList[indexPath.row].name)
+            cell.setNameLabelwithFriend(friendName:self.contactList[indexPath.row].name)
         }
         return cell
     }

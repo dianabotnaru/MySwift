@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_man_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="EBG-BS-DNb">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_group_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="EBG-BS-DNb">
                         <rect key="frame" x="16" y="2" width="40" height="40"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="ZSW-3p-J2H"/>
@@ -67,7 +67,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ic_man_placeholder" width="50" height="50"/>
+        <image name="ic_group_placeholder" width="50" height="50"/>
         <image name="ic_select" width="25" height="25"/>
     </resources>
 </document>

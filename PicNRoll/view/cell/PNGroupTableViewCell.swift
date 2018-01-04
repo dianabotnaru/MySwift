@@ -33,15 +33,21 @@ class PNGroupTableViewCell: UITableViewCell {
     
     func setNameLabelwithGroup(groupName:String){
         nameLabel.text = groupName
+        self.profileImageView.sd_setImage(with: URL(string: ""), placeholderImage: UIImage(named: "ic_group_placeholder"))
+    }
+    
+    func setNameLabelwithFriend(friendName:String){
+        nameLabel.text = friendName
+        self.profileImageView.sd_setImage(with: URL(string: ""), placeholderImage: UIImage(named: "ic_man_placeholder"))
     }
     
     func setProfileImageWithUrl(url:String){
-        self.profileImageView.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "logo"))
+        self.profileImageView.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "ic_man_placeholder"))
     }
     
     func setLabelsWithPnuser(_ pnUser: PNUser){
         self.nameLabel.text = pnUser.name
-        self.profileImageView.sd_setImage(with: URL(string: pnUser.profileImageUrl), placeholderImage: UIImage(named: "logo"))
+        self.profileImageView.sd_setImage(with: URL(string: pnUser.profileImageUrl), placeholderImage: UIImage(named: "ic_man_placeholder"))
         if pnUser.isInvite{
             self.invitedLabel.isHidden = false
         }else{

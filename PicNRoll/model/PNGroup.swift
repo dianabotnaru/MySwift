@@ -14,6 +14,7 @@ class PNGroup{
     var name: String = ""
     var vendorId: String = ""
     var vendorName: String = ""
+    var groupImageUrl: String = ""
     var canShowGroupMemeber:Bool = false
     var createdDate: Date = Date()
     
@@ -23,6 +24,7 @@ class PNGroup{
         self.vendorId = vendorId
         self.vendorName = vendorName
         self.createdDate = createdDate
+        self.groupImageUrl = ""
     }
     
     func setValuesWithSnapShot(value : NSDictionary){

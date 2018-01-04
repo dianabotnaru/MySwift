@@ -158,7 +158,7 @@ extension PNGroupViewController: UITableViewDelegate, UITableViewDataSource{
         if indexPath.section == 0{
             cell.setNameLabelwithGroup(groupName:self.groupList[indexPath.row].name)
         }else{
-            cell.setNameLabelwithGroup(groupName:self.friendList[indexPath.row].name)
+            cell.setNameLabelwithFriend(friendName:self.friendList[indexPath.row].name)
         }
         return cell
     }
