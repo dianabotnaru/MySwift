@@ -39,6 +39,6 @@ class PNRollsTableViewCell: UITableViewCell {
             vendorNameLabel.text = pnfolder.vendorName
         }
         firstImageView.sd_setImage(with: URL(string: pnfolder.firstImageUrl), placeholderImage: UIImage(named: ""))
-        profileImageView.sd_setImage(with: URL(string: pnfolder.vendorProfileImageUrl), placeholderImage: UIImage(named: ""))
+        profileImageView.sd_setImage(with: URL(string: pnfolder.vendorProfileImageUrl), placeholderImage: UIImage(named: "ic_man_placeholder.png"))
     }
 }
