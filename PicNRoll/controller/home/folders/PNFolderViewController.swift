@@ -127,6 +127,7 @@ extension PNFolderViewController{
                          name: folderName,
                          vendorId: (PNGlobal.currentUser?.id)!,
                          vendorName: (PNGlobal.currentUser?.name)!,
+                         vendorProfileImageUrl:(PNGlobal.currentUser?.profileImageUrl)!,
                          firstImageUrl: "",
                          createdDate: Date(),
                          isShare: false)

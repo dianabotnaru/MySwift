@@ -143,6 +143,7 @@ final class PNFirebaseManager{
                     "name": folder.name,
                     "vendorId": folder.vendorId,
                     "vendorName": folder.vendorName,
+                    "vendorProfileImageUrl": folder.vendorProfileImageUrl,
                     "createdDate": folder.createdDate.toString(),
                     "isShare": folder.isShare,
                     "canAddPicture": true,
