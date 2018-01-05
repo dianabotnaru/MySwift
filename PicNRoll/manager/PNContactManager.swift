@@ -62,17 +62,18 @@ class PNContactManager{
         var contacts: [PNUser] = []
         do {
             try CNContactStore().enumerateContacts(with: fetchRequest, usingBlock: { (contact, stop) in
-                if contact.emailAddresses.count > 0 {
-                    let user = PNUser()
+                let user = PNUser()
+
                     if contact.phoneNumbers.count > 0{
                         var phone_number = contact.phoneNumbers.first?.value.value(forKey: "digits") as? String
                         phone_number = phone_number?.replacingOccurrences(of: "+", with: "")
                         user.phoneNumber = phone_number!
                     }
-                    user.email = "\(contact.emailAddresses[0].value)"
+                    if contact.emailAddresses.count > 0 {
+                        user.email = "\(contact.emailAddresses[0].value)"
+                    }
                     user.name = "\(contact.givenName) \(contact.familyName)"
                     contacts.append(user)
-                 }
             })
         } catch let e as NSError {
             print(e.localizedDescription)

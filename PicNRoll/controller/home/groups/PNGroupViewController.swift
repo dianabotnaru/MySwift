@@ -45,8 +45,6 @@ class PNGroupViewController: PNBaseViewController {
         getGroups()
     }
 
-
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
