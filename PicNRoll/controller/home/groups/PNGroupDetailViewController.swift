@@ -99,12 +99,11 @@ extension PNGroupDetailViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.groupMembersTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! PNGroupTableViewCell
-        cell.setLabelsWithPnuser(self.groupMemberList[indexPath.row])
+        let pnUser = self.groupMemberList[indexPath.row]
+        cell.setLabels(pnUser.name, pnUser.profileImageUrl, pnUser.isInvite, false)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let cell = self.groupMembersTableView.cellForRow(at: indexPath) as! PNGroupTableViewCell
-//        cell.setCheckedState()
     }
 }

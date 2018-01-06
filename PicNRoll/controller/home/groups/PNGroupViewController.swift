@@ -154,9 +154,11 @@ extension PNGroupViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.groupTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! PNGroupTableViewCell
         if indexPath.section == 0{
-            cell.setNameLabelwithGroup(groupName:self.groupList[indexPath.row].name)
+            let pnGroup = self.groupList[indexPath.row]
+            cell.setLabels(pnGroup.name, pnGroup.groupImageUrl, false, false)
         }else{
-            cell.setNameLabelwithFriend(friendName:self.friendList[indexPath.row].name)
+            let pnUser = self.friendList[indexPath.row]
+            cell.setLabels(pnUser.name, pnUser.profileImageUrl, false, false)
         }
         return cell
     }

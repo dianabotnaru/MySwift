@@ -23,6 +23,8 @@ class PNUser{
     var canShowGroup: Bool = false
     var canAddPicture: Bool = false
     
+    var isSelected : Bool = false
+    
     func setValues(id:String,name:String,email:String,phoneNumber:String,lat:String,lng:String,profileImageUrl:String){
         self.id = id
         self.name = name
@@ -42,5 +44,13 @@ class PNUser{
         self.lat = value["lat"] as? String ?? ""
         self.lng = value["lng"] as? String ?? ""
         self.profileImageUrl = value["profileImageUrl"] as? String ?? ""
+    }
+    
+    func updateSelectedState(){
+        if isSelected{
+            isSelected = false
+        }else{
+            isSelected = true
+        }
     }
 }

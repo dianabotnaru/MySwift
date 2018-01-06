@@ -62,7 +62,8 @@ extension PNGroupShareViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.groupTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! PNGroupTableViewCell
-        cell.setNameLabelwithGroup(groupName:self.groupList[indexPath.row].name)
+        let pnGroup = self.groupList[indexPath.row]
+        cell.setLabels(pnGroup.name, pnGroup.groupImageUrl, false, pnGroup.isSelected)
         return cell
     }
     

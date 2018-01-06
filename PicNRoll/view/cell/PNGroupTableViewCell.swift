@@ -29,30 +29,14 @@ class PNGroupTableViewCell: UITableViewCell {
     func initUi(){
         profileImageView.layer.cornerRadius = 20
         profileImageView.clipsToBounds = true
+        isChecked = false
     }
     
-    func setNameLabelwithGroup(groupName:String){
-        nameLabel.text = groupName
-        self.profileImageView.sd_setImage(with: URL(string: ""), placeholderImage: UIImage(named: "ic_group_placeholder"))
-    }
-    
-    func setNameLabelwithFriend(friendName:String){
-        nameLabel.text = friendName
-        self.profileImageView.sd_setImage(with: URL(string: ""), placeholderImage: UIImage(named: "ic_man_placeholder"))
-    }
-    
-    func setProfileImageWithUrl(url:String){
-        self.profileImageView.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "ic_man_placeholder"))
-    }
-    
-    func setLabelsWithPnuser(_ pnUser: PNUser){
-        self.nameLabel.text = pnUser.name
-        self.profileImageView.sd_setImage(with: URL(string: pnUser.profileImageUrl), placeholderImage: UIImage(named: "ic_man_placeholder"))
-        if pnUser.isInvite{
-            self.invitedLabel.isHidden = false
-        }else{
-            self.invitedLabel.isHidden = true
-        }
+    func setLabels(_ name: String, _ url:String, _ isInvited: Bool, _ isSelected: Bool){
+        self.nameLabel.text = name
+        self.profileImageView.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "ic_man_placeholder"),options:SDWebImageOptions.refreshCached)
+        checkImageView.isHidden = !isSelected
+        self.invitedLabel.isHidden = !isInvited
     }
     
     func setCheckedState(){

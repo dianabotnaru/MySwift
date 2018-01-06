@@ -101,10 +101,13 @@ extension PNFriendContactsViewController: UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.friendTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! PNGroupTableViewCell
+        
         if indexPath.section == 0{
-            cell.setNameLabelwithFriend(friendName:self.friendList[indexPath.row].name)
+            let pnUser = self.friendList[indexPath.row]
+            cell.setLabels(pnUser.name, pnUser.profileImageUrl, false, pnUser.isSelected)
         }else{
-            cell.setNameLabelwithFriend(friendName:self.contactList[indexPath.row].name)
+            let pnUser = self.contactList[indexPath.row]
+            cell.setLabels(pnUser.name, pnUser.profileImageUrl, false, pnUser.isSelected)
         }
         return cell
     }
@@ -118,8 +121,16 @@ extension PNFriendContactsViewController: UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = self.friendTableView.cellForRow(at: indexPath) as! PNGroupTableViewCell
-        cell.setCheckedState()
+        if indexPath.section == 0{
+            let pnUser = self.friendList[indexPath.row]
+            pnUser.updateSelectedState()
+            self.friendList[indexPath.row] = pnUser
+        }else{
+            let pnUser = self.contactList[indexPath.row]
+            pnUser.updateSelectedState()
+            self.contactList[indexPath.row] = pnUser
+        }
+        self.friendTableView.reloadData()
     }
 }
 
