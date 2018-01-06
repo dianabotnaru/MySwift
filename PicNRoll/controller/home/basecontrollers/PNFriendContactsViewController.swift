@@ -13,15 +13,18 @@ import SVProgressHUD
 class PNFriendContactsViewController: PNBaseViewController {
 
     let cellReuseIdentifier = "PNGroupTableViewCell"
+    let section = ["Friends", "Contacts"]
+
     public var friendList : [PNUser] = []
     public var contactList : [PNUser] = []
     
     public var selectedFriendList : [PNUser] = []
     public var selectedContactList : [PNUser] = []
-
-    let section = ["Friends", "Contacts"]
     
-    public var appInviteRecipientList : [String] = []
+    public var emailInviteList : [PNUser] = []
+    public var smsInviteList : [PNUser] = []
+    
+    public var invitedUserList : [PNUser] = []
 
     @IBOutlet var friendTableView: UITableView!
 
@@ -39,6 +42,19 @@ class PNFriendContactsViewController: PNBaseViewController {
         friendTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         getFriends()
     }
+    
+    func sendInvite(){
+        self.getEmailInviteList()
+        self.getSMSInviteList()
+        if self.emailInviteList.count > 0{
+            self.sendEmail()
+        }else{
+            if self.smsInviteList.count > 0 {
+                self.sendSms()
+            }
+        }
+    }
+    
 }
 
 extension PNFriendContactsViewController{
@@ -75,6 +91,26 @@ extension PNFriendContactsViewController{
             }
         }
         return selectedFriendList
+    }
+    
+    func getEmailInviteList(){
+        self.selectedContactList = self.getSelectedUserList(1, self.contactList)
+        for i in 0...self.selectedContactList.count-1 {
+            let pnUser = selectedContactList[i]
+            if pnUser.email != ""{
+                self.emailInviteList.append(pnUser)
+            }
+        }
+    }
+    
+    func getSMSInviteList(){
+        self.selectedContactList = self.getSelectedUserList(1, self.contactList)
+        for i in 0...self.selectedContactList.count-1 {
+            let pnUser = selectedContactList[i]
+            if (pnUser.email == "")||(pnUser.phoneNumber != ""){
+                self.smsInviteList.append(pnUser)
+            }
+        }
     }
 }
 
@@ -145,12 +181,13 @@ extension PNFriendContactsViewController:MFMailComposeViewControllerDelegate{
     }
     
     func configuredMailComposeViewController() -> MFMailComposeViewController {
-        for i in 0...self.selectedFriendList.count-1 {
-            self.appInviteRecipientList.append(self.selectedContactList[i].email)
+        var appInviteRecipientList : [String] = []
+        for i in 0...self.emailInviteList.count-1 {
+            appInviteRecipientList.append(self.emailInviteList[i].email)
         }
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
-        mailComposerVC.setToRecipients(self.appInviteRecipientList)
+        mailComposerVC.setToRecipients(appInviteRecipientList)
         mailComposerVC.setSubject("PicNRoll App invite")
         mailComposerVC.setMessageBody("Please download PicNRoll in app store" + PNGlobal.PNAppLink, isHTML: false)
         return mailComposerVC
@@ -158,11 +195,58 @@ extension PNFriendContactsViewController:MFMailComposeViewControllerDelegate{
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
+        if error != nil {
+            self.showAlarmViewController(message: (error?.localizedDescription)!)
+        }
+        if self.smsInviteList.count > 0 {
+            for pnUser in self.emailInviteList{
+                self.invitedUserList.append(pnUser)
+            }
+            self.sendSms()
+        }
     }
     
     func getAppInviteReceipientList(){
     }
 }
+
+extension PNFriendContactsViewController: MFMessageComposeViewControllerDelegate {
+    
+    func sendSms(){
+        var phoneNumbers : [String] = []
+        for pnContact in self.smsInviteList{
+            phoneNumbers.append(pnContact.phoneNumber)
+        }
+        if (MFMessageComposeViewController.canSendText()) {
+            let controller = MFMessageComposeViewController()
+            controller.body = "Please installl our app " +  PNGlobal.PNAppLink
+            controller.recipients = phoneNumbers
+            controller.messageComposeDelegate = self
+            self.present(controller, animated: true, completion: nil)
+        }
+    }
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        switch result.rawValue {
+            case MessageComposeResult.sent.rawValue:
+                for pnUser in self.smsInviteList{
+                    self.invitedUserList.append(pnUser)
+                }
+                break;
+            case MessageComposeResult.cancelled.rawValue:
+                self.showAlarmViewController(message: "Message was cancelled")
+                break;
+            case MessageComposeResult.failed.rawValue:
+                self.showAlarmViewController(message: "Message was failed")
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+
+
 
 
 
