@@ -48,8 +48,8 @@ class PNGroupInviteViewController: PNFriendContactsViewController {
     
     func getInviteAvailableUserList(_ originalList : [PNUser]) -> [PNUser]{
         var availableFriendList : [PNUser] = []
-        var isAlreadyFriend : Bool = false
         for friend in originalList{
+            var isAlreadyFriend : Bool = false
             for groupmember in self.groupMemberList{
                 if (friend.email != "") && (friend.email == groupmember.email){
                     isAlreadyFriend = true

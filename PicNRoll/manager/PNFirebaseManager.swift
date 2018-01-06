@@ -311,6 +311,8 @@ final class PNFirebaseManager{
                 let value = snapshot.value as? NSDictionary
                 pnUser.id = value!["id"] as? String ?? ""
                 pnUser.name = value!["name"] as? String ?? ""
+                pnUser.email = value!["Email"] as? String ?? ""
+                pnUser.phoneNumber = value!["PhoneNumber"] as? String ?? ""
                 pnUser.isInvite = value!["isInvite"] as? Bool ?? false
                 pnUser.profileImageUrl = value!["profileImageUrl"] as? String ?? ""
                 usersArr.append(pnUser)
