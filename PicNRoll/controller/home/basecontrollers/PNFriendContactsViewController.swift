@@ -69,9 +69,8 @@ extension PNFriendContactsViewController{
     func getSelectedUserList(_ section: Int,_ userList: [PNUser]) -> [PNUser]{
         var selectedFriendList : [PNUser] = []
         for i in 0...userList.count-1 {
-            let indexPath = IndexPath(item: i, section: section)
-            let cell = self.friendTableView.cellForRow(at: indexPath) as! PNGroupTableViewCell
-            if cell.isChecked == true{
+            let pnUser = userList[i]
+            if pnUser.isSelected == true{
                 selectedFriendList.append(userList[i])
             }
         }
