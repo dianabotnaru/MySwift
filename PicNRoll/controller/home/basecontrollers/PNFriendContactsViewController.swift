@@ -40,7 +40,7 @@ class PNFriendContactsViewController: PNBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        initUi()
+        self.initUi()
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,7 +50,6 @@ class PNFriendContactsViewController: PNBaseViewController {
     func initUi(){
         friendTableView.register(UINib(nibName: "PNGroupTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
         friendTableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        getFriends()
     }
     
     func sendInvite(){
@@ -114,13 +113,13 @@ extension PNFriendContactsViewController{
         return true
     }
     
-    func getFriends(){
+    func getFriends(completion: @escaping () -> Swift.Void){
         SVProgressHUD.show()
         PNContactManager.shared.syncContacts { (response) in
             SVProgressHUD.dismiss()
             self.friendList = PNContactManager.shared.contactFriendInfo
             self.contactList = PNContactManager.shared.contactUnFriendInfo
-            self.friendTableView.reloadData()
+            completion()
         }
     }
     
@@ -231,7 +230,7 @@ extension PNFriendContactsViewController:MFMailComposeViewControllerDelegate{
         mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
         mailComposerVC.setToRecipients(appInviteRecipientList)
         mailComposerVC.setSubject("PicNRoll App invite")
-        mailComposerVC.setMessageBody("Please download PicNRoll in app store" + PNGlobal.PNAppLink, isHTML: false)
+        mailComposerVC.setMessageBody("Please download PicNRoll in app store " + PNGlobal.PNAppLink, isHTML: false)
         return mailComposerVC
     }
     
