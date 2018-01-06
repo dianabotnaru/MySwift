@@ -47,6 +47,7 @@ class PNRollsViewController: PNBaseViewController {
     }
 
     func getRollsLists(){
+        self.rollsList.removeAll()
         if isRefresh == false{
             SVProgressHUD.show()
         }

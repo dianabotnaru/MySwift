@@ -97,6 +97,7 @@ class PNFolderViewController: PNBaseViewController{
 
 extension PNFolderViewController{
     func getFolderLists(){
+        self.folderList.removeAll()
         if isRefresh == false{
             SVProgressHUD.show()
         }
