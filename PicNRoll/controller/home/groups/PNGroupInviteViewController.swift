@@ -10,20 +10,14 @@ import UIKit
 import MessageUI
 import SVProgressHUD
 
-protocol PNGroupInviteViewControllerDelegate: class
-{
-    func didAddFriends()
-}
 
 class PNGroupInviteViewController: PNFriendContactsViewController {
-    
-    weak var delegate:PNGroupInviteViewControllerDelegate?
 
-    public var selectedGroup : PNGroup?
     var phoneNumbers : [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.isAddFriend = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,51 +25,13 @@ class PNGroupInviteViewController: PNFriendContactsViewController {
     }
     
     @IBAction func barButtonDoneClicked() {
-        if getSelectedFriendContactList(){
-            self.addFriends()
+        if(self.getSelectedFriendContactList()){
+            self.sendInvite()
         }else{
             self.showAlarmViewController(message: "Please select friends or contacts to add in group")
         }
     }
-    
-    func addFriends(){
-        SVProgressHUD.show()
-        PNFirebaseManager.shared.addMembers(pnGroup: self.selectedGroup!,
-                                            friendList: self.selectedFriendList,
-                                            contactList: self.selectedContactList,
-                                            completion: {() in
-                                                SVProgressHUD.dismiss()
-//                                                if self.delegate != nil {
-//                                                    self.delegate?.didAddFriends()
-//                                                }
-        })
-    }
 }
-
-//extension PNGroupInviteViewController: MFMessageComposeViewControllerDelegate {
-//
-//    func sendSMSInvite(){
-//        if self.selectedContactList.count > 0{
-//            for pnContact in self.selectedContactList{
-//                if pnContact.email == "" {
-//                    phoneNumbers.append(pnContact.phoneNumber)
-//                }
-//            }
-//            if (MFMessageComposeViewController.canSendText()) {
-//                let controller = MFMessageComposeViewController()
-//                controller.body = "Please installl our app" +  PNGlobal.PNAppLink
-//                controller.recipients = phoneNumbers
-//                controller.messageComposeDelegate = self
-//                self.present(controller, animated: true, completion: nil)
-//            }
-//        }
-//    }
-//
-//    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
-//        self.dismiss(animated: true, completion: nil)
-//        _ = self.navigationController?.popViewController(animated: true)
-//    }
-//}
 
 
 

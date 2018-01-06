@@ -10,10 +10,17 @@ import UIKit
 import MessageUI
 import SVProgressHUD
 
+protocol PNFriendContactsViewControllerDelegate: class
+{
+    func didAddFriends()
+}
+
 class PNFriendContactsViewController: PNBaseViewController {
 
     let cellReuseIdentifier = "PNGroupTableViewCell"
     let section = ["Friends", "Contacts"]
+
+    weak var delegate:PNFriendContactsViewControllerDelegate?
 
     public var friendList : [PNUser] = []
     public var contactList : [PNUser] = []
@@ -25,6 +32,9 @@ class PNFriendContactsViewController: PNBaseViewController {
     public var smsInviteList : [PNUser] = []
     
     public var invitedUserList : [PNUser] = []
+    
+    public var isAddFriend : Bool = false
+    public var selectedGroup : PNGroup?
 
     @IBOutlet var friendTableView: UITableView!
 
@@ -49,12 +59,44 @@ class PNFriendContactsViewController: PNBaseViewController {
         if self.emailInviteList.count > 0{
             self.sendEmail()
         }else{
-            if self.smsInviteList.count > 0 {
-                self.sendSms()
-            }
+            self.sendSMSInvite()
         }
     }
     
+    func sendSMSInvite(){
+        if self.smsInviteList.count > 0 {
+            self.sendSms()
+        }else{
+            onFinishedInvite()
+        }
+    }
+    
+    func onFinishedInvite(){
+        if isAddFriend == true{
+            self.addFriends(self.selectedGroup!)
+        }else{
+            
+        }
+    }
+    
+    func addFriends(_ selectedGroup:PNGroup){
+        if (self.selectedFriendList.count == 0)&&(self.invitedUserList.count == 0){
+            self.showAlarmViewController(message: "No invited memeber!")
+            _ = self.navigationController?.popViewController(animated: true)
+        }else{
+            SVProgressHUD.show()
+            PNFirebaseManager.shared.addMembers(pnGroup: selectedGroup,
+                                                friendList: self.selectedFriendList,
+                                                contactList: self.invitedUserList,
+                                                completion: {() in
+                                                    SVProgressHUD.dismiss()
+                                                    if self.delegate != nil {
+                                                        self.delegate?.didAddFriends()
+                                                    }
+                                                    _ = self.navigationController?.popViewController(animated: true)
+            })
+        }
+    }
 }
 
 extension PNFriendContactsViewController{
@@ -202,7 +244,9 @@ extension PNFriendContactsViewController:MFMailComposeViewControllerDelegate{
             for pnUser in self.emailInviteList{
                 self.invitedUserList.append(pnUser)
             }
-            self.sendSms()
+            self.sendSMSInvite()
+        }else{
+            self.onFinishedInvite()
         }
     }
     
@@ -227,6 +271,7 @@ extension PNFriendContactsViewController: MFMessageComposeViewControllerDelegate
     }
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        controller.dismiss(animated: true, completion: nil)
         switch result.rawValue {
             case MessageComposeResult.sent.rawValue:
                 for pnUser in self.smsInviteList{
@@ -242,6 +287,7 @@ extension PNFriendContactsViewController: MFMessageComposeViewControllerDelegate
             default:
                 break;
         }
+        self.onFinishedInvite()
     }
 }
 

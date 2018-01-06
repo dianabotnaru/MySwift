@@ -81,7 +81,7 @@ class PNGroupDetailViewController: PNBaseViewController {
         })
     }
 }
-extension PNGroupDetailViewController: PNGroupInviteViewControllerDelegate{
+extension PNGroupDetailViewController: PNFriendContactsViewControllerDelegate{
     func didAddFriends(){
         getGroupMembers()
     }
