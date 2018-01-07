@@ -54,8 +54,10 @@ class PNFriendContactsViewController: PNBaseViewController {
     }
     
     func sendInvite(){
-        self.getEmailInviteList()
-        self.getSMSInviteList()
+        if(self.selectedContactList.count>0){
+            self.getEmailInviteList()
+            self.getSMSInviteList()
+        }
         if self.emailInviteList.count > 0{
             self.sendEmail()
         }else{
@@ -99,14 +101,19 @@ class PNFriendContactsViewController: PNBaseViewController {
     }
     
     func shareFolderWithFriend(_ selectedFolder:PNFolder){
-        SVProgressHUD.show()
-        PNFirebaseManager.shared.addSharedUserForFolder(pnFoder: selectedFolder,
-                                                        friendList: self.selectedFriendList,
-                                                        contactList: self.invitedUserList,
-                                                        completion: {() in
-                                                            SVProgressHUD.dismiss()
-                                                            _ = self.navigationController?.popViewController(animated: true)
-        })
+        if (self.selectedFriendList.count == 0)&&(self.invitedUserList.count == 0){
+            self.showAlarmViewController(message: "No invited memeber!")
+            _ = self.navigationController?.popViewController(animated: true)
+        }else{
+            SVProgressHUD.show()
+            PNFirebaseManager.shared.addSharedUserForFolder(pnFoder: selectedFolder,
+                                                            friendList: self.selectedFriendList,
+                                                            contactList: self.invitedUserList,
+                                                            completion: {() in
+                                                                SVProgressHUD.dismiss()
+                                                                _ = self.navigationController?.popViewController(animated: true)
+            })
+        }
     }
 
 }
@@ -148,7 +155,6 @@ extension PNFriendContactsViewController{
     }
     
     func getEmailInviteList(){
-        self.selectedContactList = self.getSelectedUserList(1, self.contactList)
         for i in 0...self.selectedContactList.count-1 {
             let pnUser = selectedContactList[i]
             if pnUser.email != ""{
@@ -159,7 +165,6 @@ extension PNFriendContactsViewController{
     
     func getSMSInviteList(){
         self.smsInviteList.removeAll()
-        self.selectedContactList = self.getSelectedUserList(1, self.contactList)
         for i in 0...self.selectedContactList.count-1 {
             let pnUser = selectedContactList[i]
             if (pnUser.email == "")||(pnUser.phoneNumber != ""){
