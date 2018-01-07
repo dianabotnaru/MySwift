@@ -13,6 +13,10 @@ class PNFriendsShareViewController: PNFriendContactsViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.isAddFriend = false
         self.selectedFolder = PNSharePagingViewController.selectedFolder
         self.getFriends(completion:{ () in

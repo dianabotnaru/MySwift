@@ -8,6 +8,7 @@
 
 import UIKit
 import PagingKit
+import MessageUI
 
 class PNSharePagingViewController: UIViewController {
     
@@ -16,11 +17,10 @@ class PNSharePagingViewController: UIViewController {
     var menuViewController: PagingMenuViewController!
     var contentViewController: PagingContentViewController!
 
-    static let friendsShareViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PNFriendsShareViewController") as UIViewController
-    static let groupShareViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PNGroupShareViewController") as UIViewController
+    static let friendsShareViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PNFriendsShareViewController") as! PNFriendsShareViewController
+    static let groupShareViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PNGroupShareViewController") as! PNGroupShareViewController
     
-    let dataSource = [(menuTitle: "Friends", vc: friendsShareViewController), (menuTitle: "Groups", vc: groupShareViewController)]
-
+    let titleSource = ["Friends","Groups"]
     override func viewDidLoad() {
         super.viewDidLoad()
         menuViewController?.register(nib: UINib(nibName: "PNPagingCell", bundle: nil), forCellWithReuseIdentifier: "PNPagingCell")
@@ -48,7 +48,7 @@ class PNSharePagingViewController: UIViewController {
 
 extension PNSharePagingViewController: PagingMenuViewControllerDataSource {
     func numberOfItemsForMenuViewController(viewController: PagingMenuViewController) -> Int {
-        return dataSource.count
+        return titleSource.count
     }
     
     func menuViewController(viewController: PagingMenuViewController, widthForItemAt index: Int) -> CGFloat {
@@ -57,7 +57,7 @@ extension PNSharePagingViewController: PagingMenuViewControllerDataSource {
     
     func menuViewController(viewController: PagingMenuViewController, cellForItemAt index: Int) -> PagingMenuViewCell {
         let cell = viewController.dequeueReusableCell(withReuseIdentifier: "PNPagingCell", for: index) as! PNPagingCell
-        cell.titleLabel.text = dataSource[index].menuTitle
+        cell.titleLabel.text = titleSource[index]
         if index == 0 {
             cell.titleLabel.textColor = .white
         } else {
@@ -69,11 +69,15 @@ extension PNSharePagingViewController: PagingMenuViewControllerDataSource {
 
 extension PNSharePagingViewController: PagingContentViewControllerDataSource {
     func numberOfItemsForContentViewController(viewController: PagingContentViewController) -> Int {
-        return dataSource.count
+        return titleSource.count
     }
     
     func contentViewController(viewController: PagingContentViewController, viewControllerAt index: Int) -> UIViewController {
-        return dataSource[index].vc
+        if index == 0 {
+            return PNSharePagingViewController.friendsShareViewController
+        }else {
+            return PNSharePagingViewController.groupShareViewController
+        }
     }
 }
 
@@ -93,4 +97,6 @@ extension PNSharePagingViewController: PagingContentViewControllerDelegate {
         //        menuViewController?.scroll(index: index, percent: percent, animated: false)
     }
 }
+
+
 

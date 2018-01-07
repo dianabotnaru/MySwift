@@ -158,6 +158,7 @@ extension PNFriendContactsViewController{
     }
     
     func getSMSInviteList(){
+        self.smsInviteList.removeAll()
         self.selectedContactList = self.getSelectedUserList(1, self.contactList)
         for i in 0...self.selectedContactList.count-1 {
             let pnUser = selectedContactList[i]
