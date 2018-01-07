@@ -37,7 +37,7 @@ class PNProfileViewController: PNBaseViewController {
         self.nameTextFieldDisable()
         emailTextField.text = PNGlobal.currentUser?.email
         mobileTextField.text = PNGlobal.currentUser?.phoneNumber
-        self.profileImageView.sd_setImage(with: URL(string: (PNGlobal.currentUser?.profileImageUrl)!), placeholderImage: UIImage(named: ""))
+        self.profileImageView.sd_setImage(with: URL(string: (PNGlobal.currentUser?.profileImageUrl)!), placeholderImage: UIImage(named: ""),options:SDWebImageOptions.progressiveDownload)
     }
     
     @IBAction func btnNameEditClicked(){
