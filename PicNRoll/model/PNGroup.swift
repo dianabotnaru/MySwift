@@ -17,6 +17,7 @@ class PNGroup{
     var groupImageUrl: String = ""
     var canShowGroupMemeber:Bool = false
     var createdDate: Date = Date()
+    
     var isSelected:Bool = false
     
     func setValues(id:String,name:String,vendorId:String,vendorName:String,createdDate:Date){
@@ -38,4 +39,11 @@ class PNGroup{
         self.createdDate = dateString.toDate()
     }
     
+    func updateSelectedState(){
+        if isSelected{
+            isSelected = false
+        }else{
+            isSelected = true
+        }
+    }
 }

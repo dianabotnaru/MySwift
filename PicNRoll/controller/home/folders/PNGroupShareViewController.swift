@@ -18,6 +18,7 @@ class PNGroupShareViewController: PNBaseViewController {
     @IBOutlet var groupTableView: UITableView!
 
     public var groupList : [PNGroup] = []
+    public var selectedGroupList : [PNGroup] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +32,13 @@ class PNGroupShareViewController: PNBaseViewController {
     }
     
     @IBAction func btnShareClicked() {
+        getSelectedGroups()
     }
 }
 
 extension PNGroupShareViewController{
     func getGroups(){
+        self.groupList.removeAll()
         SVProgressHUD.show()
         PNFirebaseManager.shared.getGroups(userId: (PNGlobal.currentUser?.id)!,completion:{ (groupList: [PNGroup]?,error: Error?) in
             SVProgressHUD.dismiss()
@@ -46,6 +49,15 @@ extension PNGroupShareViewController{
                 self.showAlarmViewController(message:(error?.localizedDescription)!)
             }
         })
+    }
+    
+    func getSelectedGroups(){
+        self.selectedGroupList.removeAll()
+        for pnGroup in self.groupList{
+            if pnGroup.isSelected == true{
+                self.selectedGroupList.append(pnGroup)
+            }
+        }
     }
 }
 
@@ -81,7 +93,11 @@ extension PNGroupShareViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = self.groupTableView.cellForRow(at: indexPath) as! PNGroupTableViewCell
-        cell.setCheckedState()
+        let pnGroup = self.groupList[indexPath.row]
+        pnGroup.updateSelectedState()
+        self.groupList[indexPath.row] = pnGroup
+        self.groupTableView.reloadData()
+
     }
 }
 
