@@ -11,11 +11,13 @@ import SVProgressHUD
 
 class PNFriendsShareViewController: PNFriendContactsViewController {
     
-    var selectedFolder: PNFolder?
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectedFolder = PNSharePagingViewController.selectedFolder
+        self.isAddFriend = false
+        self.selectedFolder = PNSharePagingViewController.selectedFolder
+        self.getFriends(completion:{ () in
+            self.friendTableView.reloadData()
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,22 +26,10 @@ class PNFriendsShareViewController: PNFriendContactsViewController {
     
     @IBAction func btnShareClicked() {
         if getSelectedFriendContactList(){
-            self.shareFolder()
+            self.sendInvite()
         }else{
             self.showAlarmViewController(message: "Please select friends or contacts to share a folder")
         }
-    }
-    
-    func shareFolder(){
-        SVProgressHUD.show()
-        PNFirebaseManager.shared.addSharedUserForFolder(pnFoder: self.selectedFolder!,
-                                            friendList: self.selectedFriendList,
-                                            contactList: self.selectedContactList,
-                                            completion: {() in
-                                                SVProgressHUD.dismiss()
-                                                _ = self.navigationController?.popViewController(animated: true)
-                                                
-        })
     }
 }
 

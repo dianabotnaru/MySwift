@@ -82,6 +82,8 @@ class PNContactManager{
     }
     
     func getContactFriendAndUnFriendInfo (completion: @escaping () -> Swift.Void){
+        self.contactFriendInfo.removeAll()
+        self.contactUnFriendInfo.removeAll()
         PNFirebaseManager.shared.getAllUsers { (allUsers) in
             if allUsers.count > 0{
                 for contactUser in self.contactBookInfo{

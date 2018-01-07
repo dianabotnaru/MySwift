@@ -35,6 +35,7 @@ class PNFriendContactsViewController: PNBaseViewController {
     
     public var isAddFriend : Bool = false
     public var selectedGroup : PNGroup?
+    public var selectedFolder: PNFolder?
 
     @IBOutlet var friendTableView: UITableView!
 
@@ -74,7 +75,7 @@ class PNFriendContactsViewController: PNBaseViewController {
         if isAddFriend == true{
             self.addFriends(self.selectedGroup!)
         }else{
-            
+            self.shareFolderWithFriend(self.selectedFolder!)
         }
     }
     
@@ -96,6 +97,18 @@ class PNFriendContactsViewController: PNBaseViewController {
             })
         }
     }
+    
+    func shareFolderWithFriend(_ selectedFolder:PNFolder){
+        SVProgressHUD.show()
+        PNFirebaseManager.shared.addSharedUserForFolder(pnFoder: selectedFolder,
+                                                        friendList: self.selectedFriendList,
+                                                        contactList: self.invitedUserList,
+                                                        completion: {() in
+                                                            SVProgressHUD.dismiss()
+                                                            _ = self.navigationController?.popViewController(animated: true)
+        })
+    }
+
 }
 
 extension PNFriendContactsViewController{
@@ -262,7 +275,7 @@ extension PNFriendContactsViewController: MFMessageComposeViewControllerDelegate
         }
         if (MFMessageComposeViewController.canSendText()) {
             let controller = MFMessageComposeViewController()
-            controller.body = "Please installl our app " +  PNGlobal.PNAppLink
+            controller.body = "Please download PicNRoll in app store " + PNGlobal.PNAppLink
             controller.recipients = phoneNumbers
             controller.messageComposeDelegate = self
             self.present(controller, animated: true, completion: nil)
