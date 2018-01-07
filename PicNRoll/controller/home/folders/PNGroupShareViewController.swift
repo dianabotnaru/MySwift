@@ -19,9 +19,11 @@ class PNGroupShareViewController: PNBaseViewController {
 
     public var groupList : [PNGroup] = []
     public var selectedGroupList : [PNGroup] = []
+    public var allGroupUserList : [PNUser] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.selectedFolder = PNSharePagingViewController.selectedFolder
         groupTableView.register(UINib(nibName: "PNGroupTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
         groupTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         getGroups()
@@ -33,7 +35,40 @@ class PNGroupShareViewController: PNBaseViewController {
     
     @IBAction func btnShareClicked() {
         getSelectedGroups()
+        self.allGroupUserList.removeAll()
+        getGroupMembers(index: 0)
+        SVProgressHUD.show()
     }
+    
+    func getGroupMembers(index:Int){
+        PNFirebaseManager.shared.getGroupMembers(groupId: selectedGroupList[index].id, completion: {(memberList: [PNUser]) in
+            for pnUser in memberList{
+                if pnUser.isInvite == false{
+                    var isAlreadyAdded : Bool = false
+                    for addedUser in self.allGroupUserList{
+                        if pnUser.id == addedUser.id{
+                            isAlreadyAdded = true
+                        }
+                    }
+                    if isAlreadyAdded == false {
+                        self.allGroupUserList.append(pnUser)
+                    }
+                }
+            }
+            if index < (self.selectedGroupList.count-1){
+                self.getGroupMembers(index: index + 1)
+            }else{
+                PNFirebaseManager.shared.addSharedUserForFolder(pnFoder: self.selectedFolder!,
+                                                                friendList: self.allGroupUserList,
+                                                                contactList: [],
+                                                                completion: {() in
+                                                                    SVProgressHUD.dismiss()
+                                                                    self.showAlarmViewController(message: "Folder Share Success!!!")
+                })
+            }
+        })
+    }
+
 }
 
 extension PNGroupShareViewController{
