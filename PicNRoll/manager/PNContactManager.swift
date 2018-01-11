@@ -14,6 +14,7 @@ class PNContactManager{
     var contactBookInfo: [PNUser] = []
     var contactFriendInfo: [PNUser] = []
     var contactUnFriendInfo: [PNUser] = []
+    var allPNUser: [PNUser] = []
 
     var emails: [String] = []
 
@@ -86,6 +87,7 @@ class PNContactManager{
         self.contactUnFriendInfo.removeAll()
         PNFirebaseManager.shared.getAllUsers { (allUsers) in
             if allUsers.count > 0{
+                self.allPNUser = allUsers
                 for contactUser in self.contactBookInfo{
                     var isFireUser :Bool = false
                     for fireUser in allUsers{

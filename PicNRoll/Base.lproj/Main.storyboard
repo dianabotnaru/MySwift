@@ -1507,11 +1507,23 @@
                                     <constraint firstAttribute="height" constant="44" id="CS3-fu-dsg"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="val-vk-tqr">
+                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="fUB-KF-Gr0" id="7yi-Yo-gUW"/>
+                                    <outlet property="delegate" destination="fUB-KF-Gr0" id="4ru-LP-0K2"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="val-vk-tqr" secondAttribute="trailing" id="5J9-nz-KDg"/>
+                            <constraint firstItem="val-vk-tqr" firstAttribute="top" secondItem="vaC-9X-AZ2" secondAttribute="bottom" id="ALK-Dv-Jnr"/>
                             <constraint firstItem="vaC-9X-AZ2" firstAttribute="top" secondItem="H1D-Sa-Brj" secondAttribute="bottom" id="KG3-Vi-ZV8"/>
+                            <constraint firstItem="dX9-wv-dbs" firstAttribute="top" secondItem="val-vk-tqr" secondAttribute="bottom" id="Ksp-r9-hrc"/>
                             <constraint firstItem="vaC-9X-AZ2" firstAttribute="leading" secondItem="WUa-do-2qn" secondAttribute="leading" id="VvE-74-NkQ"/>
+                            <constraint firstItem="val-vk-tqr" firstAttribute="leading" secondItem="WUa-do-2qn" secondAttribute="leading" id="pdP-MU-F1k"/>
                             <constraint firstAttribute="trailing" secondItem="vaC-9X-AZ2" secondAttribute="trailing" id="wht-B6-ufW"/>
                         </constraints>
                     </view>
@@ -1523,6 +1535,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="inviteListField" destination="vaC-9X-AZ2" id="mui-95-1bt"/>
+                        <outlet property="searchResultTableView" destination="val-vk-tqr" id="KsJ-QB-lvu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5pk-Zk-K1O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
