@@ -1504,11 +1504,11 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="CS3-fu-dsg"/>
+                                    <constraint firstAttribute="height" constant="44" id="c8M-Tf-ll9"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="val-vk-tqr">
-                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="118" width="375" height="549"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="fUB-KF-Gr0" id="7yi-Yo-gUW"/>
@@ -1516,15 +1516,15 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="val-vk-tqr" secondAttribute="trailing" id="5J9-nz-KDg"/>
-                            <constraint firstItem="val-vk-tqr" firstAttribute="top" secondItem="vaC-9X-AZ2" secondAttribute="bottom" id="ALK-Dv-Jnr"/>
-                            <constraint firstItem="vaC-9X-AZ2" firstAttribute="top" secondItem="H1D-Sa-Brj" secondAttribute="bottom" id="KG3-Vi-ZV8"/>
-                            <constraint firstItem="dX9-wv-dbs" firstAttribute="top" secondItem="val-vk-tqr" secondAttribute="bottom" id="Ksp-r9-hrc"/>
-                            <constraint firstItem="vaC-9X-AZ2" firstAttribute="leading" secondItem="WUa-do-2qn" secondAttribute="leading" id="VvE-74-NkQ"/>
-                            <constraint firstItem="val-vk-tqr" firstAttribute="leading" secondItem="WUa-do-2qn" secondAttribute="leading" id="pdP-MU-F1k"/>
-                            <constraint firstAttribute="trailing" secondItem="vaC-9X-AZ2" secondAttribute="trailing" id="wht-B6-ufW"/>
+                            <constraint firstItem="dX9-wv-dbs" firstAttribute="top" secondItem="val-vk-tqr" secondAttribute="bottom" id="7Uo-jq-Vys"/>
+                            <constraint firstItem="val-vk-tqr" firstAttribute="top" secondItem="H1D-Sa-Brj" secondAttribute="bottom" constant="54" id="HAH-ro-J8j"/>
+                            <constraint firstItem="vaC-9X-AZ2" firstAttribute="leading" secondItem="WUa-do-2qn" secondAttribute="leading" id="PtS-cW-Ohf"/>
+                            <constraint firstItem="vaC-9X-AZ2" firstAttribute="top" secondItem="H1D-Sa-Brj" secondAttribute="bottom" id="Uzm-Wl-oZT"/>
+                            <constraint firstAttribute="trailing" secondItem="val-vk-tqr" secondAttribute="trailing" id="czG-t8-8zN"/>
+                            <constraint firstAttribute="trailing" secondItem="vaC-9X-AZ2" secondAttribute="trailing" id="jRS-VC-OGV"/>
+                            <constraint firstItem="val-vk-tqr" firstAttribute="leading" secondItem="WUa-do-2qn" secondAttribute="leading" id="sqQ-yK-UhL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Invite Friends" id="hub-aP-PMP">
@@ -1538,11 +1538,13 @@
                     <connections>
                         <outlet property="inviteListField" destination="vaC-9X-AZ2" id="mui-95-1bt"/>
                         <outlet property="searchResultTableView" destination="val-vk-tqr" id="KsJ-QB-lvu"/>
+                        <outlet property="tableviewTopConstraint" destination="HAH-ro-J8j" id="b1f-ut-DZq"/>
+                        <outlet property="tokenFieldHeight" destination="c8M-Tf-ll9" id="rSl-zG-wiW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5pk-Zk-K1O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2191" y="1272"/>
+            <point key="canvasLocation" x="2189.5999999999999" y="1270.6146926536733"/>
         </scene>
     </scenes>
     <resources>
