@@ -59,10 +59,10 @@ class PNGroupDetailViewController: PNBaseViewController {
     
     @IBAction func btnAddClicked() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let groupInviteVC = storyboard.instantiateViewController(withIdentifier: "PNGroupInviteViewController") as! PNGroupInviteViewController
-        groupInviteVC.selectedGroup = self.selectedGroup
-        groupInviteVC.groupMemberList = self.groupMemberList
-        groupInviteVC.delegate = self
+        let groupInviteVC = storyboard.instantiateViewController(withIdentifier: "PNFriendInviteViewController") as! PNFriendInviteViewController
+//        groupInviteVC.selectedGroup = self.selectedGroup
+//        groupInviteVC.groupMemberList = self.groupMemberList
+//        groupInviteVC.delegate = self
         self.navigationController?.pushViewController(groupInviteVC, animated: true)
     }
     

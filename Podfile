@@ -13,7 +13,8 @@ target 'PicNRoll' do
  pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
  pod 'SKPhotoBrowser'
  pod 'SDWebImage', '~>3.8'
- 
+ pod 'VENTokenField', '~> 2.0'
+
  post_install do |installer|
      installer.pods_project.targets.each do |target|
          if target.name == '<insert target name of your pod here>'
