@@ -83,6 +83,10 @@ class PNFriendInviteViewController: UIViewController {
         }
         return false
     }
+    
+    @IBAction func btnDoneClicked() {
+        self.inviteListField.becomeFirstResponder()
+    }
 }
 
 extension PNFriendInviteViewController: VENTokenFieldDelegate {
