@@ -73,6 +73,8 @@ extension PNLoginViewController: TextFieldDelegate{
         emailTextField.delegate = self
         pwTextField.delegate = self
         self.navigationController?.isNavigationBarHidden = true
+        NotificationCenter.default.addObserver(self, selector: #selector(PNSignupViewController.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PNSignupViewController.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -83,6 +85,24 @@ extension PNLoginViewController: TextFieldDelegate{
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            if UIDevice.current.orientation == UIDeviceOrientation.landscapeLeft || UIDevice.current.orientation == UIDeviceOrientation.landscapeRight {
+                if self.view.frame.origin.y == 0{
+                    self.view.frame.origin.y -= 220
+                }
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += 220
+            }
+        }
     }
 }
 

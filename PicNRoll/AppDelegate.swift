@@ -116,7 +116,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let pushedViewControllers = (self.window?.rootViewController as! UINavigationController).viewControllers
         let presentedViewController = pushedViewControllers[pushedViewControllers.count - 1]
         presentedViewController.present(alertController, animated: true, completion: nil)
-    }    
+    }
+    
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask
+    {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return UIInterfaceOrientationMask.all
+        }
+        else {
+            return UIInterfaceOrientationMask.portrait
+        }
+    }
 
 }
 
