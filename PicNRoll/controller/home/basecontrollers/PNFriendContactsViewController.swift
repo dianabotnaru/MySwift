@@ -86,7 +86,7 @@ class PNFriendContactsViewController: PNBaseViewController {
             self.showAlarmViewController(message: "No invited memeber!")
             _ = self.navigationController?.popViewController(animated: true)
         }else{
-            SVProgressHUD.show()
+//            SVProgressHUD.show()
 //            PNFirebaseManager.shared.addMembers(pnGroup: selectedGroup,
 //                                                friendList: self.selectedFriendList,
 //                                                contactList: self.invitedUserList,

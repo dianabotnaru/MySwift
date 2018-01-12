@@ -26,9 +26,14 @@ class PNFriendInviteViewController: PNBaseViewController {
     @IBOutlet var tableviewTopConstraint: NSLayoutConstraint!
     @IBOutlet var tokenFieldHeight: NSLayoutConstraint!
 
-    public var selectedGroup : PNGroup?
-    var groupMemberList : [PNUser]?
+    @IBOutlet var shareView: UIView!
 
+    public var selectedGroup : PNGroup?
+    public var selectedFolder : PNFolder?
+
+    var groupMemberList : [PNUser]?
+    var isShareFolder : Bool?
+    
     weak var delegate:PNFriendInviteViewControllerDelegate?
 
     var inviteList : [PNUser] = []
@@ -39,11 +44,18 @@ class PNFriendInviteViewController: PNBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchResultTableView.register(UINib(nibName: "PNGroupTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
+        if isShareFolder == true {
+            self.selectedFolder = PNSharePagingViewController.selectedFolder
+            self.shareView.isHidden = false
+        }
         self.inviteListTokenField()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     }
     
     func inviteListTokenField(){
@@ -100,36 +112,49 @@ class PNFriendInviteViewController: PNBaseViewController {
         return false
     }
     
+    @IBAction func btnWhatsAppClicked() {
+        let msg = "Check out PicNRoll for your smartphone. Download it today from " + PNGlobal.PNAppLink
+        let urlWhats = "https://api.whatsapp.com/send?text=\(msg)"
+
+        if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) {
+            if let whatsappURL = NSURL(string: urlString) {
+                if UIApplication.shared.canOpenURL(whatsappURL as URL) {
+                    UIApplication.shared.openURL(whatsappURL as URL)
+                } else {
+                    self.showAlarmViewController(message: "please install watsapp")
+                }
+            }
+        }
+    }
+    
     @IBAction func btnDoneClicked() {
-//        let msg = "Check out PicNRoll for your smartphone. Download it today from " + PNGlobal.PNAppLink
-//        let urlWhats = "https://api.whatsapp.com/send?text=\(msg)"
-//
-//        if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) {
-//            if let whatsappURL = NSURL(string: urlString) {
-//                if UIApplication.shared.canOpenURL(whatsappURL as URL) {
-//                    UIApplication.shared.openURL(whatsappURL as URL)
-//                } else {
-//                    self.showAlarmViewController(message: "please install watsapp")
-//                }
-//            }
-//        }
+        sendInvite()
+    }
+    
+    @IBAction func btnShareClicked() {
+        sendInvite()
+    }
+    
+    func sendInvite(){
         if(self.inviteList.count > 0){
-            self.sendInvite()
+            getInviteLists()
+            if self.emailInviteList.count > 0{
+                self.sendEmail()
+            }else{
+                if isShareFolder == true{
+                    self.shareFolder()
+                }else{
+                    self.addFriends()
+                }
+            }
         }else{
             self.showAlarmViewController(message: "Please input friends or emails to add in group")
         }
     }
     
-    func sendInvite(){
-        getInviteLists()
-        if self.emailInviteList.count > 0{
-            self.sendEmail()
-        }else{
-            self.addFriends()
-        }
-    }
-    
     func getInviteLists(){
+        self.emailInviteList.removeAll()
+        self.pnUserInviteList.removeAll()
         for pnUser in self.inviteList{
             if pnUser.isInvite == true{
                 self.emailInviteList.append(pnUser)
@@ -153,6 +178,18 @@ class PNFriendInviteViewController: PNBaseViewController {
                                                 _ = self.navigationController?.popViewController(animated: true)
         })
     }
+    
+    func shareFolder(){
+        SVProgressHUD.show()
+        PNFirebaseManager.shared.addSharedUserForFolder(pnFoder: self.selectedFolder!,
+                                                        friendList: self.pnUserInviteList,
+                                                        contactList: self.emailInviteList,
+                                                        completion: {() in
+                                                            SVProgressHUD.dismiss()
+                                                            _ = self.navigationController?.popViewController(animated: true)
+        })
+
+    }
 }
 
 extension PNFriendInviteViewController: VENTokenFieldDelegate {
@@ -164,6 +201,7 @@ extension PNFriendInviteViewController: VENTokenFieldDelegate {
         self.inviteListField.reloadData()
         self.searchList.removeAll()
         self.searchResultTableView.reloadData()
+        self.view.endEditing(true)
     }
     
     func tokenField(_ tokenField: VENTokenField, didDeleteTokenAt index: UInt) {
@@ -223,6 +261,7 @@ extension PNFriendInviteViewController: UITableViewDelegate, UITableViewDataSour
         self.inviteListField.reloadData()
         self.searchList.removeAll()
         self.searchResultTableView.reloadData()
+        self.view.endEditing(true)
     }
 }
 
@@ -256,11 +295,14 @@ extension PNFriendInviteViewController:MFMailComposeViewControllerDelegate{
             self.emailInviteList.removeAll()
             self.showAlarmViewController(message: (error?.localizedDescription)!)
         }
-        addFriends()
+        if isShareFolder == true{
+            self.shareFolder()
+        }else{
+            self.addFriends()
+        }
     }
     
     func getAppInviteReceipientList(){
-        
     }
 }
 

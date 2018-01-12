@@ -17,8 +17,9 @@ class PNSharePagingViewController: UIViewController {
     var menuViewController: PagingMenuViewController!
     var contentViewController: PagingContentViewController!
 
-    static let friendsShareViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PNFriendsShareViewController") as! PNFriendsShareViewController
-    static let groupShareViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PNGroupShareViewController") as! PNGroupShareViewController
+//    static let friendsShareViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PNFriendsShareViewController") as! PNFriendsShareViewController
+    let groupShareViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PNGroupShareViewController") as! PNGroupShareViewController
+    let friendInviteViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PNFriendInviteViewController") as! PNFriendInviteViewController
     
     let titleSource = ["Friends","Groups"]
     override func viewDidLoad() {
@@ -74,9 +75,10 @@ extension PNSharePagingViewController: PagingContentViewControllerDataSource {
     
     func contentViewController(viewController: PagingContentViewController, viewControllerAt index: Int) -> UIViewController {
         if index == 0 {
-            return PNSharePagingViewController.friendsShareViewController
+            self.friendInviteViewController.isShareFolder = true
+            return self.friendInviteViewController
         }else {
-            return PNSharePagingViewController.groupShareViewController
+            return self.groupShareViewController
         }
     }
 }
