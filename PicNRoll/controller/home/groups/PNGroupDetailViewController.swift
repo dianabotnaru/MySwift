@@ -101,7 +101,11 @@ extension PNGroupDetailViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.groupMembersTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! PNGroupTableViewCell
         let pnUser = self.groupMemberList[indexPath.row]
-        cell.setLabels(pnUser.name, pnUser.profileImageUrl, pnUser.isInvite, false)
+        if pnUser.name != ""{
+            cell.setLabels(pnUser.name, pnUser.profileImageUrl, pnUser.isInvite, false)
+        }else{
+            cell.setLabels(pnUser.email, pnUser.profileImageUrl, pnUser.isInvite, false)
+        }
         return cell
     }
     
