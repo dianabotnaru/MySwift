@@ -67,7 +67,6 @@ class PNFriendInviteViewController: PNBaseViewController {
         self.inviteListField.placeholderText = "Please input friend name or email."
         self.inviteListField.inputTextFieldKeyboardType = UIKeyboardType.emailAddress
         self.inviteListField.autocapitalizationType = UITextAutocapitalizationType.none
-
         self.inviteListField.reloadData()
     }
     
