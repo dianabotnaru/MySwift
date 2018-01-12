@@ -59,11 +59,11 @@ class PNGroupDetailViewController: PNBaseViewController {
     
     @IBAction func btnAddClicked() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let groupInviteVC = storyboard.instantiateViewController(withIdentifier: "PNFriendInviteViewController") as! PNFriendInviteViewController
-//        groupInviteVC.selectedGroup = self.selectedGroup
+        let friendInviteVC = storyboard.instantiateViewController(withIdentifier: "PNFriendInviteViewController") as! PNFriendInviteViewController
+        friendInviteVC.selectedGroup = self.selectedGroup
 //        groupInviteVC.groupMemberList = self.groupMemberList
-//        groupInviteVC.delegate = self
-        self.navigationController?.pushViewController(groupInviteVC, animated: true)
+        friendInviteVC.delegate = self
+        self.navigationController?.pushViewController(friendInviteVC, animated: true)
     }
     
     func getGroupMembers(){
@@ -82,7 +82,7 @@ class PNGroupDetailViewController: PNBaseViewController {
         })
     }
 }
-extension PNGroupDetailViewController: PNFriendContactsViewControllerDelegate{
+extension PNGroupDetailViewController: PNFriendInviteViewControllerDelegate{
     func didAddFriends(){
         getGroupMembers()
     }

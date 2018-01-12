@@ -49,10 +49,11 @@ class PNFriendInviteViewController: PNBaseViewController {
         self.inviteListField.delegate = self as VENTokenFieldDelegate
         self.inviteListField.dataSource = self as VENTokenFieldDataSource
         self.inviteListField.delimiters = [",","--"," "]
-        self.inviteListField.becomeFirstResponder()
         self.inviteListField.toLabelText = "To: "
         self.inviteListField.placeholderText = "Please input email or phone number."
         self.inviteListField.inputTextFieldKeyboardType = UIKeyboardType.emailAddress
+        self.inviteListField.autocapitalizationType = UITextAutocapitalizationType.none
+
         self.inviteListField.reloadData()
     }
     
@@ -99,7 +100,6 @@ class PNFriendInviteViewController: PNBaseViewController {
     }
     
     @IBAction func btnDoneClicked() {
-        self.inviteListField.becomeFirstResponder()
         if(self.inviteList.count > 0){
             self.sendInvite()
         }else{
@@ -242,18 +242,10 @@ extension PNFriendInviteViewController:MFMailComposeViewControllerDelegate{
             self.showAlarmViewController(message: (error?.localizedDescription)!)
         }
         addFriends()
-        
-//        if self.smsInviteList.count > 0 {
-//            for pnUser in self.emailInviteList{
-//                self.invitedUserList.append(pnUser)
-//            }
-//            self.sendSMSInvite()
-//        }else{
-//            self.onFinishedInvite()
-//        }
     }
     
     func getAppInviteReceipientList(){
+        
     }
 }
 
