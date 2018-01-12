@@ -27,6 +27,7 @@ class PNFriendInviteViewController: PNBaseViewController {
     @IBOutlet var tokenFieldHeight: NSLayoutConstraint!
 
     public var selectedGroup : PNGroup?
+    var groupMemberList : [PNUser]?
 
     weak var delegate:PNFriendInviteViewControllerDelegate?
 
@@ -50,7 +51,7 @@ class PNFriendInviteViewController: PNBaseViewController {
         self.inviteListField.dataSource = self as VENTokenFieldDataSource
         self.inviteListField.delimiters = [",","--"," "]
         self.inviteListField.toLabelText = "To: "
-        self.inviteListField.placeholderText = "Please input email or phone number."
+        self.inviteListField.placeholderText = "Please input friend name or email."
         self.inviteListField.inputTextFieldKeyboardType = UIKeyboardType.emailAddress
         self.inviteListField.autocapitalizationType = UITextAutocapitalizationType.none
 
@@ -100,6 +101,18 @@ class PNFriendInviteViewController: PNBaseViewController {
     }
     
     @IBAction func btnDoneClicked() {
+//        let msg = "Check out PicNRoll for your smartphone. Download it today from " + PNGlobal.PNAppLink
+//        let urlWhats = "https://api.whatsapp.com/send?text=\(msg)"
+//
+//        if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed) {
+//            if let whatsappURL = NSURL(string: urlString) {
+//                if UIApplication.shared.canOpenURL(whatsappURL as URL) {
+//                    UIApplication.shared.openURL(whatsappURL as URL)
+//                } else {
+//                    self.showAlarmViewController(message: "please install watsapp")
+//                }
+//            }
+//        }
         if(self.inviteList.count > 0){
             self.sendInvite()
         }else{
@@ -109,7 +122,7 @@ class PNFriendInviteViewController: PNBaseViewController {
     
     func sendInvite(){
         getInviteLists()
-        if self.pnUserInviteList.count > 0{
+        if self.emailInviteList.count > 0{
             self.sendEmail()
         }else{
             self.addFriends()
@@ -129,6 +142,7 @@ class PNFriendInviteViewController: PNBaseViewController {
     func addFriends(){
         SVProgressHUD.show()
         PNFirebaseManager.shared.addMembers(pnGroup: self.selectedGroup!,
+                                            groupMemberList: self.groupMemberList!,
                                             friendList: self.pnUserInviteList,
                                             contactList: self.emailInviteList,
                                             completion: {() in
@@ -232,13 +246,14 @@ extension PNFriendInviteViewController:MFMailComposeViewControllerDelegate{
         mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
         mailComposerVC.setToRecipients(appInviteRecipientList)
         mailComposerVC.setSubject("PicNRoll App invite")
-        mailComposerVC.setMessageBody("Please download PicNRoll in app store " + PNGlobal.PNAppLink, isHTML: false)
+        mailComposerVC.setMessageBody("Check out PicNRoll for your smartphone. Download it today from " + PNGlobal.PNAppLink, isHTML: false)
         return mailComposerVC
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
         if error != nil {
+            self.emailInviteList.removeAll()
             self.showAlarmViewController(message: (error?.localizedDescription)!)
         }
         addFriends()

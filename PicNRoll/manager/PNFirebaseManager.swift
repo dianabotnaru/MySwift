@@ -266,28 +266,34 @@ final class PNFirebaseManager{
     }
     
     func addMembers(pnGroup:PNGroup,
+                    groupMemberList: [PNUser],
                     friendList: [PNUser],
                     contactList: [PNUser],
                     completion: @escaping () -> Swift.Void){
         for pnUser in friendList{
-            let post = ["id": pnUser.id,
-                        "name": pnUser.name,
-                        "Email": pnUser.email,
-                        "PhoneNumber":pnUser.phoneNumber ,
-                        "profileImageUrl":pnUser.profileImageUrl,
-                        "isInvite":false] as [AnyHashable : AnyObject]
-            self.databaseRef.child(GROUPMEMBERTABLE).child(pnGroup.id).childByAutoId().setValue(post)
-            self.addGrouptoUsers(pnUser: pnUser, pnGroup: pnGroup)
+            
+            if pnUser.isInLists(userLists: groupMemberList) == false{
+                let post = ["id": pnUser.id,
+                            "name": pnUser.name,
+                            "Email": pnUser.email,
+                            "PhoneNumber":pnUser.phoneNumber ,
+                            "profileImageUrl":pnUser.profileImageUrl,
+                            "isInvite":false] as [AnyHashable : AnyObject]
+                self.databaseRef.child(GROUPMEMBERTABLE).child(pnGroup.id).childByAutoId().setValue(post)
+                self.addGrouptoUsers(pnUser: pnUser, pnGroup: pnGroup)
+            }
         }
         
         for pnUser in contactList{
-            let post = ["id": pnUser.id,
-                        "name": pnUser.name,
-                        "Email": pnUser.email,
-                        "PhoneNumber":pnUser.phoneNumber ,
-                        "profileImageUrl":"",
-                        "isInvite":true] as [AnyHashable : AnyObject]
-            self.databaseRef.child(GROUPMEMBERTABLE).child(pnGroup.id).childByAutoId().setValue(post)
+            if pnUser.isInLists(userLists: groupMemberList) == false{
+                let post = ["id": pnUser.id,
+                            "name": pnUser.name,
+                            "Email": pnUser.email,
+                            "PhoneNumber":pnUser.phoneNumber ,
+                            "profileImageUrl":"",
+                            "isInvite":true] as [AnyHashable : AnyObject]
+                self.databaseRef.child(GROUPMEMBERTABLE).child(pnGroup.id).childByAutoId().setValue(post)
+            }
         }
         completion()
     }

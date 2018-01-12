@@ -87,16 +87,16 @@ class PNFriendContactsViewController: PNBaseViewController {
             _ = self.navigationController?.popViewController(animated: true)
         }else{
             SVProgressHUD.show()
-            PNFirebaseManager.shared.addMembers(pnGroup: selectedGroup,
-                                                friendList: self.selectedFriendList,
-                                                contactList: self.invitedUserList,
-                                                completion: {() in
-                                                    SVProgressHUD.dismiss()
-                                                    if self.delegate != nil {
-                                                        self.delegate?.didAddFriends()
-                                                    }
-                                                    _ = self.navigationController?.popViewController(animated: true)
-            })
+//            PNFirebaseManager.shared.addMembers(pnGroup: selectedGroup,
+//                                                friendList: self.selectedFriendList,
+//                                                contactList: self.invitedUserList,
+//                                                completion: {() in
+//                                                    SVProgressHUD.dismiss()
+//                                                    if self.delegate != nil {
+//                                                        self.delegate?.didAddFriends()
+//                                                    }
+//                                                    _ = self.navigationController?.popViewController(animated: true)
+//            })
         }
     }
     

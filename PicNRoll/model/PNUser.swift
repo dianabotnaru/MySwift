@@ -54,3 +54,14 @@ class PNUser{
         }
     }
 }
+
+extension PNUser{
+    func isInLists(userLists:[PNUser]) ->Bool{
+        for pnUser in userLists{
+            if self.email == pnUser.email{
+                return true
+            }
+        }
+        return false
+    }
+}
