@@ -30,6 +30,12 @@ class PNBaseViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    func pushViewControllerForSignIn(identifier: String){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let vc = appDelegate.signInStoryboard?.instantiateViewController(withIdentifier: identifier) as UIViewController?
+        navigationController?.pushViewController(vc!, animated: true)
+    }
+    
     func showAlarmViewController(message: String){
         let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: {

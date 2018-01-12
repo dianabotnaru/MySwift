@@ -43,11 +43,11 @@ class PNLoginViewController: PNBaseViewController {
     }
     
     @IBAction func btnForgotpasswordClicked() {
-        self.pushViewController(identifier: "PNForgotPwViewController")
+        self.pushViewControllerForSignIn(identifier: "PNForgotPwViewController")
     }
     
     @IBAction func btnSignupClicked() {
-        self.pushViewController(identifier: "PNSignupViewController")
+        self.pushViewControllerForSignIn(identifier: "PNSignupViewController")
     }
     
     func signin(){

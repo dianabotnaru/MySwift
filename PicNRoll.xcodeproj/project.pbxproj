@@ -45,6 +45,7 @@
 		D531D1D61FF5334A000B093D /* PNGroupInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D531D1D51FF53349000B093D /* PNGroupInviteViewController.swift */; };
 		D53C95D61FF3D3E300659964 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C95D51FF3D3DC00659964 /* Contacts.framework */; };
 		D53C95D81FF3D7E300659964 /* PNContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53C95D71FF3D7E300659964 /* PNContactManager.swift */; };
+		D543B8102009035E00CBBC92 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D543B80F2009035D00CBBC92 /* Main_iPad.storyboard */; };
 		D54DF5882007082D008A6D62 /* PNFriendInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54DF5872007082D008A6D62 /* PNFriendInviteViewController.swift */; };
 		D582C84B1FEC408800315C60 /* PNPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D582C84A1FEC408800315C60 /* PNPictureViewController.swift */; };
 		D582C84D1FED2C2400315C60 /* PNSharePagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D582C84C1FED2C2400315C60 /* PNSharePagingViewController.swift */; };
@@ -99,6 +100,7 @@
 		D531D1D51FF53349000B093D /* PNGroupInviteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PNGroupInviteViewController.swift; sourceTree = "<group>"; };
 		D53C95D51FF3D3DC00659964 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		D53C95D71FF3D7E300659964 /* PNContactManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNContactManager.swift; sourceTree = "<group>"; };
+		D543B80F2009035D00CBBC92 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
 		D54DF5872007082D008A6D62 /* PNFriendInviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNFriendInviteViewController.swift; sourceTree = "<group>"; };
 		D582C84A1FEC408800315C60 /* PNPictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNPictureViewController.swift; sourceTree = "<group>"; };
 		D582C84C1FED2C2400315C60 /* PNSharePagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNSharePagingViewController.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 		8DB93D2B1FE2FCAD00E456C2 /* PicNRoll */ = {
 			isa = PBXGroup;
 			children = (
+				D543B80E2009030700CBBC92 /* storyboard */,
 				8D84CBBA1FE8A838006B2F74 /* manager */,
 				8D286C2F1FE7C75E0043105C /* test */,
 				8DB93D421FE2FF0E00E456C2 /* base */,
@@ -215,7 +218,6 @@
 				8DB93D3F1FE2FEF300E456C2 /* model */,
 				8DB93D3E1FE2FEE900E456C2 /* view */,
 				8DB93D2C1FE2FCAD00E456C2 /* AppDelegate.swift */,
-				8DB93D301FE2FCAD00E456C2 /* Main.storyboard */,
 				8DB93D331FE2FCAD00E456C2 /* Assets.xcassets */,
 				8DB93D351FE2FCAD00E456C2 /* LaunchScreen.storyboard */,
 				8D84CBB61FE8A0B0006B2F74 /* GoogleService-Info.plist */,
@@ -267,7 +269,6 @@
 			isa = PBXGroup;
 			children = (
 				8DB93D441FE2FF6600E456C2 /* PNGlobal.swift */,
-				8DB93D4A1FE30A5D00E456C2 /* PNBaseViewController.swift */,
 			);
 			path = base;
 			sourceTree = "<group>";
@@ -281,6 +282,15 @@
 				D54DF5872007082D008A6D62 /* PNFriendInviteViewController.swift */,
 			);
 			path = groups;
+			sourceTree = "<group>";
+		};
+		D543B80E2009030700CBBC92 /* storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				D543B80F2009035D00CBBC92 /* Main_iPad.storyboard */,
+				8DB93D301FE2FCAD00E456C2 /* Main.storyboard */,
+			);
+			path = storyboard;
 			sourceTree = "<group>";
 		};
 		D582C84E1FED2C4900315C60 /* folders */ = {
@@ -314,6 +324,7 @@
 		D5B437E41FF63E3B002E7B93 /* basecontrollers */ = {
 			isa = PBXGroup;
 			children = (
+				8DB93D4A1FE30A5D00E456C2 /* PNBaseViewController.swift */,
 				8D72F2371FE4BF560047CB66 /* PNTabViewController.swift */,
 				8D286BC21FE704BD0043105C /* PNPagingViewController.swift */,
 				D531D1D11FF51231000B093D /* PNFriendContactsViewController.swift */,
@@ -403,6 +414,7 @@
 				8DB93D341FE2FCAD00E456C2 /* Assets.xcassets in Resources */,
 				8DB93D321FE2FCAD00E456C2 /* Main.storyboard in Resources */,
 				8D84CBB71FE8A0B1006B2F74 /* GoogleService-Info.plist in Resources */,
+				D543B8102009035E00CBBC92 /* Main_iPad.storyboard in Resources */,
 				8D286C371FE7E4A20043105C /* PNRollsTableViewCell.xib in Resources */,
 				8D286C2B1FE75C4B0043105C /* PNPagingCell.xib in Resources */,
 			);

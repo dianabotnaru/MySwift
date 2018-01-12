@@ -15,7 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var contactStore = CNContactStore()
-
+    var signInStoryboard : UIStoryboard?
+    
     class func getAppDelegate() -> AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
@@ -23,8 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         self.initNavigationBarUI();
+        self.initStoryBoard()
         if Auth.auth().currentUser != nil {
             self.launchHomeScreen()
+        }else{
+            self.launchSignInScreen()
         }
         return true
     }
@@ -61,16 +65,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationBarAppearace.shadowImage = UIImage()
     }
     
+    func initStoryBoard(){
+        if UIDevice.current.userInterfaceIdiom == .pad{
+            self.signInStoryboard = UIStoryboard(name: "Main_iPad", bundle: nil)
+        }else{
+            self.signInStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        }
+    }
+    
     func launchHomeScreen(){
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let homeNavigationController = storyboard.instantiateViewController(withIdentifier: "HomeNavigationViewController") as! UINavigationController
+        let homeNavigationController = self.signInStoryboard?.instantiateViewController(withIdentifier: "HomeNavigationViewController") as! UINavigationController
         self.window!.rootViewController = homeNavigationController
         window!.makeKeyAndVisible()
     }
     
     func launchSignInScreen(){
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let rootNavigationController = storyboard.instantiateViewController(withIdentifier: "RootNavigationController") as! UINavigationController
+        let rootNavigationController = self.signInStoryboard?.instantiateViewController(withIdentifier: "RootNavigationController") as! UINavigationController
         self.window!.rootViewController = rootNavigationController
         window!.makeKeyAndVisible()
     }
