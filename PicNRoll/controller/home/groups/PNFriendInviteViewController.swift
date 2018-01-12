@@ -56,6 +56,7 @@ class PNFriendInviteViewController: PNBaseViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     func inviteListTokenField(){
@@ -81,7 +82,6 @@ class PNFriendInviteViewController: PNBaseViewController {
                 }
             }
         }
-        self.searchResultTableView.reloadData()
     }
     
     func getPnUserFromText(_ text: String) -> PNUser {
@@ -201,7 +201,7 @@ extension PNFriendInviteViewController: VENTokenFieldDelegate {
         self.inviteListField.reloadData()
         self.searchList.removeAll()
         self.searchResultTableView.reloadData()
-        self.view.endEditing(true)
+        self.searchResultTableView.isHidden = true
     }
     
     func tokenField(_ tokenField: VENTokenField, didDeleteTokenAt index: UInt) {
@@ -211,6 +211,10 @@ extension PNFriendInviteViewController: VENTokenFieldDelegate {
     
     func tokenField(_ tokenField: VENTokenField, didChangeText text: String?) {
         self.getSearchResults(text!)
+        if self.searchList.count > 0{
+            self.searchResultTableView.isHidden = false
+            self.searchResultTableView.reloadData()
+        }
     }
     
     func tokenFieldDidBeginEditing(_ tokenField: VENTokenField) {
@@ -261,7 +265,7 @@ extension PNFriendInviteViewController: UITableViewDelegate, UITableViewDataSour
         self.inviteListField.reloadData()
         self.searchList.removeAll()
         self.searchResultTableView.reloadData()
-        self.view.endEditing(true)
+        self.searchResultTableView.isHidden = true
     }
 }
 
