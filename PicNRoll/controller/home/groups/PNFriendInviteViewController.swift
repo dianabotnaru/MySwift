@@ -8,8 +8,15 @@
 
 import UIKit
 import VENTokenField
+import MessageUI
+import SVProgressHUD
 
-class PNFriendInviteViewController: UIViewController {
+protocol PNFriendInviteViewControllerDelegate: class
+{
+    func didAddFriends()
+}
+
+class PNFriendInviteViewController: PNBaseViewController {
     
     let cellReuseIdentifier = "PNGroupTableViewCell"
 
@@ -19,8 +26,14 @@ class PNFriendInviteViewController: UIViewController {
     @IBOutlet var tableviewTopConstraint: NSLayoutConstraint!
     @IBOutlet var tokenFieldHeight: NSLayoutConstraint!
 
+    public var selectedGroup : PNGroup?
+
+    weak var delegate:PNFriendInviteViewControllerDelegate?
+
     var inviteList : [PNUser] = []
     var searchList : [PNUser] = []
+    var emailInviteList : [PNUser] = []
+    var pnUserInviteList : [PNUser] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +51,7 @@ class PNFriendInviteViewController: UIViewController {
         self.inviteListField.delimiters = [",","--"," "]
         self.inviteListField.becomeFirstResponder()
         self.inviteListField.toLabelText = "To: "
+        self.inviteListField.placeholderText = "Please input email or phone number."
         self.inviteListField.inputTextFieldKeyboardType = UIKeyboardType.emailAddress
         self.inviteListField.reloadData()
     }
@@ -86,6 +100,44 @@ class PNFriendInviteViewController: UIViewController {
     
     @IBAction func btnDoneClicked() {
         self.inviteListField.becomeFirstResponder()
+        if(self.inviteList.count > 0){
+            self.sendInvite()
+        }else{
+            self.showAlarmViewController(message: "Please input friends or emails to add in group")
+        }
+    }
+    
+    func sendInvite(){
+        getInviteLists()
+        if self.pnUserInviteList.count > 0{
+            self.sendEmail()
+        }else{
+            self.addFriends()
+        }
+    }
+    
+    func getInviteLists(){
+        for pnUser in self.inviteList{
+            if pnUser.isInvite == true{
+                self.emailInviteList.append(pnUser)
+            }else{
+                self.pnUserInviteList.append(pnUser)
+            }
+        }
+    }
+    
+    func addFriends(){
+        SVProgressHUD.show()
+        PNFirebaseManager.shared.addMembers(pnGroup: self.selectedGroup!,
+                                            friendList: self.pnUserInviteList,
+                                            contactList: self.emailInviteList,
+                                            completion: {() in
+                                                SVProgressHUD.dismiss()
+                                                if self.delegate != nil {
+                                                    self.delegate?.didAddFriends()
+                                                }
+                                                _ = self.navigationController?.popViewController(animated: true)
+        })
     }
 }
 
@@ -132,10 +184,6 @@ extension PNFriendInviteViewController: VENTokenFieldDataSource {
         return UInt(self.inviteList.count)
     }
     
-//    func tokenFieldCollapsedText(_ tokenField: VENTokenField) -> String {
-//        return ""
-//    }
-    
     func tokenField(_ tokenField: VENTokenField, colorSchemeForTokenAt index: UInt) -> UIColor {
         return PNGlobal.PNColorTextBlueColor
     }
@@ -163,3 +211,51 @@ extension PNFriendInviteViewController: UITableViewDelegate, UITableViewDataSour
         self.searchResultTableView.reloadData()
     }
 }
+
+extension PNFriendInviteViewController:MFMailComposeViewControllerDelegate{
+    
+    func sendEmail(){
+        let mailComposeViewController = configuredMailComposeViewController()
+        if MFMailComposeViewController.canSendMail() {
+            self.present(mailComposeViewController, animated: true, completion: nil)
+        }else {
+            self.showAlarmViewController(message: "Your device could not send e-mail.  Please check e-mail configuration and try again.")
+        }
+    }
+    
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        var appInviteRecipientList : [String] = []
+        for i in 0...self.emailInviteList.count-1 {
+            appInviteRecipientList.append(self.emailInviteList[i].email)
+        }
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
+        mailComposerVC.setToRecipients(appInviteRecipientList)
+        mailComposerVC.setSubject("PicNRoll App invite")
+        mailComposerVC.setMessageBody("Please download PicNRoll in app store " + PNGlobal.PNAppLink, isHTML: false)
+        return mailComposerVC
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+        if error != nil {
+            self.showAlarmViewController(message: (error?.localizedDescription)!)
+        }
+        addFriends()
+        
+//        if self.smsInviteList.count > 0 {
+//            for pnUser in self.emailInviteList{
+//                self.invitedUserList.append(pnUser)
+//            }
+//            self.sendSMSInvite()
+//        }else{
+//            self.onFinishedInvite()
+//        }
+    }
+    
+    func getAppInviteReceipientList(){
+    }
+}
+
+
+

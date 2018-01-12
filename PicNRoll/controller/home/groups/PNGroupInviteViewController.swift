@@ -64,7 +64,6 @@ class PNGroupInviteViewController: PNFriendContactsViewController {
         }
         return availableFriendList
     }
-
     
     @IBAction func barButtonDoneClicked() {
         if(self.getSelectedFriendContactList()){
