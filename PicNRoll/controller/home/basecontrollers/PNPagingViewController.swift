@@ -100,7 +100,9 @@ extension PNPagingViewController{
     }
     
     func gotoNotificationVC(){
-        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "PNNotificationViewController") as UIViewController
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

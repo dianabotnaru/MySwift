@@ -97,7 +97,6 @@ class PNFolderViewController: PNBaseViewController{
 
 extension PNFolderViewController{
     func getFolderLists(){
-        self.folderList.removeAll()
         if isRefresh == false{
             SVProgressHUD.show()
         }
@@ -108,12 +107,8 @@ extension PNFolderViewController{
             }else{
                 SVProgressHUD.dismiss()
             }
-            if error == nil{                
-                for pnFolder in folderList!{
-                    if pnFolder.vendorId == PNGlobal.currentUser?.id{
-                        self.folderList.append(pnFolder)
-                    }
-                }
+            if error == nil{
+                self.folderList = folderList!
                 self.folderTableView.reloadData()
             }else{
                 self.showAlarmViewController(message: (error?.localizedDescription)!)
