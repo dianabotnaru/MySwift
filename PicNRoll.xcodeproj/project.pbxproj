@@ -50,6 +50,7 @@
 		D544CF1B2009B04D00AE37BB /* PNNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D544CF192009B04D00AE37BB /* PNNotificationTableViewCell.swift */; };
 		D544CF1C2009B04D00AE37BB /* PNNotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D544CF1A2009B04D00AE37BB /* PNNotificationTableViewCell.xib */; };
 		D544CF1E200AE8BA00AE37BB /* PNNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D544CF1D200AE8BA00AE37BB /* PNNotification.swift */; };
+		D544CF22200B08C200AE37BB /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D544CF20200B07E300AE37BB /* UserNotifications.framework */; };
 		D54DF5882007082D008A6D62 /* PNFriendInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54DF5872007082D008A6D62 /* PNFriendInviteViewController.swift */; };
 		D582C84B1FEC408800315C60 /* PNPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D582C84A1FEC408800315C60 /* PNPictureViewController.swift */; };
 		D582C84D1FED2C2400315C60 /* PNSharePagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D582C84C1FED2C2400315C60 /* PNSharePagingViewController.swift */; };
@@ -109,6 +110,8 @@
 		D544CF192009B04D00AE37BB /* PNNotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNNotificationTableViewCell.swift; sourceTree = "<group>"; };
 		D544CF1A2009B04D00AE37BB /* PNNotificationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PNNotificationTableViewCell.xib; sourceTree = "<group>"; };
 		D544CF1D200AE8BA00AE37BB /* PNNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNNotification.swift; sourceTree = "<group>"; };
+		D544CF1F200AF4D000AE37BB /* PicNRoll.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PicNRoll.entitlements; sourceTree = "<group>"; };
+		D544CF20200B07E300AE37BB /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		D54DF5872007082D008A6D62 /* PNFriendInviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNFriendInviteViewController.swift; sourceTree = "<group>"; };
 		D582C84A1FEC408800315C60 /* PNPictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNPictureViewController.swift; sourceTree = "<group>"; };
 		D582C84C1FED2C2400315C60 /* PNSharePagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNSharePagingViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D544CF22200B08C200AE37BB /* UserNotifications.framework in Frameworks */,
 				D53C95D61FF3D3E300659964 /* Contacts.framework in Frameworks */,
 				8D286C251FE752090043105C /* Foundation.framework in Frameworks */,
 				675FA622D25B11325083EC7D /* Pods_PicNRoll.framework in Frameworks */,
@@ -221,6 +225,7 @@
 		8DB93D2B1FE2FCAD00E456C2 /* PicNRoll */ = {
 			isa = PBXGroup;
 			children = (
+				D544CF1F200AF4D000AE37BB /* PicNRoll.entitlements */,
 				D543B80E2009030700CBBC92 /* storyboard */,
 				8D84CBBA1FE8A838006B2F74 /* manager */,
 				8D286C2F1FE7C75E0043105C /* test */,
@@ -355,6 +360,7 @@
 		FF8792CA24F63D994FD0EEE7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D544CF20200B07E300AE37BB /* UserNotifications.framework */,
 				D53C95D51FF3D3DC00659964 /* Contacts.framework */,
 				D52C8F9E1FF293F700791F9A /* MessageUI.framework */,
 				8D286C241FE751820043105C /* Foundation.framework */,
@@ -399,6 +405,11 @@
 					8DB93D281FE2FCAD00E456C2 = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -477,6 +488,7 @@
 				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
 				"${BUILT_PRODUCTS_DIR}/Motion/Motion.framework",
 				"${BUILT_PRODUCTS_DIR}/PagingKit/PagingKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SKPhotoBrowser/SKPhotoBrowser.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
@@ -492,6 +504,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Material.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Motion.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PagingKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SKPhotoBrowser.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",

@@ -10,6 +10,7 @@ target 'PicNRoll' do
  pod 'Firebase/Database'
  pod 'Firebase/Auth'
  pod 'Firebase/Storage'
+ pod 'Firebase/Messaging'
  pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
  pod 'SKPhotoBrowser'
  pod 'SDWebImage', '~>3.8'
