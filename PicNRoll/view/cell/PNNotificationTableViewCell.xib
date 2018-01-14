@@ -26,13 +26,13 @@
                             <constraint firstAttribute="width" constant="60" id="mo7-C2-hW5"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daniel Ramadan shared &quot;Wedding partner&quot; folder" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X4g-fs-J88">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X4g-fs-J88">
                         <rect key="frame" x="88" y="10" width="251" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="YrE-C1-dVy"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" red="0.0" green="0.68235294120000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jan 2 at 20:34" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DkG-HQ-yEH">
@@ -53,6 +53,11 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="dateLabel" destination="DkG-HQ-yEH" id="SAc-NU-ik3"/>
+                <outlet property="decLabel" destination="X4g-fs-J88" id="sTr-ml-ith"/>
+                <outlet property="vendorImageView" destination="ToT-17-EUF" id="6DX-c1-BeV"/>
+            </connections>
             <point key="canvasLocation" x="-349.5" y="54"/>
         </tableViewCell>
     </objects>
