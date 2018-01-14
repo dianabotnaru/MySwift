@@ -10,7 +10,6 @@ import UIKit
 import MessageUI
 import SVProgressHUD
 
-
 class PNGroupInviteViewController: PNFriendContactsViewController {
 
     var phoneNumbers : [String] = []
@@ -28,7 +27,6 @@ class PNGroupInviteViewController: PNFriendContactsViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
 
     func getInviteAvailableUserList(){
         var availableFriendList : [PNUser] = []
@@ -73,8 +71,3 @@ class PNGroupInviteViewController: PNFriendContactsViewController {
         }
     }
 }
-
-
-
-
-
