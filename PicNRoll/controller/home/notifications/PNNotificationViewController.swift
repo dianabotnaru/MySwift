@@ -34,7 +34,7 @@ extension PNNotificationViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.notificationTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! PNNotificationTableViewCell
-        cell.setLabels()
+        cell.setLabelsForGroup()
         return cell
     }
     

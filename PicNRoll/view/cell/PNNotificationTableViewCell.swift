@@ -38,4 +38,19 @@ class PNNotificationTableViewCell: UITableViewCell {
         attributedString1.append(attributedString4)
         self.decLabel.attributedText = attributedString1
     }
+    
+    func setLabelsForGroup(){
+        let attrs1 = [NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 14), NSAttributedStringKey.foregroundColor : PNGlobal.PNDarkGrayColor]
+        let attrs2 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor : PNGlobal.PNDarkGrayColor]
+        
+        let attributedString1 = NSMutableAttributedString(string:"Daniel Ramadan", attributes:attrs1)
+        let attributedString2 = NSMutableAttributedString(string:" added you to the", attributes:attrs2)
+        let attributedString3 = NSMutableAttributedString(string:" Wedding", attributes:attrs1)
+        let attributedString4 = NSMutableAttributedString(string:" group", attributes:attrs2)
+        
+        attributedString1.append(attributedString2)
+        attributedString1.append(attributedString3)
+        attributedString1.append(attributedString4)
+        self.decLabel.attributedText = attributedString1
+    }
 }
