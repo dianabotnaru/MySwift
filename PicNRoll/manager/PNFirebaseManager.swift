@@ -45,10 +45,10 @@ final class PNFirebaseManager{
                 let post = ["Email": email,
                             "Name": name,
                             "PhoneNumber": phoneNumber,
-                            "deviceToken": self.deviceToken,
+                            "deviceToken": Messaging.messaging().fcmToken,
                             "lat":lat,
                             "lng":lng,
-                            "profileImageUrl":""] as [AnyHashable : String]
+                            "profileImageUrl":""] as! [AnyHashable : String]
                 self.databaseRef.child("Users").child((user?.uid)!).setValue(post)
                 let pnUser = PNUser()
                 pnUser.id = (user?.uid)!
@@ -115,7 +115,7 @@ final class PNFirebaseManager{
     }
     
     func updateUserDeviceToken(_ pnUser:PNUser){
-        self.databaseRef.child("Users").child((pnUser.id)).child("deviceToken").setValue(self.deviceToken)
+        self.databaseRef.child("Users").child((pnUser.id)).child("deviceToken").setValue(Messaging.messaging().fcmToken)
     }
     
     func forgotPassowrd(email:String,
@@ -374,12 +374,12 @@ final class PNFirebaseManager{
         try! Auth.auth().signOut()
     }
     
-    func sendNotification(title: String, message: String, userToken: String) {
+    func sendNotification(title: String, message: String, userToken: String,completion: @escaping (String?) -> Swift.Void) {
         //        if userToken != nil {
         var request = URLRequest(url: URL(string: "https://fcm.googleapis.com/fcm/send")!)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("key=AAAAsO3s-LM:APA91bF2wCvdJIpw4ZfDVatBRBRF9yHVmMf5RT7wJtZ2_BmwJNPgTIViitaNfT6nGVYofjezo41MOQ9lBqsyCmD3SriVmeDs8sYG_msJ5YLx72KQ8cEN7cbw3a5-SrwV5KmhvarQ8RHe", forHTTPHeaderField: "Authorization")
+        request.setValue("key=AAAARbUrX2Y:APA91bG5Ue4xkeEhv_MnhW5y8jGgxAuZXuKsVn5WbNGuGdNJPCOV9euduBONeo75qzvV8cCuKAYKr6pgOA7Fxkc3l-rdILSS0ZcF9dxtaIKwQgKoC6dxd2wnAGCYwGT9BesJKJhcdnF9", forHTTPHeaderField: "Authorization")
         let json = [
             "to" : userToken,
             "priority" : "high",
@@ -397,22 +397,17 @@ final class PNFirebaseManager{
                     print("Error=\(String(describing: error))")
                     return
                 }
-                
                 if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
-                    // check for http errors
-                    print("Status Code should be 200, but is \(httpStatus.statusCode)")
-                    print("Response = \(String(describing: response))")
+                    completion("Status Code should be 200, but is \(httpStatus.statusCode)")
                 }
-                
                 let responseString = String(data: data, encoding: .utf8)
-                print("responseString = \(String(describing: responseString))")
+                completion(responseString)
             }
             task.resume()
         }
         catch {
-            print(error)
+            completion(error.localizedDescription)
         }
-        //        }
     }
 
 //    func getUserFriendIds(block: @escaping ([String]) -> Swift.Void) {

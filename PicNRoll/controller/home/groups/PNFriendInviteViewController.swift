@@ -33,7 +33,7 @@ class PNFriendInviteViewController: PNBaseViewController {
 
     var groupMemberList : [PNUser]?
     var isShareFolder : Bool?
-    
+
     weak var delegate:PNFriendInviteViewControllerDelegate?
 
     var inviteList : [PNUser] = []
@@ -184,9 +184,30 @@ class PNFriendInviteViewController: PNBaseViewController {
                                                         friendList: self.pnUserInviteList,
                                                         contactList: self.emailInviteList,
                                                         completion: {() in
-                                                            SVProgressHUD.dismiss()
-                                                            _ = self.navigationController?.popViewController(animated: true)
+                                                            self.sendNotification(index: 0)
         })
+    }
+    
+    func sendNotification(index:Int){
+        let pnUser = self.pnUserInviteList[index]
+        var message : String = ""
+        if self.isShareFolder == true {
+            message = (PNGlobal.currentUser?.name)! + " shared " + (self.selectedFolder?.name)! + " folder"
+        }else{
+            message = (PNGlobal.currentUser?.name)! + " added you to the " + (self.selectedGroup?.name)!
+        }
+        PNFirebaseManager.shared.sendNotification(title: "Notification",
+                                                  message: message,
+                                                  userToken: pnUser.deviceToken,
+                                                  completion: {(response) in
+                                                    if index < self.pnUserInviteList.count-1{
+                                                        self.sendNotification(index: index+1)
+                                                    }else{
+                                                        SVProgressHUD.dismiss()
+                                                        _ = self.navigationController?.popViewController(animated: true)
+                                                    }
+        })
+
     }
 }
 
