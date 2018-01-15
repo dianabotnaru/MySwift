@@ -13,6 +13,10 @@ class PNNotificationViewController: PNBaseViewController {
     let cellReuseIdentifier = "PNNotificationTableViewCell"
     @IBOutlet var notificationTableView: UITableView!
     
+    var addedGroupList : [PNGroup] = []
+    var sharedFolderList : [PNFolder] = []
+    var notificationList : [PNNotification] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         notificationTableView.register(UINib(nibName: "PNNotificationTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
@@ -20,6 +24,22 @@ class PNNotificationViewController: PNBaseViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func getAddedGroupList(){
+        
+    }
+    
+    func getSharedFolderList(){
+        
+    }
+    
+    func getNotificationList(){
+        
+    }
+    
+    func sortByDate(){
+        
     }
 }
 

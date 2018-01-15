@@ -11,7 +11,10 @@ import UIKit
 struct PNGlobal {
     static let PNAppLink = "https://google.com"
     
-    static let PNPrimaryColor = UIColor(red: 38/255, green: 50/255, blue: 56/255, alpha: 1.0)    
+    static let FOLDER = 1
+    static let GROUP = 2
+
+    static let PNPrimaryColor = UIColor(red: 38/255, green: 50/255, blue: 56/255, alpha: 1.0)
     static let PNGreenColor = UIColor(red: 124/255, green: 179/255, blue: 66/255, alpha: 1.0)
 
     static let PNDarkGrayColor = UIColor(red: 33/255, green: 33/255, blue: 33/255, alpha: 1.0)
@@ -20,6 +23,6 @@ struct PNGlobal {
     static let PNColorTopBarPlaceHolder = UIColor(red: 164/255, green: 174/255, blue: 186/255, alpha: 1.0)
 
     static let PNRedColor = UIColor(red: 229/255, green: 57/255, blue: 53/255, alpha: 1.0)
-
+    
     static var currentUser : PNUser?
 }
