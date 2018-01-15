@@ -208,18 +208,15 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         let userInfo = notification.request.content.userInfo
         
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
-        
-        // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
+        if let aps = userInfo["aps"] as? NSDictionary {
+            if let alert = aps["alert"] as? NSDictionary {
+                if let message = alert["body"] as? String {
+                    self.showMessage(title: "", message: message)
+                }
+            } else if let alert = aps["alert"] as? String {
+                self.showMessage(title: "", message: alert)
+            }
         }
-        
-        // Print full message.
-        print(userInfo)
-        
-        // Change this to your preferred presentation option
         completionHandler([])
     }
     
@@ -227,21 +224,23 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
-        // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
+        if let aps = userInfo["aps"] as? NSDictionary {
+            if let alert = aps["alert"] as? NSDictionary {
+                if let message = alert["body"] as? String {
+                    self.showMessage(title: "", message: message)
+                }
+            } else if let alert = aps["alert"] as? String {
+                self.showMessage(title: "", message: alert)
+            }
         }
-        
-        // Print full message.
-        print(userInfo)
         completionHandler()
     }
+    
 }
 // [END ios_10_message_handling]
 
 extension AppDelegate : MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-//        PNFirebaseManager.shared.deviceToken = fcmToken
     }
     
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
