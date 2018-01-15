@@ -170,11 +170,7 @@ class PNFriendInviteViewController: PNBaseViewController {
                                             friendList: self.pnUserInviteList,
                                             contactList: self.emailInviteList,
                                             completion: {() in
-                                                SVProgressHUD.dismiss()
-                                                if self.delegate != nil {
-                                                    self.delegate?.didAddFriends()
-                                                }
-                                                _ = self.navigationController?.popViewController(animated: true)
+                                                self.sendNotification(index: 0)
         })
     }
     
@@ -204,6 +200,11 @@ class PNFriendInviteViewController: PNBaseViewController {
                                                         self.sendNotification(index: index+1)
                                                     }else{
                                                         SVProgressHUD.dismiss()
+                                                        if self.isShareFolder == false{
+                                                            if self.delegate != nil {
+                                                                self.delegate?.didAddFriends()
+                                                            }
+                                                        }
                                                         _ = self.navigationController?.popViewController(animated: true)
                                                     }
         })
