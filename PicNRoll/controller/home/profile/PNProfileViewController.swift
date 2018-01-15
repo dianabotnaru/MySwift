@@ -45,7 +45,6 @@ class PNProfileViewController: PNBaseViewController {
         nameTextField.dividerColor = PNGlobal.PNGreenColor
     }
     
-    
     @IBAction func btnSaveClicked(){
         if isValidationInputs(){
             let alertController = UIAlertController(title: nil, message: "Are you sure want to update profile information?", preferredStyle: .alert)
