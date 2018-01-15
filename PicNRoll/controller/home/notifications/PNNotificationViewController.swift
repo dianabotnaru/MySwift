@@ -32,6 +32,7 @@ class PNNotificationViewController: PNBaseViewController {
         SVProgressHUD.show()
         PNFirebaseManager.shared.getGroups(userId: (PNGlobal.currentUser?.id)!,completion:{ (groupList: [PNGroup]?,error: Error?) in
             if error == nil{
+                self.addedGroupList = groupList!
                 for pnGroup in groupList!{
                     if PNGlobal.currentUser?.id != pnGroup.vendorId{
                         let pnNotification : PNNotification = PNNotification()
@@ -51,6 +52,7 @@ class PNNotificationViewController: PNBaseViewController {
     func getSharedFolderList(){
         PNFirebaseManager.shared.getFolders(userId: (PNGlobal.currentUser?.id)!, completion:{ (folderList: [PNFolder]?,error: Error?) in
             SVProgressHUD.dismiss()
+            self.sharedFolderList = folderList!
             if error == nil{
                 for pnFolder in folderList!{
                     if PNGlobal.currentUser?.id != pnFolder.vendorId{
@@ -70,6 +72,27 @@ class PNNotificationViewController: PNBaseViewController {
         self.notificationList.sort(by: { $0.createdDate.compare($1.createdDate) == .orderedDescending })
         self.notificationTableView.reloadData()
     }
+    
+    func getSelectedFolder(_ pnNotification:PNNotification) ->  PNFolder{
+        let selectedFolder: PNFolder = PNFolder()
+        for pnFolder in self.sharedFolderList{
+            if pnFolder.id == pnNotification.id{
+                return pnFolder
+            }
+        }
+        return selectedFolder
+    }
+    
+    func getSelectedGroup(_ pnNotification:PNNotification) ->  PNGroup{
+        let selectedGroup: PNGroup = PNGroup()
+        for pnGroup in self.addedGroupList{
+            if pnGroup.id == pnNotification.id{
+                return pnGroup
+            }
+        }
+        return selectedGroup
+    }
+
 }
 
 extension PNNotificationViewController: UITableViewDelegate, UITableViewDataSource{
@@ -89,5 +112,16 @@ extension PNNotificationViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let pnNotification = self.notificationList[indexPath.row]
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if pnNotification.kind == PNGlobal.GROUP{
+            let groupDetailVC = storyboard.instantiateViewController(withIdentifier: "PNGroupDetailViewController") as! PNGroupDetailViewController
+            groupDetailVC.selectedGroup = self.getSelectedGroup(pnNotification)
+            navigationController?.pushViewController(groupDetailVC, animated: true)
+        }else{
+            let pictureVC = storyboard.instantiateViewController(withIdentifier: "PNPictureViewController") as! PNPictureViewController
+            pictureVC.selectedFolder = self.getSelectedFolder(pnNotification)
+            self.navigationController?.pushViewController(pictureVC, animated: true)
+        }
     }
 }
