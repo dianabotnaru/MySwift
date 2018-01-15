@@ -374,6 +374,47 @@ final class PNFirebaseManager{
         try! Auth.auth().signOut()
     }
     
+    func sendNotification(title: String, message: String, userToken: String) {
+        //        if userToken != nil {
+        var request = URLRequest(url: URL(string: "https://fcm.googleapis.com/fcm/send")!)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("key=AAAAsO3s-LM:APA91bF2wCvdJIpw4ZfDVatBRBRF9yHVmMf5RT7wJtZ2_BmwJNPgTIViitaNfT6nGVYofjezo41MOQ9lBqsyCmD3SriVmeDs8sYG_msJ5YLx72KQ8cEN7cbw3a5-SrwV5KmhvarQ8RHe", forHTTPHeaderField: "Authorization")
+        let json = [
+            "to" : userToken,
+            "priority" : "high",
+            "notification" : [
+                "title" : title,
+                "body"  : message,
+                "badge" : 1
+            ]
+            ] as [String : Any]
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+            request.httpBody = jsonData
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let data = data, error == nil else {
+                    print("Error=\(String(describing: error))")
+                    return
+                }
+                
+                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                    // check for http errors
+                    print("Status Code should be 200, but is \(httpStatus.statusCode)")
+                    print("Response = \(String(describing: response))")
+                }
+                
+                let responseString = String(data: data, encoding: .utf8)
+                print("responseString = \(String(describing: responseString))")
+            }
+            task.resume()
+        }
+        catch {
+            print(error)
+        }
+        //        }
+    }
+
 //    func getUserFriendIds(block: @escaping ([String]) -> Swift.Void) {
 //        guard let userId = getCurrentUserID() else {return}
 //        var ids: [String] = []

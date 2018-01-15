@@ -187,7 +187,6 @@ class PNFriendInviteViewController: PNBaseViewController {
                                                             SVProgressHUD.dismiss()
                                                             _ = self.navigationController?.popViewController(animated: true)
         })
-
     }
 }
 
