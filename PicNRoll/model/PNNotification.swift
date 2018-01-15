@@ -24,6 +24,7 @@ class PNNotification {
     func setValues(pnGroup:PNGroup){
         self.id = pnGroup.id
         self.kind = PNGlobal.GROUP
+        self.groupName = pnGroup.name
         self.vendorId = pnGroup.vendorId
         self.vendorName = pnGroup.vendorName
         self.createdDate = pnGroup.createdDate
@@ -35,6 +36,7 @@ class PNNotification {
         self.kind = PNGlobal.FOLDER
         self.vendorId = pnFolder.vendorId
         self.vendorName = pnFolder.vendorName
+        self.folderName = pnFolder.name
         self.createdDate = pnFolder.createdDate
         self.vendorImageUrl = pnFolder.vendorProfileImageUrl
     }

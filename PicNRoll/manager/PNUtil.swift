@@ -17,6 +17,14 @@ extension Date
         return dateFormatter.string(from: self)
     }
     
+    func toStringForNotification() -> String
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd HH:mm"
+        return dateFormatter.string(from: self)
+    }
+
+    
     func timeStampString() ->String{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyyMMMddHHmmss"

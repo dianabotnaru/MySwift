@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class PNNotificationViewController: PNBaseViewController {
 
@@ -20,6 +21,7 @@ class PNNotificationViewController: PNBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         notificationTableView.register(UINib(nibName: "PNNotificationTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
+        self.getAddedGroupList()
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,19 +29,46 @@ class PNNotificationViewController: PNBaseViewController {
     }
     
     func getAddedGroupList(){
-        
+        SVProgressHUD.show()
+        PNFirebaseManager.shared.getGroups(userId: (PNGlobal.currentUser?.id)!,completion:{ (groupList: [PNGroup]?,error: Error?) in
+            if error == nil{
+                for pnGroup in groupList!{
+                    if PNGlobal.currentUser?.id != pnGroup.vendorId{
+                        let pnNotification : PNNotification = PNNotification()
+                        pnNotification.setValues(pnGroup: pnGroup)
+                        self.notificationList.append(pnNotification)
+                    }
+                }
+                self.getSharedFolderList()
+            }else{
+                SVProgressHUD.dismiss()
+                self.showAlarmViewController(message:(error?.localizedDescription)!)
+            }
+        })
+
     }
     
     func getSharedFolderList(){
-        
+        PNFirebaseManager.shared.getFolders(userId: (PNGlobal.currentUser?.id)!, completion:{ (folderList: [PNFolder]?,error: Error?) in
+            SVProgressHUD.dismiss()
+            if error == nil{
+                for pnFolder in folderList!{
+                    if PNGlobal.currentUser?.id != pnFolder.vendorId{
+                        let pnNotification : PNNotification = PNNotification()
+                        pnNotification.setValues(pnFolder: pnFolder)
+                        self.notificationList.append(pnNotification)
+                    }
+                }
+                self.sortNotificationbyDate()
+            }else{
+                self.showAlarmViewController(message: (error?.localizedDescription)!)
+            }
+        })
     }
     
-    func getNotificationList(){
-        
-    }
-    
-    func sortByDate(){
-        
+    func sortNotificationbyDate(){
+        self.notificationList.sort(by: { $0.createdDate.compare($1.createdDate) == .orderedDescending })
+        self.notificationTableView.reloadData()
     }
 }
 
@@ -49,12 +78,13 @@ extension PNNotificationViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.notificationList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.notificationTableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! PNNotificationTableViewCell
-        cell.setLabelsForGroup()
+        let pnNotification = self.notificationList[indexPath.row]
+        cell.setLabels(pnNotification)
         return cell
     }
     
