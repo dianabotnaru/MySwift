@@ -140,6 +140,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         presentedViewController.present(alertController, animated: true, completion: nil)
     }
     
+    func showMessagewithAction(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle:.alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: {
+            alert -> Void in
+            self.launchNotificationViewController()
+        }))
+        let pushedViewControllers = (self.window?.rootViewController as! UINavigationController).viewControllers
+        let presentedViewController = pushedViewControllers[pushedViewControllers.count - 1]
+        presentedViewController.present(alertController, animated: true, completion: nil)
+    }
+
+    
+    
+    func launchNotificationViewController(){
+        let pushNavigationController = self.window?.rootViewController as! UINavigationController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "PNNotificationViewController") as UIViewController
+        pushNavigationController.pushViewController(vc, animated: true)
+    }
+    
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask
     {
         if UIDevice.current.userInterfaceIdiom == .pad {
@@ -211,7 +231,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         if let aps = userInfo["aps"] as? NSDictionary {
             if let alert = aps["alert"] as? NSDictionary {
                 if let message = alert["body"] as? String {
-                    self.showMessage(title: "", message: message)
+                    self.showMessagewithAction(title: "", message: message)
                 }
             } else if let alert = aps["alert"] as? String {
                 self.showMessage(title: "", message: alert)
@@ -227,7 +247,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         if let aps = userInfo["aps"] as? NSDictionary {
             if let alert = aps["alert"] as? NSDictionary {
                 if let message = alert["body"] as? String {
-                    self.showMessage(title: "", message: message)
+                    self.showMessagewithAction(title: "", message: message)
                 }
             } else if let alert = aps["alert"] as? String {
                 self.showMessage(title: "", message: alert)
