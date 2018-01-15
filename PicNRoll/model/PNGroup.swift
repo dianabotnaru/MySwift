@@ -17,7 +17,8 @@ class PNGroup{
     var groupImageUrl: String = ""
     var canShowGroupMemeber:Bool = false
     var createdDate: Date = Date()
-    
+    var isView: Bool = false
+
     var isSelected:Bool = false
     
     func setValues(id:String,name:String,vendorId:String,vendorName:String,createdDate:Date){
@@ -35,6 +36,7 @@ class PNGroup{
         self.vendorId = value["vendorId"] as? String ?? ""
         self.vendorName = value["vendorName"] as? String ?? ""
         self.canShowGroupMemeber = value["canShowGroupMember"] as? Bool ?? false
+        self.isView = value["isView"] as? Bool ?? false
         let dateString = value["createdDate"] as? String ?? ""
         self.createdDate = dateString.toDate()
     }

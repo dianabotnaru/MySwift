@@ -12,7 +12,9 @@ class PNNotificationViewController: PNBaseViewController {
 
     let cellReuseIdentifier = "PNNotificationTableViewCell"
     @IBOutlet var notificationTableView: UITableView!
-
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         notificationTableView.register(UINib(nibName: "PNNotificationTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)

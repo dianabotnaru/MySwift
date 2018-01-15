@@ -152,6 +152,7 @@ final class PNFirebaseManager{
                     "vendorProfileImageUrl": folder.vendorProfileImageUrl,
                     "createdDate": folder.createdDate.toString(),
                     "isShare": folder.isShare,
+                    "isView":folder.isView,
                     "canAddPicture": true,
                     "firstImageUrl":""] as [AnyHashable : AnyObject]
         self.databaseRef.child(ALBUMTABLE).child(getCurrentUserID()!).child(folder.id).setValue(post)
@@ -232,6 +233,7 @@ final class PNFirebaseManager{
                     "vendorId": userId,
                     "vendorName": PNGlobal.currentUser?.name ?? "",
                     "canShowGroupMember": true,
+                    "isView": false,
                     "createdDate": Date().toString()] as [AnyHashable : AnyObject]
         self.databaseRef.child(GROUPTABLE).child(userId).child(groupId!).setValue(post)
         completion()

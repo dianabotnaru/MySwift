@@ -19,7 +19,8 @@ class PNFolder{
     var createdDate: Date = Date()
     var isShare: Bool = false
     var canAddPicture : Bool = false
-    
+    var isView: Bool = false
+
     func setValues(id:String,name:String,vendorId:String,vendorName:String,vendorProfileImageUrl:String,firstImageUrl:String,createdDate:Date,isShare:Bool){
         self.id = id
         self.name = name
@@ -41,6 +42,7 @@ class PNFolder{
         let dateString = value["createdDate"] as? String ?? ""
         self.createdDate = dateString.toDate()
         self.isShare = value["isShare"] as? Bool ?? false
+        self.isView = value["isView"] as? Bool ?? false
         self.canAddPicture = value["canAddPicture"] as? Bool ?? false
     }
 
