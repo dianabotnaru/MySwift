@@ -23,6 +23,7 @@ final class PNFirebaseManager{
     var storageRef: StorageReference = Storage.storage().reference()
     var databaseRef: DatabaseReference = Database.database().reference()
     var auth = Auth.auth()
+    var deviceToken: String = ""
     
     func getCurrentUserID() -> String? {
         return auth.currentUser?.uid
@@ -44,7 +45,7 @@ final class PNFirebaseManager{
                 let post = ["Email": email,
                             "Name": name,
                             "PhoneNumber": phoneNumber,
-                            "deviceToken": "",
+                            "deviceToken": self.deviceToken,
                             "lat":lat,
                             "lng":lng,
                             "profileImageUrl":""] as [AnyHashable : String]
@@ -64,7 +65,7 @@ final class PNFirebaseManager{
         let post = ["Email": pnUser.email,
                     "Name": pnUser.name,
                     "PhoneNumber":pnUser.phoneNumber ,
-                    "deviceToken": "",
+                    "deviceToken": self.deviceToken,
                     "lat":pnUser.lat,
                     "lng":pnUser.lng,
                     "profileImageUrl":""] as [AnyHashable : String]
@@ -104,12 +105,17 @@ final class PNFirebaseManager{
             if error == nil {
                 self.getUserInformation(userId: (user?.uid)!, completion: {(pnUser: PNUser?,error: Error?) in
                     pnUser?.id = (user?.uid)!
+                    self.updateUserDeviceToken(pnUser!)
                     completion(pnUser,error)
                 })
             }else{
                 completion(nil,error)
             }
         }
+    }
+    
+    func updateUserDeviceToken(_ pnUser:PNUser){
+        self.databaseRef.child("Users").child((pnUser.id)).child("deviceToken").setValue(self.deviceToken)
     }
     
     func forgotPassowrd(email:String,
