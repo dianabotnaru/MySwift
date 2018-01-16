@@ -189,9 +189,9 @@ class PNFriendInviteViewController: PNBaseViewController {
         let pnUser = self.pnUserInviteList[index]
         var message : String = ""
         if self.isShareFolder == true {
-            message = (PNGlobal.currentUser?.name)! + " shared " + (self.selectedFolder?.name)! + " folder"
+            message = (PNGlobal.CURRENT_USER_NAME) + " shared " + (self.selectedFolder?.name)! + " folder"
         }else{
-            message = (PNGlobal.currentUser?.name)! + " added you to the " + (self.selectedGroup?.name)!
+            message = (PNGlobal.CURRENT_USER_NAME) + " added you to the " + (self.selectedGroup?.name)!
         }
         PNFirebaseManager.shared.sendNotification(title: "Notification",
                                                   message: message,

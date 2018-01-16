@@ -121,9 +121,9 @@ extension PNFolderViewController{
         let folder = PNFolder() as PNFolder
         folder.setValues(id: PNFirebaseManager.shared.getRamdomID()!,
                          name: folderName,
-                         vendorId: (PNGlobal.currentUser?.id)!,
-                         vendorName: (PNGlobal.currentUser?.name)!,
-                         vendorProfileImageUrl:(PNGlobal.currentUser?.profileImageUrl)!,
+                         vendorId: PNFirebaseManager.shared.getCurrentUserID()!,
+                         vendorName: PNGlobal.CURRENT_USER_NAME,
+                         vendorProfileImageUrl:PNSharedPreferenceManager.shared.getProfileImageUrl(),
                          firstImageUrl: "",
                          createdDate: Date(),
                          isShare: false)

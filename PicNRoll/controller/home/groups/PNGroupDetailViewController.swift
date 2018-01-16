@@ -60,6 +60,7 @@ class PNGroupDetailViewController: PNBaseViewController {
     @IBAction func btnAddClicked() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let friendInviteVC = storyboard.instantiateViewController(withIdentifier: "PNFriendInviteViewController") as! PNFriendInviteViewController
+        friendInviteVC.isShareFolder = false
         friendInviteVC.selectedGroup = self.selectedGroup
         friendInviteVC.groupMemberList = self.groupMemberList
         friendInviteVC.delegate = self

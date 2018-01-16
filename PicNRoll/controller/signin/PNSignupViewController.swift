@@ -65,7 +65,8 @@ class PNSignupViewController: PNBaseViewController {
                                             lng: "",
                                             completion:{ (pnUser: PNUser?,error: Error?) in
                                                 if error == nil{
-                                                    PNGlobal.currentUser = pnUser
+                                                    PNSharedPreferenceManager.shared.saveUserName(name: (pnUser?.name)!)
+                                                    PNSharedPreferenceManager.shared.saveProfileImageUrl(profileImageUrl: (pnUser?.profileImageUrl)!)
                                                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                                                     appDelegate.launchHomeScreen()
                                                 }else{

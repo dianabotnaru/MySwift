@@ -33,7 +33,7 @@ class PNRollsTableViewCell: UITableViewCell {
     
     func setLabels(_ pnfolder : PNFolder){
         folderNameLabel.text = pnfolder.name
-        if pnfolder.vendorId == PNGlobal.currentUser?.id{
+        if pnfolder.vendorId == PNFirebaseManager.shared.getCurrentUserID(){
             vendorNameLabel.text = "me"
         }else{
             vendorNameLabel.text = pnfolder.vendorName

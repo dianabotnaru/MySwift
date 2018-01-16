@@ -191,12 +191,12 @@ final class PNFirebaseManager{
             if error == nil{
                 let downloadURL = metadata?.downloadURL()
                 urlString = (downloadURL?.absoluteString)!
-                let post = ["id": photoId,
+                let post = ["id": photoId!,
                             "name": "",
-                            "vendorId": self.getCurrentUserID(),
-                            "vendorName": PNGlobal.currentUser?.name,
+                            "vendorId": self.getCurrentUserID()!,
+                            "vendorName": PNGlobal.CURRENT_USER_NAME,
                             "createdDate": Date().toString(),
-                            "imageUrl":urlString] as [AnyHashable : AnyObject]
+                            "imageUrl":urlString] as [AnyHashable : String]
                 self.databaseRef.child(self.PHOTOFILETABLE).child(folderID).child(photoId!).setValue(post)
             }
             completion(urlString,error)
@@ -225,10 +225,10 @@ final class PNFirebaseManager{
         let post = ["id": groupId ?? "",
                     "name": groupName,
                     "vendorId": getCurrentUserID()!,
-                    "vendorName": PNGlobal.currentUser?.name ?? "",
+                    "vendorName": PNGlobal.CURRENT_USER_NAME,
                     "canShowGroupMember": true,
                     "isView": false,
-                    "createdDate": Date().toString()] as [AnyHashable : AnyObject]
+                    "createdDate": Date().toString()] as [AnyHashable : Any]
         self.databaseRef.child(GROUPTABLE).child(getCurrentUserID()!).child(groupId!).setValue(post)
         completion()
     }

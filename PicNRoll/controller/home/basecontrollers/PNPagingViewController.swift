@@ -27,11 +27,16 @@ class PNPagingViewController: PNBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if PNGlobal.currentUser == nil{
-            getUserInformation()
-        }else{
-            initPagingViewController()
-        }
+        PNGlobal.CURRENT_USER_NAME = PNSharedPreferenceManager.shared.getUserName()
+        initPagingViewController()
+
+//        getUserInformation()
+//
+//        if PNGlobal.currentUser == nil{
+//            getUserInformation()
+//        }else{
+//            initPagingViewController()
+//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,18 +62,18 @@ class PNPagingViewController: PNBaseViewController {
         contentViewController?.reloadData()
     }
     
-    func getUserInformation(){
-        SVProgressHUD.show()
-        PNFirebaseManager.shared.getUserInformation(userId: (Auth.auth().currentUser!.uid), completion: {(pnUser: PNUser?,error: Error?) in
-            SVProgressHUD.dismiss()
-            if error == nil {
-                PNGlobal.currentUser = pnUser
-                self.initPagingViewController()
-            }else{
-                self.showAlarmViewController(message: (error?.localizedDescription)!)
-            }
-        })
-    }
+//    func getUserInformation(){
+//        SVProgressHUD.show()
+//        PNFirebaseManager.shared.getUserInformation(userId: (Auth.auth().currentUser!.uid), completion: {(pnUser: PNUser?,error: Error?) in
+//            SVProgressHUD.dismiss()
+//            if error == nil {
+//                PNGlobal.currentUser = pnUser
+//                self.initPagingViewController()
+//            }else{
+//                self.showAlarmViewController(message: (error?.localizedDescription)!)
+//            }
+//        })
+//    }
 }
 
 extension PNPagingViewController{

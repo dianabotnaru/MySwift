@@ -34,7 +34,7 @@ class PNNotificationViewController: PNBaseViewController {
             if error == nil{
                 self.addedGroupList = groupList!
                 for pnGroup in groupList!{
-                    if PNGlobal.currentUser?.id != pnGroup.vendorId{
+                    if PNFirebaseManager.shared.getCurrentUserID() != pnGroup.vendorId{
                         let pnNotification : PNNotification = PNNotification()
                         pnNotification.setValues(pnGroup: pnGroup)
                         self.notificationList.append(pnNotification)
@@ -55,7 +55,7 @@ class PNNotificationViewController: PNBaseViewController {
             self.sharedFolderList = folderList!
             if error == nil{
                 for pnFolder in folderList!{
-                    if PNGlobal.currentUser?.id != pnFolder.vendorId{
+                    if PNFirebaseManager.shared.getCurrentUserID() != pnFolder.vendorId{
                         let pnNotification : PNNotification = PNNotification()
                         pnNotification.setValues(pnFolder: pnFolder)
                         self.notificationList.append(pnNotification)

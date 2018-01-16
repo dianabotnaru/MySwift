@@ -25,19 +25,32 @@ class PNProfileViewController: PNBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        initLabels()
+        getUserInformation()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    func getUserInformation(){
+        SVProgressHUD.show()
+        PNFirebaseManager.shared.getUserInformation(userId: (Auth.auth().currentUser!.uid), completion: {(pnUser: PNUser?,error: Error?) in
+            SVProgressHUD.dismiss()
+            if error == nil {
+                self.currentUser = pnUser
+                self.initLabels()
+            }else{
+                self.showAlarmViewController(message: (error?.localizedDescription)!)
+            }
+        })
+    }
+
     func initLabels(){
-        nameTextField.text = PNGlobal.currentUser?.name
+        nameTextField.text = self.currentUser.name
         self.nameTextFieldDisable()
-        emailTextField.text = PNGlobal.currentUser?.email
-        mobileTextField.text = PNGlobal.currentUser?.phoneNumber
-        self.profileImageView.sd_setImage(with: URL(string: (PNGlobal.currentUser?.profileImageUrl)!), placeholderImage: UIImage(named: ""),options:SDWebImageOptions.progressiveDownload)
+        emailTextField.text = self.currentUser.email
+        mobileTextField.text = self.currentUser.phoneNumber
+        self.profileImageView.sd_setImage(with: URL(string: (self.currentUser.profileImageUrl)), placeholderImage: UIImage(named: ""),options:SDWebImageOptions.progressiveDownload)
     }
     
     @IBAction func btnNameEditClicked(){
@@ -61,7 +74,6 @@ class PNProfileViewController: PNBaseViewController {
     
     func updateUserInformationWithEmail(){
         self.view.endEditing(true)
-        self.currentUser = PNGlobal.currentUser
         if currentUser?.email != emailTextField.text!{
             currentUser?.email = emailTextField.text!
             SVProgressHUD.show()
@@ -87,7 +99,6 @@ class PNProfileViewController: PNBaseViewController {
         PNFirebaseManager.shared.updateUser(pnUser: currentUser!,
                                             completion:{ (error: Error?) in
                                                 if error == nil{
-                                                    PNGlobal.currentUser = self.currentUser
                                                     self.initLabels()
                                                 }else{
                                                     self.showAlarmViewController(message: (error?.localizedDescription)!)
@@ -182,10 +193,10 @@ extension PNProfileViewController:UIImagePickerControllerDelegate,UINavigationCo
         PNFirebaseManager.shared.updateUserProfile(image: image,
                                                    completion:{ (urlString:String?,error: Error?) in
                                                 if error == nil{
-                                                    PNGlobal.currentUser?.profileImageUrl = urlString!
                                                     self.profileImageView.sd_setImage(with: URL(string: urlString!), placeholderImage: UIImage(named: ""))
+                                                    PNSharedPreferenceManager.shared.saveProfileImageUrl(profileImageUrl: urlString!)
                                                 }else{
-                                                    
+                                                    self.showAlarmViewController(message: (error?.localizedDescription)!)
                                                 }
                                                 SVProgressHUD.dismiss()
         })

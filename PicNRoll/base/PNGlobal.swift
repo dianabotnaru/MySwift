@@ -24,5 +24,6 @@ struct PNGlobal {
 
     static let PNRedColor = UIColor(red: 229/255, green: 57/255, blue: 53/255, alpha: 1.0)
     
-    static var currentUser : PNUser?
+    static var CURRENT_USER_NAME : String = "";
+
 }

@@ -50,7 +50,7 @@ class PNFolderListTableViewCell: UITableViewCell {
     
     func setLabels(folder: PNFolder){
         nameLabel.text = folder.name
-        if folder.vendorId == PNGlobal.currentUser?.id{
+        if folder.vendorId == PNFirebaseManager.shared.getCurrentUserID(){
             vendorLabel.text = "me"
         }else{
             vendorLabel.text = folder.vendorName

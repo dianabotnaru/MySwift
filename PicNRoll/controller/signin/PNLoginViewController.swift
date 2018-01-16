@@ -56,7 +56,8 @@ class PNLoginViewController: PNBaseViewController {
                                             password: pwTextField.text!,
                                             completion:{ (pnUser: PNUser?,error: Error?) in
                                                 if error == nil{
-                                                    PNGlobal.currentUser = pnUser
+                                                    PNSharedPreferenceManager.shared.saveUserName(name: (pnUser?.name)!)
+                                                    PNSharedPreferenceManager.shared.saveProfileImageUrl(profileImageUrl: (pnUser?.profileImageUrl)!)
                                                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                                                     appDelegate.launchHomeScreen()
                                                 }else{
