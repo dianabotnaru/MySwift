@@ -50,7 +50,7 @@ class PNRollsViewController: PNBaseViewController {
         if isRefresh == false{
             SVProgressHUD.show()
         }
-        PNFirebaseManager.shared.getFolders(userId: (PNGlobal.currentUser?.id)!, completion:{ (folderList: [PNFolder]?,error: Error?) in
+        PNFirebaseManager.shared.getFolders(completion:{ (folderList: [PNFolder]?,error: Error?) in
             if self.isRefresh == true {
                 self.isRefresh = false
                 self.refreshControl.endRefreshing()

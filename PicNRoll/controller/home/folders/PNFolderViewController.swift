@@ -100,7 +100,7 @@ extension PNFolderViewController{
         if isRefresh == false{
             SVProgressHUD.show()
         }
-        PNFirebaseManager.shared.getFolders(userId: (PNGlobal.currentUser?.id)!, completion:{ (folderList: [PNFolder]?,error: Error?) in
+        PNFirebaseManager.shared.getFolders(completion:{ (folderList: [PNFolder]?,error: Error?) in
             if self.isRefresh == true {
                 self.isRefresh = false
                 self.refreshControl.endRefreshing()
@@ -127,7 +127,7 @@ extension PNFolderViewController{
                          firstImageUrl: "",
                          createdDate: Date(),
                          isShare: false)
-        PNFirebaseManager.shared.createFolder(userId: (PNGlobal.currentUser?.id)!, folder: folder, completion:{ () in
+        PNFirebaseManager.shared.createFolder(folder: folder, completion:{ () in
             SVProgressHUD.dismiss()
             self.folderList.append(folder)
             self.folderTableView.reloadData()
@@ -136,7 +136,7 @@ extension PNFolderViewController{
     
     func addPicture(image:UIImage){
         SVProgressHUD.show()
-        PNFirebaseManager.shared.addPicture(userId: (PNGlobal.currentUser?.id)!, folderID: (selectedFolder?.id)!, image: image,completion: { (url:String?,error: Error?) in
+        PNFirebaseManager.shared.addPicture(folderID: (selectedFolder?.id)!, image: image,completion: { (url:String?,error: Error?) in
             SVProgressHUD.dismiss()
             if(error == nil){
                 if self.selectedFolder?.firstImageUrl == ""{

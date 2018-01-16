@@ -112,7 +112,7 @@ extension PNGroupViewController{
         if isRefresh == false{
             SVProgressHUD.show()
         }
-        PNFirebaseManager.shared.getGroups(userId: (PNGlobal.currentUser?.id)!,completion:{ (groupList: [PNGroup]?,error: Error?) in
+        PNFirebaseManager.shared.getGroups(completion:{ (groupList: [PNGroup]?,error: Error?) in
             if self.isRefresh == true {
                 self.isRefresh = false
                 self.refreshControl.endRefreshing()
@@ -130,7 +130,7 @@ extension PNGroupViewController{
     
     func createGroup(groupName:String){
         SVProgressHUD.show()
-        PNFirebaseManager.shared.createGroup(userId: (PNGlobal.currentUser?.id)!, groupName: groupName, completion:{ () in
+        PNFirebaseManager.shared.createGroup(groupName: groupName, completion:{ () in
             SVProgressHUD.dismiss()
             self.getGroups()
         })

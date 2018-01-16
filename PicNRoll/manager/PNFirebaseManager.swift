@@ -142,9 +142,7 @@ final class PNFirebaseManager{
         }
     }
     
-    func createFolder(userId:String,
-                            folder:PNFolder,
-                            completion: @escaping () -> Swift.Void){
+    func createFolder(folder:PNFolder,completion: @escaping () -> Swift.Void){
         let post = ["id": folder.id,
                     "name": folder.name,
                     "vendorId": folder.vendorId,
@@ -167,9 +165,8 @@ final class PNFirebaseManager{
         completion()
     }
     
-    func getFolders(userId:String,
-                      completion: @escaping ([PNFolder]?,Error?) -> Swift.Void){
-        self.databaseRef.child(ALBUMTABLE).child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
+    func getFolders(completion: @escaping ([PNFolder]?,Error?) -> Swift.Void){
+        self.databaseRef.child(ALBUMTABLE).child(getCurrentUserID()!).observeSingleEvent(of: .value, with: { (snapshot) in
             var folderList : [PNFolder] = []
             for snapshot in snapshot.children.allObjects as! [DataSnapshot]{
                 let pnFolder = PNFolder()
@@ -183,13 +180,12 @@ final class PNFirebaseManager{
         }
     }
     
-    func addPicture(userId:String,
-                    folderID:String,
+    func addPicture(folderID:String,
                     image : UIImage,
                     completion: @escaping (String?,Error?) -> Swift.Void){
         let photoId = getRamdomID() as String?
         let imageData = UIImageJPEGRepresentation(image, 0.7)
-        let riversRef = storageRef.child("Files/"+userId+"/"+photoId!+".jpg")
+        let riversRef = storageRef.child("Files/"+getCurrentUserID()!+"/"+photoId!+".jpg")
         riversRef.putData(imageData!, metadata: nil) { (metadata, error) in
             var urlString: String = ""
             if error == nil{
@@ -197,7 +193,7 @@ final class PNFirebaseManager{
                 urlString = (downloadURL?.absoluteString)!
                 let post = ["id": photoId,
                             "name": "",
-                            "vendorId": userId,
+                            "vendorId": self.getCurrentUserID(),
                             "vendorName": PNGlobal.currentUser?.name,
                             "createdDate": Date().toString(),
                             "imageUrl":urlString] as [AnyHashable : AnyObject]
@@ -207,8 +203,7 @@ final class PNFirebaseManager{
         }
     }
     
-    func getPictures(userId:String,
-                    folderID:String,
+    func getPictures(folderID:String,
                     completion: @escaping ([PNPhoto]?,Error?) -> Swift.Void){
         self.databaseRef.child(PHOTOFILETABLE).child(folderID).observeSingleEvent(of: .value, with: { (snapshot) in
             var photoList : [PNPhoto] = []
@@ -224,24 +219,22 @@ final class PNFirebaseManager{
         }
     }
     
-    func createGroup(userId:String,
-                     groupName:String,
+    func createGroup(groupName:String,
                       completion: @escaping () -> Swift.Void){
         let groupId = getRamdomID() as String?
         let post = ["id": groupId ?? "",
                     "name": groupName,
-                    "vendorId": userId,
+                    "vendorId": getCurrentUserID()!,
                     "vendorName": PNGlobal.currentUser?.name ?? "",
                     "canShowGroupMember": true,
                     "isView": false,
                     "createdDate": Date().toString()] as [AnyHashable : AnyObject]
-        self.databaseRef.child(GROUPTABLE).child(userId).child(groupId!).setValue(post)
+        self.databaseRef.child(GROUPTABLE).child(getCurrentUserID()!).child(groupId!).setValue(post)
         completion()
     }
     
-    func getGroups(userId:String,
-                     completion: @escaping ([PNGroup]?,Error?) -> Swift.Void){
-        self.databaseRef.child(GROUPTABLE).child(userId).observeSingleEvent(of: .value, with: { (snapshot) in
+    func getGroups(completion: @escaping ([PNGroup]?,Error?) -> Swift.Void){
+        self.databaseRef.child(GROUPTABLE).child(getCurrentUserID()!).observeSingleEvent(of: .value, with: { (snapshot) in
             var groupList : [PNGroup] = []
             for snapshot in snapshot.children.allObjects as! [DataSnapshot]{
                 let pnGroup = PNGroup()

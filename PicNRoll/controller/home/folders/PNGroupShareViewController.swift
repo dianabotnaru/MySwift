@@ -75,7 +75,7 @@ extension PNGroupShareViewController{
     func getGroups(){
         self.groupList.removeAll()
         SVProgressHUD.show()
-        PNFirebaseManager.shared.getGroups(userId: (PNGlobal.currentUser?.id)!,completion:{ (groupList: [PNGroup]?,error: Error?) in
+        PNFirebaseManager.shared.getGroups(completion:{ (groupList: [PNGroup]?,error: Error?) in
             SVProgressHUD.dismiss()
             if error == nil{
                 self.groupList = groupList!

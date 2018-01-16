@@ -46,7 +46,7 @@ class PNPictureViewController: PNBaseViewController, SKPhotoBrowserDelegate {
     
     func getPhotos(){
         SVProgressHUD.show()
-        PNFirebaseManager.shared.getPictures(userId: (PNGlobal.currentUser?.id)!, folderID: (selectedFolder?.id)!, completion: { (photoList: [PNPhoto]?,error: Error?) in
+        PNFirebaseManager.shared.getPictures(folderID: (selectedFolder?.id)!, completion: { (photoList: [PNPhoto]?,error: Error?) in
             SVProgressHUD.dismiss()
             if error == nil{
                 self.pnPhotoList = photoList!

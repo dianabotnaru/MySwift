@@ -30,7 +30,7 @@ class PNNotificationViewController: PNBaseViewController {
     
     func getAddedGroupList(){
         SVProgressHUD.show()
-        PNFirebaseManager.shared.getGroups(userId: (PNGlobal.currentUser?.id)!,completion:{ (groupList: [PNGroup]?,error: Error?) in
+        PNFirebaseManager.shared.getGroups(completion:{ (groupList: [PNGroup]?,error: Error?) in
             if error == nil{
                 self.addedGroupList = groupList!
                 for pnGroup in groupList!{
@@ -50,7 +50,7 @@ class PNNotificationViewController: PNBaseViewController {
     }
     
     func getSharedFolderList(){
-        PNFirebaseManager.shared.getFolders(userId: (PNGlobal.currentUser?.id)!, completion:{ (folderList: [PNFolder]?,error: Error?) in
+        PNFirebaseManager.shared.getFolders(completion:{ (folderList: [PNFolder]?,error: Error?) in
             SVProgressHUD.dismiss()
             self.sharedFolderList = folderList!
             if error == nil{
