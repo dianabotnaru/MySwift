@@ -226,6 +226,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        UIApplication.shared.applicationIconBadgeNumber = 0
+
         let userInfo = notification.request.content.userInfo
         
         if let aps = userInfo["aps"] as? NSDictionary {
@@ -243,6 +245,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
+        UIApplication.shared.applicationIconBadgeNumber = 0
         let userInfo = response.notification.request.content.userInfo
         if let aps = userInfo["aps"] as? NSDictionary {
             if let alert = aps["alert"] as? NSDictionary {

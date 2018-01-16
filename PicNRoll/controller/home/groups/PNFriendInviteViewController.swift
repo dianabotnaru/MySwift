@@ -193,7 +193,7 @@ class PNFriendInviteViewController: PNBaseViewController {
         }else{
             message = (PNGlobal.CURRENT_USER_NAME) + " added you to the " + (self.selectedGroup?.name)!
         }
-        PNFirebaseManager.shared.sendNotification(title: "Notification",
+        PNFirebaseManager.shared.sendNotification(title: "picNRoll",
                                                   message: message,
                                                   userToken: pnUser.deviceToken,
                                                   completion: {(response) in
