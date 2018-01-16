@@ -40,7 +40,8 @@ class PNFriendInviteViewController: PNBaseViewController {
     var searchList : [PNUser] = []
     var emailInviteList : [PNUser] = []
     var pnUserInviteList : [PNUser] = []
-
+    var pagingParentVC : PNSharePagingViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchResultTableView.register(UINib(nibName: "PNGroupTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
@@ -199,13 +200,15 @@ class PNFriendInviteViewController: PNBaseViewController {
                                                     if index < self.pnUserInviteList.count-1{
                                                         self.sendNotification(index: index+1)
                                                     }else{
-                                                        SVProgressHUD.dismiss()
                                                         if self.isShareFolder == false{
                                                             if self.delegate != nil {
                                                                 self.delegate?.didAddFriends()
                                                             }
+                                                            _ = self.navigationController?.popViewController(animated: true)
+                                                        }else{
+                                                            self.showAlarmViewController(message: "Folder sharing success!")
                                                         }
-                                                        _ = self.navigationController?.popViewController(animated: true)
+                                                        SVProgressHUD.dismiss()
                                                     }
         })
 

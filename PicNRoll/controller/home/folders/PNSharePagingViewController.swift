@@ -45,6 +45,10 @@ class PNSharePagingViewController: UIViewController {
             contentViewController.dataSource = self
         }
     }
+    
+    func performBack(){
+        _ = self.navigationController?.popViewController(animated: true)
+    }
 }
 
 extension PNSharePagingViewController: PagingMenuViewControllerDataSource {
@@ -75,6 +79,7 @@ extension PNSharePagingViewController: PagingContentViewControllerDataSource {
     
     func contentViewController(viewController: PagingContentViewController, viewControllerAt index: Int) -> UIViewController {
         if index == 0 {
+            friendInviteViewController.pagingParentVC = self
             self.friendInviteViewController.isShareFolder = true
             return self.friendInviteViewController
         }else {
