@@ -200,15 +200,17 @@ class PNFriendInviteViewController: PNBaseViewController {
                                                     if index < self.pnUserInviteList.count-1{
                                                         self.sendNotification(index: index+1)
                                                     }else{
+                                                        SVProgressHUD.dismiss()
                                                         if self.isShareFolder == false{
-                                                            if self.delegate != nil {
-                                                                self.delegate?.didAddFriends()
+                                                            DispatchQueue.main.async {
+                                                                _ = self.navigationController?.popViewController(animated: true)
+                                                                if self.delegate != nil {
+                                                                    self.delegate?.didAddFriends()
+                                                                }
                                                             }
-                                                            _ = self.navigationController?.popViewController(animated: true)
                                                         }else{
                                                             self.showAlarmViewController(message: "Folder sharing success!")
                                                         }
-                                                        SVProgressHUD.dismiss()
                                                     }
         })
 
