@@ -58,6 +58,7 @@
 		D582C8541FED2CA400315C60 /* PNGroupShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D582C8531FED2CA400315C60 /* PNGroupShareViewController.swift */; };
 		D582C8591FED59A800315C60 /* PNPictureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D582C8571FED59A800315C60 /* PNPictureCollectionViewCell.swift */; };
 		D582C85A1FED59A800315C60 /* PNPictureCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D582C8581FED59A800315C60 /* PNPictureCollectionViewCell.xib */; };
+		D5BC8C3D200DA997009F46B6 /* PNSharedPreferenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BC8C3C200DA997009F46B6 /* PNSharedPreferenceManager.swift */; };
 		D5C484AE1FEFB00F00B76D24 /* PNUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C484AD1FEFB00F00B76D24 /* PNUtil.swift */; };
 /* End PBXBuildFile section */
 
@@ -119,6 +120,7 @@
 		D582C8531FED2CA400315C60 /* PNGroupShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNGroupShareViewController.swift; sourceTree = "<group>"; };
 		D582C8571FED59A800315C60 /* PNPictureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNPictureCollectionViewCell.swift; sourceTree = "<group>"; };
 		D582C8581FED59A800315C60 /* PNPictureCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PNPictureCollectionViewCell.xib; sourceTree = "<group>"; };
+		D5BC8C3C200DA997009F46B6 /* PNSharedPreferenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNSharedPreferenceManager.swift; sourceTree = "<group>"; };
 		D5C484AD1FEFB00F00B76D24 /* PNUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -170,6 +172,7 @@
 				8D84CBBB1FE8A8EF006B2F74 /* PNFirebaseManager.swift */,
 				D5C484AD1FEFB00F00B76D24 /* PNUtil.swift */,
 				D53C95D71FF3D7E300659964 /* PNContactManager.swift */,
+				D5BC8C3C200DA997009F46B6 /* PNSharedPreferenceManager.swift */,
 			);
 			path = manager;
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 				D52C8F9D1FF2822400791F9A /* PNGroup.swift in Sources */,
 				8DB93D2F1FE2FCAD00E456C2 /* PNLoginViewController.swift in Sources */,
 				D582C84D1FED2C2400315C60 /* PNSharePagingViewController.swift in Sources */,
+				D5BC8C3D200DA997009F46B6 /* PNSharedPreferenceManager.swift in Sources */,
 				8D72F2341FE4BE570047CB66 /* PNGroupViewController.swift in Sources */,
 				D544CF1B2009B04D00AE37BB /* PNNotificationTableViewCell.swift in Sources */,
 				8DB93D2D1FE2FCAD00E456C2 /* AppDelegate.swift in Sources */,
