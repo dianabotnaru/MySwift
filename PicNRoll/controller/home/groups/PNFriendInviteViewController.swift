@@ -75,9 +75,11 @@ class PNFriendInviteViewController: PNBaseViewController {
         self.searchList.removeAll()
         for pnUser in PNContactManager.shared.allPNUser{
             if pnUser.name.contains(text){
-                self.searchList.append(pnUser)
+                if pnUser.id != PNFirebaseManager.shared.getCurrentUserID(){
+                    self.searchList.append(pnUser)
+                }
             }else{
-                if pnUser.email.contains(text){
+                if pnUser.id != PNFirebaseManager.shared.getCurrentUserID(){
                     self.searchList.append(pnUser)
                 }
             }
