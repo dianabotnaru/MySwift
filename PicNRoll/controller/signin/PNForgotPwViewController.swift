@@ -52,7 +52,9 @@ class PNForgotPwViewController: PNBaseViewController {
                                                 SVProgressHUD.dismiss()
         }
     }
-    
+}
+
+extension PNForgotPwViewController: TextFieldDelegate{
     @objc func keyboardWillShow(notification: NSNotification) {
         if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             if UIDevice.current.orientation == UIDeviceOrientation.landscapeLeft || UIDevice.current.orientation == UIDeviceOrientation.landscapeRight {
@@ -69,5 +71,15 @@ class PNForgotPwViewController: PNBaseViewController {
                 self.view.frame.origin.y += 220
             }
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        self.view.endEditing(true)
+        return false
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
