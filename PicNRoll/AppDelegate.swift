@@ -30,7 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.initNavigationBarUI();
         self.initStoryBoard()
         if Auth.auth().currentUser != nil {
-            self.launchHomeScreen()
+            if(PNSharedPreferenceManager.shared.isFirstLaunch()){
+                self.launchSignInScreen()
+            }else{
+                self.launchHomeScreen()
+            }
         }else{
             self.launchSignInScreen()
         }
@@ -96,6 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func launchHomeScreen(){
+        PNSharedPreferenceManager.shared.isLaunchedApp()
         let homeNavigationController = self.signInStoryboard?.instantiateViewController(withIdentifier: "HomeNavigationViewController") as! UINavigationController
         self.window!.rootViewController = homeNavigationController
         window!.makeKeyAndVisible()

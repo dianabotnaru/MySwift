@@ -15,6 +15,21 @@ class PNSharedPreferenceManager {
     let ID_KEY = "id"
     let NAME_KEY = "name"
     let IMAGE_URL_KEY = "profileImageUrl"
+    let LAUNCHED_KEY = "isLaunched"
+    
+    func isLaunchedApp(){
+        let preferences = UserDefaults.standard
+        preferences.set("isLaunched", forKey: LAUNCHED_KEY)
+    }
+    
+    func isFirstLaunch() -> Bool{
+        let preferences = UserDefaults.standard
+        if preferences.object(forKey: LAUNCHED_KEY) == nil{
+            return true
+        }else{
+            return false
+        }
+    }
 
     func saveUserName(name: String){
         let preferences = UserDefaults.standard
@@ -25,7 +40,6 @@ class PNSharedPreferenceManager {
         let preferences = UserDefaults.standard
         preferences.set(profileImageUrl, forKey: IMAGE_URL_KEY)
     }
-
     
     func getUserName() -> String{
         let preferences = UserDefaults.standard
