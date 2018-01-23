@@ -157,6 +157,11 @@ final class PNFirebaseManager{
         completion()
     }
     
+    func deleteFolder(folder:PNFolder,completion: @escaping () -> Swift.Void){
+        self.databaseRef.child(ALBUMTABLE).child(getCurrentUserID()!).child(folder.id).removeValue()
+        completion()
+    }
+    
     func setImageUrlofFolder(folderId:String,
                              vendorId:String,
                              url:String,
@@ -233,6 +238,12 @@ final class PNFirebaseManager{
         completion()
     }
     
+    func deleteGroup(pnGroup:PNGroup,
+                     completion: @escaping () -> Swift.Void){
+        self.databaseRef.child(GROUPTABLE).child(getCurrentUserID()!).child(pnGroup.id).removeValue()
+        completion()
+    }
+
     func getGroups(completion: @escaping ([PNGroup]?,Error?) -> Swift.Void){
         self.databaseRef.child(GROUPTABLE).child(getCurrentUserID()!).observeSingleEvent(of: .value, with: { (snapshot) in
             var groupList : [PNGroup] = []
