@@ -379,39 +379,43 @@ final class PNFirebaseManager{
     }
     
     func sendNotification(title: String, message: String, userToken: String,completion: @escaping (String?) -> Swift.Void) {
-        //        if userToken != nil {
-        var request = URLRequest(url: URL(string: "https://fcm.googleapis.com/fcm/send")!)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//        request.setValue("key=AAAARbUrX2Y:APA91bG5Ue4xkeEhv_MnhW5y8jGgxAuZXuKsVn5WbNGuGdNJPCOV9euduBONeo75qzvV8cCuKAYKr6pgOA7Fxkc3l-rdILSS0ZcF9dxtaIKwQgKoC6dxd2wnAGCYwGT9BesJKJhcdnF9", forHTTPHeaderField: "Authorization")
-        request.setValue("key=AAAAAmwdLUI:APA91bFOnUWq-HSKwZU7w3n0v0la-g2n398WRKmEnf-7yfXbcgbO5FGN8jZuMZeChU1Jk_dvSjFZq5kR_hEkTQje74SZMwcm7cTOWRzgJC2AWVBgzWeRrY_T6j_28Qpnnb3XFBjOyIF6", forHTTPHeaderField: "Authorization")
-        let json = [
-            "to" : userToken,
-            "priority" : "high",
-            "notification" : [
-                "title" : title,
-                "body"  : message,
-                "badge" : 1
-            ]
-            ] as [String : Any]
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
-            request.httpBody = jsonData
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                guard let data = data, error == nil else {
-                    print("Error=\(String(describing: error))")
-                    return
+        if Platform.isSimulator == false {
+                //        if userToken != nil {
+                var request = URLRequest(url: URL(string: "https://fcm.googleapis.com/fcm/send")!)
+                request.httpMethod = "POST"
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        //        request.setValue("key=AAAARbUrX2Y:APA91bG5Ue4xkeEhv_MnhW5y8jGgxAuZXuKsVn5WbNGuGdNJPCOV9euduBONeo75qzvV8cCuKAYKr6pgOA7Fxkc3l-rdILSS0ZcF9dxtaIKwQgKoC6dxd2wnAGCYwGT9BesJKJhcdnF9", forHTTPHeaderField: "Authorization")
+                request.setValue("key=AAAAAmwdLUI:APA91bFOnUWq-HSKwZU7w3n0v0la-g2n398WRKmEnf-7yfXbcgbO5FGN8jZuMZeChU1Jk_dvSjFZq5kR_hEkTQje74SZMwcm7cTOWRzgJC2AWVBgzWeRrY_T6j_28Qpnnb3XFBjOyIF6", forHTTPHeaderField: "Authorization")
+                let json = [
+                    "to" : userToken,
+                    "priority" : "high",
+                    "notification" : [
+                        "title" : title,
+                        "body"  : message,
+                        "badge" : 1
+                    ]
+                    ] as [String : Any]
+                do {
+                    let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+                    request.httpBody = jsonData
+                    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                        guard let data = data, error == nil else {
+                            print("Error=\(String(describing: error))")
+                            return
+                        }
+                        if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                            completion("Status Code should be 200, but is \(httpStatus.statusCode)")
+                        }
+                        let responseString = String(data: data, encoding: .utf8)
+                        completion(responseString)
+                    }
+                    task.resume()
                 }
-                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
-                    completion("Status Code should be 200, but is \(httpStatus.statusCode)")
+                catch {
+                    completion(error.localizedDescription)
                 }
-                let responseString = String(data: data, encoding: .utf8)
-                completion(responseString)
-            }
-            task.resume()
-        }
-        catch {
-            completion(error.localizedDescription)
+        }else{
+            completion("can't send push nofication on simulator")
         }
     }
 
