@@ -15,7 +15,6 @@ class PNSignupViewController: PNBaseViewController {
     
     @IBOutlet var nameTextField: ErrorTextField!
     @IBOutlet var emailTextField: ErrorTextField!
-    @IBOutlet var phoneNumberTextField: ErrorTextField!
     @IBOutlet var pwTextField: ErrorTextField!
 
     override func viewDidLoad() {
@@ -36,10 +35,10 @@ class PNSignupViewController: PNBaseViewController {
             self.showAlarmViewController(message:"Please enter email!")
             return;
         }
-        if phoneNumberTextField.text == ""{
-            self.showAlarmViewController(message:"Please enter phone number!")
-            return;
-        }
+//        if phoneNumberTextField.text == ""{
+//            self.showAlarmViewController(message:"Please enter phone number!")
+//            return;
+//        }
         if pwTextField.text == ""{
             self.showAlarmViewController(message:"Please enter password!")
             return;
@@ -60,7 +59,7 @@ class PNSignupViewController: PNBaseViewController {
         PNFirebaseManager.shared.createUser(email: emailTextField.text!,
                                             password: pwTextField.text!,
                                             name: nameTextField.text!,
-                                            phoneNumber: phoneNumberTextField.text!,
+                                            phoneNumber: "",
                                             lat: "",
                                             lng: "",
                                             completion:{ (pnUser: PNUser?,error: Error?) in
@@ -82,7 +81,6 @@ extension PNSignupViewController: TextFieldDelegate{
     func initUi(){
         nameTextField.delegate = self
         emailTextField.delegate = self
-        phoneNumberTextField.delegate = self
         pwTextField.delegate = self
         self.navigationController?.isNavigationBarHidden = true
         NotificationCenter.default.addObserver(self, selector: #selector(PNSignupViewController.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)

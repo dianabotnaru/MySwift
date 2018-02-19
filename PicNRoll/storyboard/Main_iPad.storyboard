@@ -959,33 +959,8 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aEc-SR-4yb" customClass="ErrorTextField" customModule="Material">
-                                        <rect key="frame" x="20" y="125" width="344" height="30"/>
-                                        <color key="tintColor" red="0.78039215689999997" green="0.78039215689999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="textColor" red="0.2470588235" green="0.25098039220000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Mobile"/>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderVerticalOffset">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderActiveColor">
-                                                <color key="value" red="0.78039215689999997" green="0.78039215689999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderNormalColor">
-                                                <color key="value" red="0.78039215689999997" green="0.78039215689999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="dividerColor">
-                                                <color key="value" red="0.48627450979999998" green="0.70196078429999997" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="dividerActiveColor">
-                                                <color key="value" red="0.48627450979999998" green="0.70196078429999997" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vZh-IH-ufs" customClass="ErrorTextField" customModule="Material">
-                                        <rect key="frame" x="20" y="180" width="344" height="30"/>
+                                        <rect key="frame" x="20" y="125" width="344" height="30"/>
                                         <color key="tintColor" red="0.78039215689999997" green="0.78039215689999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" red="0.2470588235" green="0.25098039220000001" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -1035,7 +1010,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E1j-U7-tnn" customClass="RaisedButton" customModule="Material">
-                                        <rect key="frame" x="91.5" y="240" width="200" height="35"/>
+                                        <rect key="frame" x="91.5" y="185" width="200" height="35"/>
                                         <color key="backgroundColor" red="0.48627450979999998" green="0.70196078429999997" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="CWp-5Y-Cex"/>
@@ -1058,8 +1033,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="vZh-IH-ufs" secondAttribute="trailing" constant="20" id="76z-GV-0sr"/>
-                                    <constraint firstItem="aEc-SR-4yb" firstAttribute="leading" secondItem="vVm-82-WST" secondAttribute="leading" constant="20" id="FDD-TK-lYz"/>
-                                    <constraint firstItem="vZh-IH-ufs" firstAttribute="top" secondItem="aEc-SR-4yb" secondAttribute="bottom" constant="25" id="STy-lc-aOe"/>
+                                    <constraint firstItem="vZh-IH-ufs" firstAttribute="top" secondItem="DU2-hA-Ftv" secondAttribute="bottom" constant="25" id="OKa-di-w8E"/>
                                     <constraint firstItem="E1j-U7-tnn" firstAttribute="centerX" secondItem="vVm-82-WST" secondAttribute="centerX" id="Tmn-Ge-weo"/>
                                     <constraint firstItem="knu-h2-F3n" firstAttribute="top" secondItem="vVm-82-WST" secondAttribute="top" constant="15" id="XCM-m9-inL"/>
                                     <constraint firstAttribute="height" constant="275" id="XoA-L5-dKf"/>
@@ -1067,8 +1041,6 @@
                                     <constraint firstItem="DU2-hA-Ftv" firstAttribute="top" secondItem="knu-h2-F3n" secondAttribute="bottom" constant="25" id="Zlp-ta-I5r"/>
                                     <constraint firstAttribute="trailing" secondItem="knu-h2-F3n" secondAttribute="trailing" constant="20" id="dJ3-cV-2Is"/>
                                     <constraint firstItem="E1j-U7-tnn" firstAttribute="top" secondItem="vZh-IH-ufs" secondAttribute="bottom" constant="30" id="edQ-ZH-7d1"/>
-                                    <constraint firstAttribute="trailing" secondItem="aEc-SR-4yb" secondAttribute="trailing" constant="20" id="iOI-Pc-o7f"/>
-                                    <constraint firstItem="aEc-SR-4yb" firstAttribute="top" secondItem="DU2-hA-Ftv" secondAttribute="bottom" constant="25" id="iWK-Lj-P9A"/>
                                     <constraint firstItem="knu-h2-F3n" firstAttribute="leading" secondItem="vVm-82-WST" secondAttribute="leading" constant="20" id="iyz-ec-KRy"/>
                                     <constraint firstAttribute="trailing" secondItem="DU2-hA-Ftv" secondAttribute="trailing" constant="20" id="k4K-7M-g5b"/>
                                     <constraint firstItem="DU2-hA-Ftv" firstAttribute="leading" secondItem="vVm-82-WST" secondAttribute="leading" constant="20" id="kyL-Ps-9r2"/>
@@ -1131,7 +1103,6 @@
                     <connections>
                         <outlet property="emailTextField" destination="DU2-hA-Ftv" id="YDA-6G-Z5D"/>
                         <outlet property="nameTextField" destination="knu-h2-F3n" id="hC1-OU-ceb"/>
-                        <outlet property="phoneNumberTextField" destination="aEc-SR-4yb" id="xn6-Ys-dYr"/>
                         <outlet property="pwTextField" destination="vZh-IH-ufs" id="Bam-7w-vTT"/>
                     </connections>
                 </viewController>
