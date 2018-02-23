@@ -1520,7 +1520,7 @@
                                 </constraints>
                             </view>
                             <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="val-vk-tqr">
-                                <rect key="frame" x="0.0" y="118" width="375" height="549"/>
+                                <rect key="frame" x="0.0" y="118" width="375" height="489"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="fUB-KF-Gr0" id="7yi-Yo-gUW"/>
@@ -1591,8 +1591,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="fjV-Xi-frg" firstAttribute="top" secondItem="val-vk-tqr" secondAttribute="bottom" id="2YI-tK-LLE"/>
                             <constraint firstItem="dX9-wv-dbs" firstAttribute="top" secondItem="fjV-Xi-frg" secondAttribute="bottom" id="6Ou-vB-xGS"/>
-                            <constraint firstItem="dX9-wv-dbs" firstAttribute="top" secondItem="val-vk-tqr" secondAttribute="bottom" id="7Uo-jq-Vys"/>
                             <constraint firstItem="val-vk-tqr" firstAttribute="top" secondItem="H1D-Sa-Brj" secondAttribute="bottom" constant="54" id="HAH-ro-J8j"/>
                             <constraint firstItem="vaC-9X-AZ2" firstAttribute="leading" secondItem="WUa-do-2qn" secondAttribute="leading" id="PtS-cW-Ohf"/>
                             <constraint firstItem="vaC-9X-AZ2" firstAttribute="top" secondItem="H1D-Sa-Brj" secondAttribute="bottom" id="Uzm-Wl-oZT"/>
