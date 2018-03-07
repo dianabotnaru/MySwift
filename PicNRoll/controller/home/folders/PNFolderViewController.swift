@@ -8,6 +8,7 @@
 
 import UIKit
 import SVProgressHUD
+import Material
 
 class PNFolderViewController: PNBaseViewController{
 
@@ -15,6 +16,9 @@ class PNFolderViewController: PNBaseViewController{
     public var folderList : [PNFolder] = []
 
     @IBOutlet var folderTableView: UITableView!
+    @IBOutlet var fabButton: FABButton!
+
+    
     let imagePicker = UIImagePickerController()
    
     var selectedFolder: PNFolder?
@@ -39,6 +43,15 @@ class PNFolderViewController: PNBaseViewController{
         folderTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         imagePicker.delegate = self
         initRefreshController()
+        initFabButton();
+    }
+    
+    func initFabButton(){
+//        fabButton.image = Icon.cm.add;
+        fabButton.pulseColor = .green
+        fabButton.backgroundColor = Color.white;
+        fabButton.tintColor = .black;
+        fabButton.shadowColor = .black;
     }
     
     func initRefreshController(){

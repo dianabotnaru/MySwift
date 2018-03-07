@@ -512,49 +512,42 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wrd-Tl-3C3">
-                                <rect key="frame" x="0.0" y="64" width="375" height="543"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="EMA-t0-tcD" id="LhZ-SZ-4RK"/>
                                     <outlet property="delegate" destination="EMA-t0-tcD" id="g2b-wp-16w"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p2h-dG-uqb">
-                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cof-D8-m3K">
-                                        <rect key="frame" x="40" y="14" width="117" height="32"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                        <state key="normal" title="+   Add a folder">
-                                            <color key="titleColor" red="0.48627450979999998" green="0.70196078429999997" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="btnAddClicked" destination="EMA-t0-tcD" eventType="touchUpInside" id="UMI-7n-9De"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.14901960780000001" green="0.1960784314" blue="0.21960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cof-D8-m3K" customClass="FABButton" customModule="Material">
+                                <rect key="frame" x="289" y="597" width="50" height="50"/>
                                 <constraints>
-                                    <constraint firstItem="Cof-D8-m3K" firstAttribute="leading" secondItem="p2h-dG-uqb" secondAttribute="leading" constant="40" id="Tsg-pP-IW1"/>
-                                    <constraint firstAttribute="height" constant="60" id="Yg6-vu-YOg"/>
-                                    <constraint firstItem="Cof-D8-m3K" firstAttribute="centerY" secondItem="p2h-dG-uqb" secondAttribute="centerY" id="zHP-hP-hHm"/>
+                                    <constraint firstAttribute="width" constant="50" id="0zs-MN-sa8"/>
+                                    <constraint firstAttribute="height" constant="50" id="wW7-8H-H7M"/>
                                 </constraints>
-                            </view>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <state key="normal" title="+">
+                                    <color key="titleColor" red="0.48627450979999998" green="0.70196078429999997" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnAddClicked" destination="EMA-t0-tcD" eventType="touchUpInside" id="UMI-7n-9De"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="wrd-Tl-3C3" firstAttribute="top" secondItem="ybY-6b-IfN" secondAttribute="bottom" id="38b-vS-yuK"/>
                             <constraint firstItem="wrd-Tl-3C3" firstAttribute="leading" secondItem="xUu-BL-YMi" secondAttribute="leading" id="44D-tb-KOK"/>
-                            <constraint firstAttribute="trailing" secondItem="p2h-dG-uqb" secondAttribute="trailing" id="Jrp-9M-40D"/>
-                            <constraint firstItem="p2h-dG-uqb" firstAttribute="top" secondItem="wrd-Tl-3C3" secondAttribute="bottom" id="MI2-Pf-STH"/>
+                            <constraint firstItem="CKL-CJ-dMs" firstAttribute="top" secondItem="Cof-D8-m3K" secondAttribute="bottom" constant="20" id="P3p-0K-EBm"/>
                             <constraint firstAttribute="trailing" secondItem="wrd-Tl-3C3" secondAttribute="trailing" id="RXB-GW-AD4"/>
-                            <constraint firstItem="CKL-CJ-dMs" firstAttribute="top" secondItem="p2h-dG-uqb" secondAttribute="bottom" id="iXL-Lg-2re"/>
-                            <constraint firstItem="p2h-dG-uqb" firstAttribute="leading" secondItem="xUu-BL-YMi" secondAttribute="leading" id="qzG-RU-L2J"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Cof-D8-m3K" secondAttribute="trailing" constant="20" id="wZp-ym-o4v"/>
+                            <constraint firstItem="CKL-CJ-dMs" firstAttribute="top" secondItem="wrd-Tl-3C3" secondAttribute="bottom" id="xsf-7V-WRt"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Pick n Roll" id="1xq-xx-fRM"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="fabButton" destination="Cof-D8-m3K" id="zls-8U-mQ9"/>
                         <outlet property="folderTableView" destination="wrd-Tl-3C3" id="Ya4-gr-Uxb"/>
                     </connections>
                 </viewController>
