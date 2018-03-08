@@ -207,7 +207,21 @@ extension PNFolderViewController: UITableViewDelegate, UITableViewDataSource ,PN
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedFolder = folderList[indexPath.row]
-        launchPictureViewController()
+        if selectedFolder?.firstImageUrl == "" {
+            let cell = self.folderTableView.cellForRow(at: indexPath) as! PNFolderListTableViewCell
+            showAddPictureAlert(indexPath.row, cell.addPictureButton)
+        }else{
+            launchPictureViewController()
+        }
+    }
+    
+    func showAddPictureAlert(_ index:Int, _ sender: UIButton){
+        let alert = UIAlertController(title: "No Pictures", message: "Add Pictures by clicking Picture icon.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            self.didAddPictureButtonTapped(index,sender);
+        }))
+        alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func didTapShareButton(index:Int){
