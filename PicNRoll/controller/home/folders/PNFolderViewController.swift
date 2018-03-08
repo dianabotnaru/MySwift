@@ -122,11 +122,24 @@ extension PNFolderViewController{
             }
             if error == nil{
                 self.folderList = folderList!
-                self.folderTableView.reloadData()
+                if folderList?.count == 0{
+                    self.showAddFolderAlert()
+                }else{
+                    self.folderTableView.reloadData()
+                }
             }else{
                 self.showAlarmViewController(message: (error?.localizedDescription)!)
             }
         })
+    }
+    
+    func showAddFolderAlert(){
+        let alert = UIAlertController(title: "No Folders", message: "Do you want to add a folder?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            self.btnAddClicked();
+        }))
+        alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func addFolder(folderName: String){
