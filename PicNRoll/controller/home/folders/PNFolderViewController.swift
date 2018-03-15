@@ -47,11 +47,11 @@ class PNFolderViewController: PNBaseViewController{
     }
     
     func initFabButton(){
-//        fabButton.image = Icon.cm.add;
         fabButton.pulseColor = .green
-        fabButton.backgroundColor = Color.white;
-        fabButton.tintColor = .black;
-        fabButton.shadowColor = .black;
+        fabButton.backgroundColor = Color.white
+        fabButton.tintColor = .black
+        fabButton.shadowColor = .black
+        fabButton.depthPreset = .depth4
     }
     
     func initRefreshController(){

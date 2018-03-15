@@ -8,12 +8,15 @@
 
 import UIKit
 import SVProgressHUD
+import Material
 
 class PNGroupViewController: PNBaseViewController {
 
     let cellReuseIdentifier = "PNGroupTableViewCell"
     let section = ["Groups", "Friends"]
+    
     @IBOutlet var groupTableView: UITableView!
+    @IBOutlet var fabButton: FABButton!
     private let refreshControl = UIRefreshControl()
 
     public var groupList : [PNGroup] = []
@@ -26,8 +29,17 @@ class PNGroupViewController: PNBaseViewController {
         groupTableView.register(UINib(nibName: "PNGroupTableViewCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
         groupTableView.separatorStyle = UITableViewCellSeparatorStyle.none
         initRefreshController()
+        initFabButton()
         getFriends()
         getGroups()
+    }
+    
+    func initFabButton(){
+        fabButton.pulseColor = .green
+        fabButton.backgroundColor = Color.white
+        fabButton.tintColor = .black
+        fabButton.shadowColor = .black
+        fabButton.depthPreset = .depth4
     }
     
     func initRefreshController(){

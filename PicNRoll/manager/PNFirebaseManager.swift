@@ -64,7 +64,7 @@ final class PNFirebaseManager{
                     completion: @escaping (Error?) -> Swift.Void){
         let post = ["Email": pnUser.email,
                     "Name": pnUser.name,
-                    "PhoneNumber":pnUser.phoneNumber ,
+                    "PhoneNumber":pnUser.phoneNumber,
                     "deviceToken": self.deviceToken,
                     "lat":pnUser.lat,
                     "lng":pnUser.lng,
